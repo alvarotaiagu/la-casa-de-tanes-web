@@ -16,6 +16,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { execFileSync } from 'node:child_process';
+import crypto from 'node:crypto';
 
 const RAIZ = path.dirname(fileURLToPath(import.meta.url));
 const leerJson = (f) => JSON.parse(fs.readFileSync(path.join(RAIZ, f), 'utf8'));
@@ -176,28 +177,43 @@ ${n(D.resenas.google)}
 /* ---------- alrededor (ref/raw/rutas.json) ---------- */
 function leerRutas() { const f = path.join(RAIZ, 'ref/raw/rutas.json'); return fs.existsSync(f) ? JSON.parse(fs.readFileSync(f, 'utf8')) : null; }
 const tiempo = (m) => (m >= 60 ? Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0') + ' min' : m + ' min');
+// en la lista, en dos renglones: la cifra («1 h 12», «35») y «min» debajo; así nunca pisa el nombre
+const tiempoCorto = (m) => (m >= 60 ? Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0') : String(m));
 const km = (v) => (v < 1 ? Math.round(v * 1000) + ' m' : num(Math.round(v * 10) / 10) + ' km');
 const GRUPOS = [['cerca', 'En el valle'], ['redes', 'Por Redes'], ['lejos', 'Para llegar']];
+const huella = (rel) => (fs.existsSync(path.join(RAIZ, rel)) ? crypto.createHash('sha1').update(fs.readFileSync(path.join(RAIZ, rel))).digest('hex').slice(0, 8) : '');
 function alrededor() {
   const R2 = leerRutas();
   if (!R2) { console.warn('  (sin ref/raw/rutas.json: «Redes alrededor» va sin distancias)'); return '    <p class="alrededor__fino" data-sin-rutas>Las distancias por carretera están por calcular.</p>'; }
   const fecha = new Date(R2.fecha).toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
+  const filtros = `      <div class="filtros" role="group" aria-label="Encuadre del mapa" hidden>
+${GRUPOS.map(([g, tit], i) => `        <button type="button" class="filtro" data-grupo="${g}" aria-pressed="${i === 0}">${tit}</button>`).join('\n')}
+      </div>`;
   const cols = GRUPOS.map(([g, tit]) => {
     const ids = R2.llegar.filter((id) => R2.destinos[id].grupo === g);
-    return `        <section class="tramo" aria-labelledby="t-tramo-${g}">
+    return `        <section class="tramo" data-grupo="${g}" aria-labelledby="t-tramo-${g}">
           <h3 class="tramo__tit" id="t-tramo-${g}">${tit}</h3>
           <ol class="tramo__lista">
-${ids.map((id) => { const d = R2.destinos[id]; const c = d.desde_casa; const p = d.a_pie; return `            <li data-ruta="${id}"><span class="parada__min cifra">${tiempo(c.minutos)}</span><span class="parada__que"><b>${esc(d.nombre)}</b><small>${esc(d.donde)}</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">${km(c.km)}</span>${p ? `<span class="parada__pie"><svg class="ico" aria-hidden="true"><use href="#i-pie"/></svg><span class="vh">A pie: </span><span class="cifra">${km(p.km)}, ${tiempo(p.minutos)}</span></span>` : ''}</span></li>`; }).join('\n')}
+${ids.map((id) => { const d = R2.destinos[id]; const c = d.desde_casa; const p = d.a_pie; return `            <li data-ruta="${id}"><button type="button" class="parada" data-destino="${id}" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">${tiempoCorto(c.minutos)}</b><small>min</small></span><span class="parada__que"><b>${esc(d.nombre)}</b><small>${esc(d.donde)}</small></span><span class="parada__km"><span class="vh">${tiempo(c.minutos)} en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">${km(c.km)}</span></span>${p ? `<span class="parada__pie"><svg class="ico" aria-hidden="true"><use href="#i-pie"/></svg><span class="vh">a pie: </span><span class="cifra">${km(p.km)}, ${tiempo(p.minutos)}</span></span>` : ''}</span></button></li>`; }).join('\n')}
           </ol>
         </section>`;
   }).join('\n');
-  return `    <div class="alrededor__in">
-      <figure class="alrededor__f"><button type="button" class="foto-btn" data-visor="arco-iris-valle" data-grupo="alrededor" aria-label="Ver más grande: ${esc(altDe('arco-iris-valle'))}"><img data-foto="arco-iris-valle" sizes="(max-width: 899px) 92vw, 36vw"></button></figure>
-      <div class="trayecto">
+  const q = (f) => `img/mapa/${f}`;
+  return `    <div class="valle" id="valle" data-datos="js/valle-datos.js?v=${huella('js/valle-datos.js')}">
+      <div class="valle__mapa">
+        <div class="valle__lamina" id="valle-lamina">
+          <picture class="valle__quieta"><source type="image/webp" srcset="${q('lamina-quieta.webp')}"><img src="${q('lamina-quieta.jpg')}" width="1200" height="900" loading="lazy" decoding="async" alt="Lámina del valle de Caso y del Parque Natural de Redes: el embalse de Tanes, La Casa y los sitios de alrededor con su ruta por carretera; Oviedo y el aeropuerto, fuera del encuadre"></picture>
+        </div>
+        <p class="valle__pista" id="valle-pista" aria-live="polite">Pasa por un sitio de la lista o pulsa en el mapa: sale su camino por carretera desde la casa.</p>
+      </div>
+      <div class="valle__lista">
+${filtros}
+        <div class="trayecto">
 ${cols}
+        </div>
       </div>
     </div>
-    <p class="alrededor__fino">Tiempos en coche desde la casa, por carretera, calculados con OSRM sobre datos de © colaboradores de OpenStreetMap el ${fecha}: sin tráfico ni paradas, orientativos. La Casa del Agua está en Rioseco (el tiempo es hasta el pueblo); conviene mirar su horario antes de ir.</p>`;
+    <p class="alrededor__fino">Tiempos y caminos en coche desde la casa, por carretera, calculados con OSRM sobre datos de © colaboradores de OpenStreetMap el ${fecha}: sin tráfico ni paradas, orientativos. Relieve: MDT05, MDT25 y MDT200 del Instituto Geográfico Nacional (CC BY 4.0, © IGN). La Casa del Agua está en Rioseco (el tiempo es hasta el pueblo); conviene mirar su horario antes de ir.</p>`;
 }
 function llegar() {
   const R2 = leerRutas();

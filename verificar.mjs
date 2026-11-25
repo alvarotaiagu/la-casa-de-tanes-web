@@ -122,9 +122,20 @@ comprobar(!/<iframe/.test(html), 'ningún iframe en el HTML (el mapa se crea al 
 const iconos = new Set([...html.matchAll(/use href="#(i-[a-z-]+)"/g)].map((m) => m[1]));
 comprobar([...iconos].every((i) => new RegExp(`<symbol id="${i}"`).test(html)) && (html.match(/servicios__lista[\s\S]*?<\/ul>/g) || []).join('').split('<use href="#i-').length - 1 >= 13 && !/<li>\s*•/.test(html), `servicios con icono propio (${iconos.size} iconos del sprite, todos definidos), sin viñetas`);
 if (RUTAS) {
-  const tray = html.match(/<div class="trayecto">([\s\S]*?)\n      <\/div>/)[1];
-  const ok = RUTAS.llegar.every((id) => { const d = RUTAS.destinos[id].desde_casa; return new RegExp(`data-ruta="${id}"><span class="parada__min cifra">${minTxt(d.minutos)}</span>[\\s\\S]*?${kmTxt(d.km)}`).test(tray); });
-  comprobar(ok && (tray.match(/data-ruta=/g) || []).length === RUTAS.llegar.length, `Redes alrededor: los ${RUTAS.llegar.length} destinos con minutos y km de ref/raw/rutas.json (OSRM), ninguno a ojo`);
+  const tray = html.match(/<div class="trayecto">([\s\S]*?)\n        <\/div>/)[1];
+  const corto = (m) => (m >= 60 ? Math.floor(m / 60) + ' h ' + String(m % 60).padStart(2, '0') : String(m));
+  const ok = RUTAS.llegar.every((id) => { const d = RUTAS.destinos[id].desde_casa; return new RegExp(`data-ruta="${id}"><button type="button" class="parada" data-destino="${id}" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">${corto(d.minutos)}</b><small>min</small></span>[\\s\\S]*?<span class="vh">${minTxt(d.minutos)} en coche, </span>[\\s\\S]*?${kmTxt(d.km)}`).test(tray); });
+  comprobar(ok && (tray.match(/data-ruta=/g) || []).length === RUTAS.llegar.length, `Redes alrededor: los ${RUTAS.llegar.length} destinos con minutos (en dos renglones, «1 h 12» y «min») y km de ref/raw/rutas.json (OSRM), ninguno a ojo`);
+  const VD = existe('js/valle-datos.js') ? JSON.parse(leer('js/valle-datos.js').replace(/^[\s\S]*?window\.TANES_VALLE = /, '').replace(/;\s*$/, '')) : null;
+  const GEO = existe('ref/raw/rutas-geometria.json') ? JSON.parse(leer('ref/raw/rutas-geometria.json')) : null;
+  comprobar(VD && GEO && RUTAS.llegar.every((id) => { const d = VD.destinos.find((x) => x.id === id), g = GEO.rutas[id]; const r = RUTAS.destinos[id].desde_casa; return d && g && d.km === r.km && d.min === r.minutos && Math.abs(g.km - r.km) <= 0.3 && d.ruta.length >= 6 && g.coordinates.length >= 2; }), 'la lámina: cada destino con su ruta REAL de OSRM (overview=full, en ref/raw/rutas-geometria.json) y los mismos km y minutos que la lista');
+  comprobar(VD && VD.capas.length === 3 && VD.capas.every((k) => existe(`img/mapa/relieve-${k.id}.webp`) && /^Elevacion4258_(5|25|200)$/.test(k.mdt)) && VD.agua.some((a) => /Tanes/.test(a.nombre)) && VD.carreteras.length > 50 && VD.parque.length > 0 && existe('img/mapa/lamina-quieta.webp') && existe('img/mapa/lamina-quieta.jpg'), 'la lámina: relieve del IGN en tres láminas (MDT05, MDT25, MDT200), el embalse de Tanes, carreteras y el límite del Parque de OSM, y la lámina quieta para sin JS');
+  {
+    const peso = (f) => (existe(f) ? fs.statSync(path.join(RAIZ, f)).size : 0);
+    const kb = Math.round((['js/valle.js', 'js/valle-datos.js', ...VD.capas.map((k) => `img/mapa/relieve-${k.id}.webp`)].reduce((a, f) => a + peso(f), 0)) / 1024);
+    comprobar(kb < 900 && !/valle-datos\.js[^"]*" defer/.test(html) && /data-datos="js\/valle-datos\.js\?v=[0-9a-f]{8}"/.test(html), `la lámina pesa ${kb} KB (JS, datos y relieves) y sus datos se piden al acercarse, no al cargar`);
+  }
+  comprobar(/Instituto Geográfico Nacional \(CC BY 4\.0/.test(texto) && /OpenStreetMap/.test(texto) && /OSRM/.test(texto), 'la sección cita el IGN (CC BY 4.0), OpenStreetMap (ODbL) y OSRM');
   comprobar(RUTAS.casa.lat.toFixed(4) === '43.2054' && /Catastro/.test(RUTAS.casa.fuente) && RUTAS.contraste.oviedo.veredicto.includes('falso') && new RegExp(kmTxt(RUTAS.destinos.oviedo.desde_casa.km)).test(texto), `la casa sale del Catastro (Tanes 9) y Oviedo está a ${kmTxt(RUTAS.destinos.oviedo.desde_casa.km)} y ${minTxt(RUTAS.destinos.oviedo.desde_casa.minutos)} (OSRM), no a 30 min`);
 } else nota('sin ref/raw/rutas.json');
 /* contrato web ↔ módulos */
@@ -163,9 +174,12 @@ const familias = [...fuentes.matchAll(/family=([A-Za-z+]+)/g)].map((m) => m[1]);
 comprobar(JSON.stringify(familias) === '["Imperial+Script","Sofia+Sans+Condensed","Ubuntu+Sans","Google+Sans+Code"]' && /display=swap/.test(fuentes), 'Google Fonts: Imperial Script, Sofia Sans Condensed, Ubuntu Sans y Google Sans Code, display=swap');
 {
   const otras = [];
+  // solo las webs que ya existían cuando se eligieron las letras (una web posterior que las copie no es culpa de esta)
+  const nacida = fs.statSync(RAIZ).birthtimeMs;
   for (const d of fs.readdirSync(path.join(RAIZ, '..'))) {
     if (!/-web$/.test(d) || d === path.basename(RAIZ)) continue;
     const dir = path.join(RAIZ, '..', d);
+    try { if (fs.statSync(dir).birthtimeMs > nacida) { nota(`${d} es posterior a esta web (no cuenta para las letras)`); continue; } } catch (e) { continue; }
     let fich = [];
     try { fich = [...fs.readdirSync(dir).filter((f) => f.endsWith('.html')).map((f) => path.join(dir, f)), ...(fs.existsSync(path.join(dir, 'css')) ? fs.readdirSync(path.join(dir, 'css')).filter((f) => f.endsWith('.css')).map((f) => path.join(dir, 'css', f)) : [])]; } catch (e) { continue; }
     for (const f of fich) { const s = fs.readFileSync(f, 'utf8'); for (const fam of familias) if (s.includes('family=' + fam) || new RegExp(`['"]${fam.replace(/\+/g, ' ')}['"]`).test(s)) otras.push(fam + ' en ' + d); }
@@ -283,7 +297,7 @@ try {
   await page.waitForTimeout(300);
   const sel = ['#t-estancias', '#estancias .sec-txt', '.cifras dd', '.cifras dt', '.cifras__nota', '.chip[data-color="almagre"] .chip__nombre', '.chip[data-color="almagre"] .chip__txt', '.chip[data-color="botella"] .chip__nombre', '.chip[data-color="cuadros"] .chip__nombre',
     '.chip[data-color="ocre"] .chip__nombre', '.chip[data-color="azul"] .chip__nombre', '.chip[data-color="amarillo"] .chip__nombre', '.carta__nota', '.ficha__h', '.servicios__lista b', '.servicios__lista span', '.condiciones dt', '.condiciones dd b', '.condiciones dd span', '.condiciones .btn--acento',
-    '.estancias__indice a[aria-current]', '.estancias__indice a:not([aria-current])', '.estancia__tit', '.estancia__txt', '#t-lugar', '.espejo__cab .sec-txt', '.espejo__respaldo figcaption', '.tramo__tit', '.parada__min', '.parada__que b', '.parada__que small', '.parada__km', '.alrededor__fino',
+    '.estancias__indice a[aria-current]', '.estancias__indice a:not([aria-current])', '.estancia__tit', '.estancia__txt', '#t-lugar', '.espejo__cab .sec-txt', '.espejo__respaldo figcaption', '.tramo__tit', '.parada__min b', '.parada__min small', '.parada__que b', '.parada__que small', '.parada__km', '.valle__pista', '.filtro', '.alrededor__fino',
     '.nota__n .cifra', '.nota__sobre', '.nota__dato', '.enlace-flecha', '.simu__aviso', '.simu__aviso b', '.simu__eti', '.simu__fechas b', '.cal__tit', '.cal__dias button:not(:disabled)', '.cal__ley', '.simu__pista', '.simu__cuentas dt', '.simu__total dd', '.simu__supuestos', '.simu__acc .btn--acento', '.simu__acc .btn--linea',
     '.contacto__dir', '.contacto__tel', '.contacto__ruta', '.map-consent b', '.map-consent span', '.contacto__f figcaption', '.pie__h', '.pie__cols p', '.pie__cols a', '.pie__legal p', '.pie__legal a'];
   const cs = await contrastes(page, sel);
@@ -587,6 +601,16 @@ try {
     comprobar(llega && pF.logo.op === '1' && pF.rotOp === '0' && pasos.some((p) => p.rot.w < p0.rot.w * 0.8 && p.rot.w > pF.logo.w), `el rótulo se encoge (${p0.rot.w} → ${pF.rot.w} px) y llega al logo de la cabecera (${pF.logo.w} px), que aparece`, { rot: pF.rot, logo: pF.logo });
     await page.mouse.wheel(0, 200); await page.waitForTimeout(200);
     comprobar(await page.evaluate(() => document.getElementById('cab').classList.contains('sc')), 'pasada la portada, la cabecera toma su fondo');
+    // la lámina del valle con movimiento: el camino se traza (progreso entre 0 y 1) y acaba entero
+    await page.evaluate(() => document.getElementById('alrededor').scrollIntoView());
+    await page.waitForFunction(() => window.Tanes.valle && window.Tanes.valle.estado().listo, null, { timeout: 8000 }).catch(() => {});
+    await page.waitForTimeout(400);
+    await page.click('.parada[data-destino="tarna"]');
+    const medias = [];
+    for (let i = 0; i < 6; i++) { await page.waitForTimeout(110); medias.push(await page.evaluate(() => { const c = document.querySelector('#valle-lamina canvas'); return c.__ruta ? Math.round(c.__ruta.progreso * 100) / 100 : -1; })); }
+    await page.waitForTimeout(2600);
+    const finR = await page.evaluate(() => document.querySelector('#valle-lamina canvas').__ruta);
+    comprobar(medias.some((p) => p > 0 && p < 1) && finR.id === 'tarna' && finR.progreso === 1, `con movimiento, el camino al Puerto de Tarna se traza desde la casa (progreso ${medias.join(' → ')} → 1)`, { medias, finR });
     // recarga a media página → arriba
     for (let i = 0; i < 6; i++) { await page.mouse.wheel(0, 300); await page.waitForTimeout(40); }
     await page.reload();
@@ -640,6 +664,122 @@ try {
     await page.goto(PAG);
     const r = await page.evaluate(() => ({ h1: !!document.querySelector('#portada h1').offsetParent, capas: document.querySelectorAll('#portada .capa').length, rot: getComputedStyle(document.querySelector('.rotulo')).display !== 'none', logo: getComputedStyle(document.querySelector('.marca__rotulo')).opacity, tit: getComputedStyle(document.querySelector('#t-estancias')).opacity, chips: [...document.querySelectorAll('.chip__txt')].filter((p) => getComputedStyle(p).visibility === 'visible').length, cal: !!document.querySelector('#simu noscript'), lugar: !!document.querySelector('[data-modulo="lugar"] img'), pie: getComputedStyle(document.querySelector('.pie__letras .pl')).fillOpacity }));
     comprobar(r.h1 && r.capas === 3 && r.rot && r.logo === '1' && r.tit === '1' && r.chips === 6 && r.cal && r.lugar && r.pie === '1', 'sin JavaScript: la portada compuesta con el rótulo detrás de la casa, el logo, la carta entera, el respaldo del 3D, el rótulo del pie escrito y el simulador remite al teléfono', r);
+    await page.locator('#alrededor').scrollIntoViewIfNeeded();
+    await page.waitForFunction(() => { const i = document.querySelector('.valle__quieta img'); return i && i.complete && i.naturalWidth > 0; }, null, { timeout: 6000 }).catch(() => {});
+    const v = await page.evaluate(() => { const i = document.querySelector('.valle__quieta img'); const r = i.getBoundingClientRect(); return { quieta: i.complete && i.naturalWidth === 1200 && r.width > 300 && getComputedStyle(i).visibility === 'visible', filas: [...document.querySelectorAll('.parada')].filter((b) => b.getBoundingClientRect().height > 30).length, filtros: document.querySelector('.filtros').hidden, canvas: !!document.querySelector('#valle-lamina canvas') }; });
+    comprobar(v.quieta && v.filas === 8 && v.filtros && !v.canvas, 'sin JavaScript, «Redes alrededor»: la lámina quieta (1200 px) y la lista de los 8 sitios; los filtros, ocultos', v);
+    await ctx.close();
+  }
+  }
+
+  /* ---------- 14. Redes alrededor: filas sin solapes, la lámina, los filtros, los caminos (movimiento reducido) ---------- */
+  if (toca(14)) {
+  console.log('\n14. Redes alrededor: filas sin solapes (360, 390, 768, 1280) y la lámina interactiva');
+  for (const [w, h] of [[360, 640], [390, 844], [768, 1024], [1280, 800]]) {
+    const movil = w < 1000;
+    const { ctx, page } = await nueva({ viewport: { width: w, height: h }, isMobile: movil, hasTouch: movil }, { script: sinCookies });
+    await page.goto(PAG + '#alrededor');
+    await page.waitForTimeout(250);
+    const s = await page.evaluate(() => {
+      const caja = (el) => { const r = document.createRange(); r.selectNodeContents(el); const b = r.getBoundingClientRect(); return [b.left, b.top, b.right, b.bottom]; };
+      const pisa = (a, b) => !(a[2] <= b[0] + 0.5 || b[2] <= a[0] + 0.5 || a[3] <= b[1] + 0.5 || b[3] <= a[1] + 0.5);
+      const malos = [];
+      document.querySelectorAll('.parada').forEach((p) => {
+        const t = caja(p.querySelector('.parada__min')), n = caja(p.querySelector('.parada__que')), k = caja(p.querySelector('.parada__km .parada__coche'));
+        const pie = p.querySelector('.parada__pie') ? caja(p.querySelector('.parada__pie')) : null;
+        const fila = p.getBoundingClientRect();
+        const dentro = [t, n, k].every((c) => c[0] >= fila.left - 0.5 && c[2] <= fila.right + 0.5);
+        if (pisa(t, n) || pisa(t, k) || pisa(n, k) || (pie && (pisa(pie, n) || pisa(pie, t))) || !dentro) malos.push(p.dataset.destino);
+      });
+      return { filas: document.querySelectorAll('.parada').length, malos, sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth };
+    });
+    comprobar(s.filas === 8 && s.malos.length === 0 && s.sw <= s.cw, `${w} px: en las 8 filas el tiempo, el nombre y los km no se pisan ni se salen de su fila (sin scroll lateral)`, s);
+    await ctx.close();
+  }
+  {
+    const { ctx, page } = await nueva({}, { script: sinCookies });
+    await page.goto(PAG);
+    await page.evaluate(() => document.getElementById('alrededor').scrollIntoView());
+    const listo = await page.waitForFunction(() => window.Tanes.valle && window.Tanes.valle.estado().listo, null, { timeout: 10000 }).then(() => true, () => false);
+    await page.waitForFunction(() => { const c = document.querySelector('#valle-lamina canvas'); return c && c.__vista; }, null, { timeout: 5000 }).catch(() => {});
+    await page.waitForTimeout(700);
+    // ¿pinta? píxeles que se salen del color de fondo de la lámina (no basta contar opacos: el fondo va relleno)
+    const pinta = () => page.evaluate(() => {
+      const c = document.querySelector('#valle-lamina canvas'); const g = c.getContext('2d'); const d = g.getImageData(0, 0, c.width, c.height).data;
+      let dist = 0, laton = 0, n = 0;
+      for (let i = 0; i < d.length; i += 16) { n++; if (Math.abs(d[i] - 0x22) + Math.abs(d[i + 1] - 0x13) + Math.abs(d[i + 2] - 0x0d) > 24) dist++; if (Math.abs(d[i] - 0xB4) < 22 && Math.abs(d[i + 1] - 0xA3) < 22 && Math.abs(d[i + 2] - 0x80) < 22) laton++; }
+      return { dist: dist / n, laton };
+    });
+    const p0 = await pinta();
+    const e0 = await page.evaluate(() => ({ quieta: getComputedStyle(document.querySelector('.valle__quieta')).visibility, filtros: !document.querySelector('.filtros').hidden, pressed: [...document.querySelectorAll('.filtro')].map((b) => b.getAttribute('aria-pressed')).join(), activo: document.querySelector('.tramo.es-activo')?.dataset.grupo }));
+    comprobar(listo && p0.dist > 0.5 && e0.quieta === 'hidden' && e0.filtros && e0.pressed === 'true,false,false' && e0.activo === 'cerca', `la lámina se monta al acercarse y pinta (${Math.round(p0.dist * 100)} % del lienzo fuera del color de fondo); empieza en «En el valle»`, { p0, e0 });
+    // los filtros cambian el encuadre
+    const vistas = {};
+    for (const g of ['redes', 'lejos', 'cerca']) {
+      await page.click(`.filtro[data-grupo="${g}"]`);
+      await page.waitForTimeout(150);
+      vistas[g] = await page.evaluate(() => ({ ...document.querySelector('#valle-lamina canvas').__vista, pressed: document.querySelector('.filtro[aria-pressed="true"]').dataset.grupo, flechas: document.querySelector('#valle-lamina canvas').__flechas.map((f) => f.id) }));
+    }
+    comprobar(vistas.cerca.s > vistas.redes.s * 1.4 && vistas.redes.s > vistas.lejos.s * 1.4 && vistas.lejos.pressed === 'lejos' && vistas.cerca.pressed === 'cerca', `los filtros cambian el encuadre: escala ${vistas.cerca.s.toFixed(4)} (valle) > ${vistas.redes.s.toFixed(4)} (Redes) > ${vistas.lejos.s.toFixed(4)} px/m (hasta Oviedo)`, vistas);
+    comprobar(['oviedo', 'aeropuerto', 'tarna'].every((id) => vistas.cerca.flechas.includes(id)) && vistas.lejos.flechas.length === 0, 'en «En el valle», lo que cae fuera (Tarna, Oviedo, el aeropuerto) sale como flecha en el borde; en «Para llegar» no queda nada fuera', { cerca: vistas.cerca.flechas, lejos: vistas.lejos.flechas });
+    // pulsar un sitio de la lista dibuja su camino
+    await page.click('.parada[data-destino="deboyu"]');
+    await page.waitForTimeout(200);
+    const r1 = await page.evaluate(() => ({ est: window.Tanes.valle.estado(), ruta: document.querySelector('#valle-lamina canvas').__ruta, pressed: [...document.querySelectorAll('.parada[aria-pressed="true"]')].map((b) => b.dataset.destino), pista: document.getElementById('valle-pista').textContent }));
+    const p1 = await pinta();
+    comprobar(r1.est.elegida === 'deboyu' && r1.ruta.id === 'deboyu' && r1.ruta.progreso === 1 && r1.pressed.join() === 'deboyu' && /Cueva del Deboyu: 6 min y 5,6 km/.test(r1.pista) && p1.laton > p0.laton + 40, `pulsar «Cueva del Deboyu» lo marca (aria-pressed), dibuja su camino entero (con movimiento reducido, sin trazo animado: progreso 1) y lo cuenta: «${r1.pista}»`, { r1, laton: [p0.laton, p1.laton] });
+    // un sitio de otro grupo cambia el filtro y el encuadre
+    await page.click('.parada[data-destino="aeropuerto"]');
+    await page.waitForTimeout(200);
+    const r2 = await page.evaluate(() => ({ g: document.querySelector('.filtro[aria-pressed="true"]').dataset.grupo, s: document.querySelector('#valle-lamina canvas').__vista.s, ruta: document.querySelector('#valle-lamina canvas').__ruta }));
+    comprobar(r2.g === 'lejos' && r2.s < vistas.redes.s && r2.ruta.id === 'aeropuerto', 'pulsar el aeropuerto abre el encuadre hasta Oviedo y el aeropuerto («Para llegar») y traza su camino', r2);
+    // pulsar en el mapa elige el sitio
+    await page.click('.filtro[data-grupo="cerca"]');
+    await page.waitForTimeout(150);
+    const mk = await page.evaluate(() => { const c = document.querySelector('#valle-lamina canvas'); const r = c.getBoundingClientRect(); const m = c.__marcas.find((x) => x.id === 'museo'); return m ? { x: r.left + m.x, y: r.top + m.y } : null; });
+    if (mk) await page.mouse.click(mk.x, mk.y);
+    await page.waitForTimeout(150);
+    const r3 = await page.evaluate(() => ({ e: window.Tanes.valle.estado().elegida, pressed: document.querySelector('.parada[data-destino="museo"]').getAttribute('aria-pressed') }));
+    comprobar(mk && r3.e === 'museo' && r3.pressed === 'true', 'pulsar el punto del Museo de la Apicultura en el mapa lo elige (y lo marca en la lista)', { mk, r3 });
+    // los rótulos del mapa no se pisan entre sí
+    const ch = await page.evaluate(() => document.querySelector('#valle-lamina canvas').__chapas);
+    const pisan = [];
+    ch.forEach((a, i) => ch.slice(i + 1).forEach((b) => { if (!(a.r[2] <= b.r[0] || b.r[2] <= a.r[0] || a.r[3] <= b.r[1] || b.r[3] <= a.r[1])) pisan.push([a.id, b.id]); }));
+    comprobar(ch.length >= 3 && pisan.length === 0, `los ${ch.length} rótulos del mapa no se pisan entre sí`, pisan);
+    // con el teclado: los filtros y los sitios son botones de verdad, con foco visible
+    await page.focus('.filtro[data-grupo="redes"]');
+    await page.keyboard.press('Enter');
+    await page.waitForTimeout(120);
+    const gEnter = await page.evaluate(() => document.querySelector('.filtro[aria-pressed="true"]').dataset.grupo);
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Tab');
+    await page.keyboard.press('Space');
+    await page.waitForTimeout(120);
+    const kb = await page.evaluate(() => ({ foco: document.activeElement.className, id: document.activeElement.dataset.destino, pressed: document.activeElement.getAttribute('aria-pressed'), elegida: window.Tanes.valle.estado().elegida, outline: getComputedStyle(document.activeElement).outlineStyle }));
+    comprobar(gEnter === 'redes' && kb.foco === 'parada' && kb.pressed === 'true' && kb.elegida === kb.id && kb.outline === 'solid', 'con el teclado: Enter en «Por Redes» cambia el encuadre; Tab llega a los sitios (foco visible) y Espacio elige uno', { gEnter, kb });
+    comprobar(page._errores.length === 0, 'la lámina sin errores', page._errores.slice(0, 3));
+    await ctx.close();
+  }
+  {
+    const { ctx, page } = await nueva({ viewport: { width: 390, height: 844 }, isMobile: true, hasTouch: true }, { script: sinCookies });
+    await page.goto(PAG);
+    await page.evaluate(() => document.getElementById('alrededor').scrollIntoView());
+    await page.waitForFunction(() => window.Tanes.valle && window.Tanes.valle.estado().listo, null, { timeout: 10000 }).catch(() => {});
+    await page.waitForTimeout(500);
+    await page.evaluate(() => document.querySelector('.valle__mapa').scrollIntoView({ block: 'start' }));
+    await page.waitForTimeout(200);
+    const mk = await page.evaluate(() => { const c = document.querySelector('#valle-lamina canvas'); const r = c.getBoundingClientRect(); const m = c.__marcas.find((x) => x.id === 'agua'); return m ? { x: r.left + m.x, y: r.top + m.y, h: Math.round(r.height), w: Math.round(r.width) } : null; });
+    if (mk) await page.tap('#valle-lamina canvas', { position: { x: mk.x - (await page.evaluate(() => document.querySelector('#valle-lamina canvas').getBoundingClientRect().left)), y: mk.y - (await page.evaluate(() => document.querySelector('#valle-lamina canvas').getBoundingClientRect().top)) } });
+    await page.waitForTimeout(200);
+    const m = await page.evaluate(() => ({ e: window.Tanes.valle.estado().elegida, sw: document.documentElement.scrollWidth, cw: document.documentElement.clientWidth, top: Math.round(document.querySelector('.valle__mapa').getBoundingClientRect().top) }));
+    comprobar(mk && mk.h >= 200 && m.e === 'agua' && m.sw <= m.cw, `móvil: la lámina arriba (${mk && mk.w}×${mk && mk.h}) y un toque en La Casa del Agua la elige, sin scroll lateral`, { mk, m });
+    await page.evaluate(() => document.querySelector('.parada[data-destino="alba"]').scrollIntoView({ block: 'end' }));
+    await page.waitForTimeout(120);
+    await page.tap('.parada[data-destino="alba"]');
+    await page.waitForTimeout(200);
+    const m2 = await page.evaluate(() => ({ e: window.Tanes.valle.estado().elegida, top: Math.round(document.querySelector('.valle__mapa').getBoundingClientRect().top), cab: Math.round(document.getElementById('cab').getBoundingClientRect().bottom) }));
+    comprobar(m2.e === 'alba' && Math.abs(m2.top - m2.cab) <= 2, 'móvil: tocar un sitio de la lista lo elige con la lámina a la vista (pegada bajo la cabecera)', m2);
+    comprobar(page._errores.length === 0, 'la lámina en el móvil sin errores', page._errores.slice(0, 3));
     await ctx.close();
   }
   }

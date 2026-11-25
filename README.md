@@ -74,10 +74,30 @@ en `:root` de `css/base.css`. Formas: botones y mandos en píldora; fotos y pane
    altas). Índice fijo que marca la estancia que se ve (en el móvil, pestañas cortas pegadas bajo la cabecera), fotos
    sin marco en filas de la misma altura y el visor que abre por NOMBRE.
 4. **El espejo de Tanes** (`#lugar`): el 3D de Lugar 3D. Respaldo de la Web: la foto 45 (las montañas reflejadas).
-5. **Redes alrededor**: el trayecto por la AS-117 en tres tramos (en el valle, por Redes, para llegar), **todo de
-   OSRM** (`ref/raw/rutas.json`): Museo de la Apicultura (500 m, también a pie), Cueva del Deboyu, La Casa del Agua
-   (Rioseco), Centro del Parque (Campo de Caso), Ruta del Alba (Soto de Agues), Puerto de Tarna, Oviedo (54,7 km,
-   51 min; la ficha decía 30 min) y el aeropuerto (88,9 km).
+5. **Redes alrededor: la lámina del valle** (`js/valle.js`, datos en `js/valle-datos.js`). La lista manda y el mapa
+   la acompaña. Tres tramos (en el valle, por Redes, para llegar), **todo de OSRM** (`ref/raw/rutas.json`): Museo de
+   la Apicultura (500 m, también a pie), Cueva del Deboyu, La Casa del Agua (Rioseco), Centro del Parque (Campo de
+   Caso), Ruta del Alba (Soto de Agues), Puerto de Tarna, Oviedo (54,7 km, 51 min; la ficha decía 30 min) y el
+   aeropuerto (88,9 km).
+   - **La lámina** (canvas): el relieve real del IGN sombreado en castaño y arenisca (tres láminas que se apilan: el
+     valle con MDT05, Redes con MDT25 y hasta Oviedo con MDT200; el mar, donde el MDT no tiene tierra), los embalses y
+     ríos en `--agua`, las carreteras finas de OSM (las pequeñas se desvanecen al alejarse, sin saltos), el límite del
+     Parque Natural de Redes en raya de latón, los pueblos para orientarse y **La Casa en latón** (en Imperial Script).
+     Escala gráfica arriba a la izquierda.
+   - **Interacción**: pasar por un sitio de la lista (ratón o foco) enseña su **camino real por carretera** (la
+     geometría completa de OSRM, `overview=full`, guardada en `ref/raw/rutas-geometria.json`), que se traza desde la
+     casa con el **tiempo contándose** en la punta; pulsarlo lo fija (`aria-pressed`) y lo cuenta debajo. Pulsar o
+     tocar un punto del mapa elige ese sitio.
+   - **Filtros que hacen zoom** (botones con `aria-pressed`): «En el valle» encuadra el embalse, «Por Redes» abre al
+     Parque entero y «Para llegar», hasta Oviedo y el aeropuerto. Elegir un sitio de otro tramo cambia el filtro. Lo
+     que cae fuera del encuadre sale como **flecha en el borde con su distancia** (se puede pulsar).
+   - Con movimiento reducido: sin trazos animados ni viajes de cámara. Sin JS: la lámina quieta
+     (`img/mapa/lamina-quieta`, encuadre «Por Redes», con Oviedo y el aeropuerto como flechas) y la lista.
+   - En el móvil, la lámina va arriba, pegada bajo la cabecera y más baja, y la lista pasa por debajo; se toca.
+   - **El fallo de las filas** (Álvaro: «1 h 12 min» encima de «Aeropuerto de Asturias»): la primera columna era fija
+     (7,2 rem) y el tiempo iba en `nowrap`. Ahora cada fila es un botón con el tiempo en dos renglones («1 h 12» y
+     «min» debajo) en su columna, el sitio y los km; por debajo de 480 px, los km pasan bajo el nombre.
+     `verificar.mjs` (bloque 14) mide con rangos de texto que tiempo, nombre y km no se pisan a 360, 390, 768 y 1280.
 6. **Reseñas**: 9,2 / 10 con 205 en Booking y 4,6 / 5 con 18 en Google, con enlace a cada una. Sin citas (no hay
    reseñas copiadas en DATOS).
 7. **Ver fechas**: el **simulador** (`js/reserva.js`), marcado como tal: calendario con días ocupados inventados y
@@ -101,6 +121,8 @@ node scripts/portada-imagenes.mjs               # img/portada/{monte,agua,casa}-
 node scripts/portada-ver.mjs                    # composición SIN navegador para colocar el rótulo → ref/portada/portada-*.jpg
 node scripts/marca.mjs                          # favicons e img/og.jpg
 node scripts/alrededor-rutas.mjs                # distancias OSRM → ref/raw/rutas.json (los ids de OSM, de alrededor-buscar*.mjs)
+python -I -X utf8 scripts/mapa-valle.py         # la lámina: relieve IGN, OSM, rutas OSRM completas → img/mapa/, js/valle-datos.js,
+                                                #   ref/raw/rutas-geometria.json (caché en ref/raw/mapa-cache/, que no se sirve)
 node scripts/legales.mjs                        # *.src.html de las legales y el 404
 node construir.mjs                              # partes, datos, fotos → *.html; versionar.mjs pone ?v=<huella>
 node verificar.mjs                              # Playwright, puerto 8951 (un navegador, sin pintar WebGL)
@@ -172,7 +194,22 @@ elementos. El 3D tiene su propio presupuesto (`LUGAR.md`) y no entra en el LCP (
 
 ## Verificación y «no repetir»
 
-`node verificar.mjs` (2026-11-25, con el módulo de Lugar 3D ya dentro): **135 comprobaciones en 13 bloques**. La pasada
+**Tras la lámina del valle** (2026-11-25, segunda tanda): `node verificar.mjs` con 14 bloques, **157 comprobaciones**.
+La pasada entera dio 156 bien y 1 mal (un fallo real: en «Para llegar» el Puerto de Tarna quedaba fuera, porque el
+encuadre solo abría hacia Oviedo; ahora ese encuadre los abarca a todos); corregido, el bloque 14 se repitió: 16 de
+16. El bloque 14 mide que tiempo, nombre y km no se pisan a 360, 390, 768 y 1280 px (con rangos de texto, no con
+cajas), que la lámina pinta (píxeles fuera del color de fondo), que los filtros cambian la escala (0,057 → 0,018 →
+0,007 px/m), que lo de fuera sale como flecha, que pulsar un sitio (en la lista o en el mapa, con ratón, teclado o el
+dedo) dibuja su camino, que los rótulos del mapa no se pisan y, con movimiento (bloque 12), que el camino se traza.
+La comprobación de las letras ya no cuenta las webs posteriores a esta (`apartamentos-alba-somiedo-web` usa Ubuntu
+Sans después).
+
+**Pesos de la lámina** (se piden al acercarse a 900 px, no al cargar): `js/valle.js` 23 KB, `js/valle-datos.js`
+191 KB (8 rutas, 265 carreteras encadenadas y simplificadas con Douglas-Peucker, 119 ríos, 10 láminas de agua, el
+Parque y 21 pueblos), relieves 89 + 144 + 65 KB (WebP), lámina quieta 106 KB (WebP; JPG 187 KB de respaldo). Unos
+520 KB en total, fuera del LCP.
+
+Primera tanda: `node verificar.mjs` (2026-11-25, con el módulo de Lugar 3D ya dentro): **135 comprobaciones en 13 bloques**. La pasada
 entera dio 133 bien y 2 mal, las dos de la propia prueba (contaba como desborde la escena de la portada, que su marco
 recorta, y exigía que el LCP fuera la capa «monte» cuando lo es la capa «agua», del mismo tamaño); corregidas, los
 bloques 9 y 13 se repitieron: 8 de 8. Bloques: archivos y contrato (63), portada a los cinco tamaños (con el contraste
@@ -198,7 +235,9 @@ visto todavía el aspecto**: las pruebas miden comportamiento. La composición d
 3. **Carta de colores**: que las seis tiras se lean como «cada una con su color» y no como un muestrario de pinturas;
    el texto oscuro sobre ocre y amarillo.
 4. **Todo mira al sur**: filas de alturas iguales con fotos de proporciones distintas; «Las ventanas» más grandes.
-5. **Redes alrededor**: el trayecto con sus paradas; la foto del arco iris pegada a la izquierda.
+5. **Redes alrededor**: que el relieve se lea como montaña (no como una mancha parda) y el embalse destaque; pasar
+   por la lista y ver trazarse cada camino con su tiempo; los tres filtros (el viaje de cámara); las flechas del
+   borde; en el móvil, la lámina pegada arriba mientras se recorre la lista. Y las filas: «1 h 12» con «min» debajo.
 6. **Ver fechas**: elegir llegada y salida, días ocupados tachados, el punto de temporada alta.
 7. **Pie**: el rótulo que se escribe trazo a trazo.
 8. El **foco del teclado** (Tab): el contorno con los cuatro tornillos.

@@ -203,31 +203,55 @@
 .espejo__respaldo picture, .espejo__respaldo img { width: 100%; height: auto; }
 .espejo__respaldo figcaption { margin-top: .8rem; font-size: .92rem; color: var(--texto-suave); }
 
-/* ============ 5. Redes alrededor: el trayecto por la AS-117 ============ */
-.alrededor__in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
-.alrededor__f { position: sticky; top: calc(var(--cabecera) + 28px); }
-.alrededor__f .foto-btn { aspect-ratio: 4 / 5; }
-.trayecto { display: grid; gap: clamp(32px, 4vw, 48px); }
-.tramo__tit { font: 400 1.5rem/1.1 var(--letra-titular); color: var(--laton); margin-bottom: .6rem; }
+/* ============ 5. Redes alrededor: la lámina del valle (js/valle.js) y la lista, que manda ============
+   Escritorio: la lámina a la izquierda, pegada mientras se recorre la lista. Móvil: la lámina arriba, pegada bajo la
+   cabecera (más baja), y la lista pasa por debajo. Sin JS: la lámina quieta (img/mapa/lamina-quieta) y la lista. */
+.valle { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.valle__mapa { position: sticky; top: calc(var(--cabecera) + 20px); z-index: 2; }
+.valle__lamina { position: relative; aspect-ratio: 4 / 3; background: #22130D; overflow: hidden; border: 1px solid var(--linea); touch-action: pan-y; }
+.valle__quieta, .valle__quieta img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.valle__lamina canvas { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.valle__lamina.es-viva .valle__quieta { visibility: hidden; }
+.valle__lamina.es-sobre { cursor: pointer; }
+.valle__pista { margin-top: .7rem; min-height: 1.5em; font-size: .9rem; color: var(--texto-suave); }
+.valle__pista b { color: var(--laton); font-weight: 500; }
+.filtros:not([hidden]) { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.4rem; }
+.filtro { min-height: 44px; padding: .5rem 1.05rem; border-radius: var(--pildora); border: 1.5px solid var(--linea-fuerte); background: transparent; color: var(--arenisca); cursor: pointer; font-size: .95rem; transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease); }
+.filtro:hover { border-color: var(--laton); }
+.filtro[aria-pressed="true"] { background: var(--laton); border-color: var(--laton); color: var(--castano-noche); }
+.trayecto { display: grid; gap: clamp(26px, 3vw, 40px); }
+.tramo__tit { font: 400 1.5rem/1.1 var(--letra-titular); color: var(--laton); margin-bottom: .5rem; }
+.tramo { transition: opacity .35s var(--ease); }
+.valle.es-viva .tramo:not(.es-activo) { opacity: .72; }
 .tramo__lista { border-left: 1px solid var(--linea-fuerte); margin-left: 6px; }
-.tramo__lista li { position: relative; display: grid; grid-template-columns: 7.2rem minmax(0, 1fr) auto; gap: .4rem 1.2rem; align-items: baseline; padding: 1rem 0 1rem 1.4rem; border-bottom: 1px solid var(--linea); }
-.tramo__lista li::before { content: ""; position: absolute; left: -6px; top: 1.45rem; width: 11px; height: 11px; border-radius: 50%; background: var(--fondo); border: 1.5px solid var(--laton); }
-.parada__min { font-size: clamp(1.35rem, 2vw, 1.7rem); color: var(--arenisca); white-space: nowrap; }
-.parada__que { display: grid; }
-.parada__que b { font-weight: 500; }
-.parada__que small { font-size: .9rem; color: var(--texto-suave); }
-.parada__km { display: inline-flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .3rem .9rem; font-size: .92rem; color: var(--texto-suave); }
-.parada__km .ico, .parada__pie .ico { width: 18px; height: 18px; color: var(--agua); }
-.parada__pie { display: inline-flex; align-items: center; gap: .3rem; }
+.tramo__lista li { position: relative; border-bottom: 1px solid var(--linea); }
+.tramo__lista li::before { content: ""; position: absolute; left: -6px; top: 1.35rem; width: 11px; height: 11px; border-radius: 50%; background: var(--fondo); border: 1.5px solid var(--laton); z-index: 1; transition: background-color .25s var(--ease); }
+.tramo__lista li:has(.parada[aria-pressed="true"])::before { background: var(--laton); }
+/* cada fila: el tiempo en dos renglones («1 h 12» y «min» debajo) en su columna, el sitio y los km; nada en nowrap
+   que pueda montarse sobre la columna de al lado */
+.parada { all: unset; box-sizing: border-box; position: relative; width: 100%; display: grid; grid-template-columns: 5.4rem minmax(0, 1fr) auto; gap: .2rem 1rem; align-items: start; padding: .85rem .6rem .85rem 1.3rem; cursor: pointer; transition: background-color .2s var(--ease); }
+.parada:hover, .parada[aria-pressed="true"] { background: color-mix(in oklab, var(--superficie) 82%, transparent); }
+.parada:focus-visible { outline: 2px solid var(--foco); outline-offset: -2px; }
+.parada__min { display: grid; line-height: 1; padding-top: .1rem; min-width: 0; }
+.parada__min b { font-size: 1.2rem; font-weight: 400; color: var(--arenisca); overflow-wrap: anywhere; }
+.parada__min small { margin-top: .25rem; font-size: .78rem; color: var(--texto-suave); }
+.parada[aria-pressed="true"] .parada__min b { color: var(--laton); }
+.parada__que { display: grid; min-width: 0; }
+.parada__que b { font-weight: 500; line-height: 1.3; }
+.parada__que small { font-size: .88rem; color: var(--texto-suave); line-height: 1.4; }
+.parada__km { display: grid; justify-items: end; gap: .3rem; font-size: .9rem; color: var(--texto-suave); padding-top: .1rem; }
+.parada__coche, .parada__pie { display: inline-flex; align-items: center; gap: .3rem; white-space: nowrap; }
+.parada__km .ico { width: 18px; height: 18px; color: var(--agua); }
 .alrededor__fino { margin-top: 2rem; font-size: .88rem; color: var(--texto-suave); max-width: 52rem; }
 @media (max-width: 899px) {
-  .alrededor__in { grid-template-columns: minmax(0, 1fr); }
-  .alrededor__f { position: static; }
-  .alrededor__f .foto-btn { aspect-ratio: 16 / 10; }
+  .valle { grid-template-columns: minmax(0, 1fr); gap: 18px; }
+  .valle__mapa { top: var(--cabecera); margin-inline: calc(-1 * var(--gutter)); padding: 8px var(--gutter) 0; background: var(--fondo); }
+  .valle__lamina { aspect-ratio: auto; height: min(52vw, 40svh); min-height: 210px; }
+  .valle__pista { margin-top: .4rem; padding-bottom: .6rem; font-size: .84rem; }
 }
-@media (max-width: 559px) {
-  .tramo__lista li { grid-template-columns: minmax(0, 1fr); padding-left: 1.2rem; }
-  .parada__km { justify-content: flex-start; }
+@media (max-width: 479px) {
+  .parada { grid-template-columns: 4.6rem minmax(0, 1fr); padding-right: .3rem; }
+  .parada__km { grid-column: 2; justify-items: start; grid-auto-flow: column; justify-content: start; gap: .3rem 1rem; }
 }
 
 /* ============ 6. reseñas ============ */

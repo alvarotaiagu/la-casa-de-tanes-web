@@ -42,7 +42,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Sofia+Sans+Condensed:ital,wght@0,300..700;1,300..500&family=Ubuntu+Sans:wdth,wght@75..100,300..700&family=Google+Sans+Code:wght@400..600&display=swap">
 <link rel="stylesheet" href="css/base.css?v=99077f17">
-<link rel="stylesheet" href="css/estilos.css?v=0aeb5bae">
+<link rel="stylesheet" href="css/estilos.css?v=d3a14ef6">
 <link rel="stylesheet" href="css/lugar.css?v=91d7b6da">
 <link rel="icon" href="marca/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="marca/favicon-32.png" sizes="32x32" type="image/png">
@@ -384,35 +384,47 @@
       <h2 id="t-alrededor" class="sec-tit" data-aparece>Redes alrededor</h2>
       <p class="sec-txt">El Museo de la Apicultura, a un paseo. La cueva del Deboyu, la Casa del Agua y la Ruta del Alba, a unos minutos por la AS-117. El Puerto de Tarna, al fondo del valle.</p>
     </header>
-    <div class="alrededor__in">
-      <figure class="alrededor__f"><button type="button" class="foto-btn" data-visor="arco-iris-valle" data-grupo="alrededor" aria-label="Ver más grande: Un arco iris sobre el valle y el embalse"><picture data-foto="arco-iris-valle"><source type="image/avif" srcset="img/fotos/arco-iris-valle-480.avif 480w, img/fotos/arco-iris-valle-800.avif 800w, img/fotos/arco-iris-valle-1200.avif 1200w, img/fotos/arco-iris-valle-1280.avif 1280w" sizes="(max-width: 899px) 92vw, 36vw"><source type="image/webp" srcset="img/fotos/arco-iris-valle-480.webp 480w, img/fotos/arco-iris-valle-800.webp 800w, img/fotos/arco-iris-valle-1200.webp 1200w, img/fotos/arco-iris-valle-1280.webp 1280w" sizes="(max-width: 899px) 92vw, 36vw"><img src="img/fotos/arco-iris-valle-800.jpg" srcset="img/fotos/arco-iris-valle-480.jpg 480w, img/fotos/arco-iris-valle-800.jpg 800w, img/fotos/arco-iris-valle-1200.jpg 1200w, img/fotos/arco-iris-valle-1280.jpg 1280w" sizes="(max-width: 899px) 92vw, 36vw" width="1280" height="1600" alt="Un arco iris sobre el valle y el embalse" loading="lazy" decoding="async"></picture></button></figure>
-      <div class="trayecto">
-        <section class="tramo" aria-labelledby="t-tramo-cerca">
+    <div class="valle" id="valle" data-datos="js/valle-datos.js?v=6410b5b9">
+      <div class="valle__mapa">
+        <div class="valle__lamina" id="valle-lamina">
+          <picture class="valle__quieta"><source type="image/webp" srcset="img/mapa/lamina-quieta.webp"><img src="img/mapa/lamina-quieta.jpg" width="1200" height="900" loading="lazy" decoding="async" alt="Lámina del valle de Caso y del Parque Natural de Redes: el embalse de Tanes, La Casa y los sitios de alrededor con su ruta por carretera; Oviedo y el aeropuerto, fuera del encuadre"></picture>
+        </div>
+        <p class="valle__pista" id="valle-pista" aria-live="polite">Pasa por un sitio de la lista o pulsa en el mapa: sale su camino por carretera desde la casa.</p>
+      </div>
+      <div class="valle__lista">
+      <div class="filtros" role="group" aria-label="Encuadre del mapa" hidden>
+        <button type="button" class="filtro" data-grupo="cerca" aria-pressed="true">En el valle</button>
+        <button type="button" class="filtro" data-grupo="redes" aria-pressed="false">Por Redes</button>
+        <button type="button" class="filtro" data-grupo="lejos" aria-pressed="false">Para llegar</button>
+      </div>
+        <div class="trayecto">
+        <section class="tramo" data-grupo="cerca" aria-labelledby="t-tramo-cerca">
           <h3 class="tramo__tit" id="t-tramo-cerca">En el valle</h3>
           <ol class="tramo__lista">
-            <li data-ruta="museo"><span class="parada__min cifra">1 min</span><span class="parada__que"><b>Museo de la Apicultura</b><small>Tanes</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">500 m</span><span class="parada__pie"><svg class="ico" aria-hidden="true"><use href="#i-pie"/></svg><span class="vh">A pie: </span><span class="cifra">500 m, 7 min</span></span></span></li>
-            <li data-ruta="agua"><span class="parada__min cifra">7 min</span><span class="parada__que"><b>La Casa del Agua</b><small>Rioseco (Sobrescobio)</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">6,4 km</span></span></li>
-            <li data-ruta="deboyu"><span class="parada__min cifra">6 min</span><span class="parada__que"><b>Cueva del Deboyu</b><small>junto a Campo de Caso</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">5,6 km</span></span></li>
+            <li data-ruta="museo"><button type="button" class="parada" data-destino="museo" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">1</b><small>min</small></span><span class="parada__que"><b>Museo de la Apicultura</b><small>Tanes</small></span><span class="parada__km"><span class="vh">1 min en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">500 m</span></span><span class="parada__pie"><svg class="ico" aria-hidden="true"><use href="#i-pie"/></svg><span class="vh">a pie: </span><span class="cifra">500 m, 7 min</span></span></span></button></li>
+            <li data-ruta="agua"><button type="button" class="parada" data-destino="agua" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">7</b><small>min</small></span><span class="parada__que"><b>La Casa del Agua</b><small>Rioseco (Sobrescobio)</small></span><span class="parada__km"><span class="vh">7 min en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">6,4 km</span></span></span></button></li>
+            <li data-ruta="deboyu"><button type="button" class="parada" data-destino="deboyu" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">6</b><small>min</small></span><span class="parada__que"><b>Cueva del Deboyu</b><small>junto a Campo de Caso</small></span><span class="parada__km"><span class="vh">6 min en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">5,6 km</span></span></span></button></li>
           </ol>
         </section>
-        <section class="tramo" aria-labelledby="t-tramo-redes">
+        <section class="tramo" data-grupo="redes" aria-labelledby="t-tramo-redes">
           <h3 class="tramo__tit" id="t-tramo-redes">Por Redes</h3>
           <ol class="tramo__lista">
-            <li data-ruta="centro"><span class="parada__min cifra">8 min</span><span class="parada__que"><b>Centro del Parque Natural de Redes</b><small>Campo de Caso</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">7,3 km</span></span></li>
-            <li data-ruta="alba"><span class="parada__min cifra">12 min</span><span class="parada__que"><b>Ruta del Alba</b><small>salida en Soto de Agues</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">9,9 km</span></span></li>
-            <li data-ruta="tarna"><span class="parada__min cifra">35 min</span><span class="parada__que"><b>Puerto de Tarna</b><small>1490 m, el límite con León</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">29,8 km</span></span></li>
+            <li data-ruta="centro"><button type="button" class="parada" data-destino="centro" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">8</b><small>min</small></span><span class="parada__que"><b>Centro del Parque Natural de Redes</b><small>Campo de Caso</small></span><span class="parada__km"><span class="vh">8 min en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">7,3 km</span></span></span></button></li>
+            <li data-ruta="alba"><button type="button" class="parada" data-destino="alba" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">12</b><small>min</small></span><span class="parada__que"><b>Ruta del Alba</b><small>salida en Soto de Agues</small></span><span class="parada__km"><span class="vh">12 min en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">9,9 km</span></span></span></button></li>
+            <li data-ruta="tarna"><button type="button" class="parada" data-destino="tarna" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">35</b><small>min</small></span><span class="parada__que"><b>Puerto de Tarna</b><small>1490 m, el límite con León</small></span><span class="parada__km"><span class="vh">35 min en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">29,8 km</span></span></span></button></li>
           </ol>
         </section>
-        <section class="tramo" aria-labelledby="t-tramo-lejos">
+        <section class="tramo" data-grupo="lejos" aria-labelledby="t-tramo-lejos">
           <h3 class="tramo__tit" id="t-tramo-lejos">Para llegar</h3>
           <ol class="tramo__lista">
-            <li data-ruta="oviedo"><span class="parada__min cifra">51 min</span><span class="parada__que"><b>Oviedo</b><small>la capital</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">54,7 km</span></span></li>
-            <li data-ruta="aeropuerto"><span class="parada__min cifra">1 h 12 min</span><span class="parada__que"><b>Aeropuerto de Asturias</b><small>Santiago del Monte</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">88,9 km</span></span></li>
+            <li data-ruta="oviedo"><button type="button" class="parada" data-destino="oviedo" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">51</b><small>min</small></span><span class="parada__que"><b>Oviedo</b><small>la capital</small></span><span class="parada__km"><span class="vh">51 min en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">54,7 km</span></span></span></button></li>
+            <li data-ruta="aeropuerto"><button type="button" class="parada" data-destino="aeropuerto" aria-pressed="false"><span class="parada__min" aria-hidden="true"><b class="cifra">1 h 12</b><small>min</small></span><span class="parada__que"><b>Aeropuerto de Asturias</b><small>Santiago del Monte</small></span><span class="parada__km"><span class="vh">1 h 12 min en coche, </span><span class="parada__coche"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="cifra">88,9 km</span></span></span></button></li>
           </ol>
         </section>
+        </div>
       </div>
     </div>
-    <p class="alrededor__fino">Tiempos en coche desde la casa, por carretera, calculados con OSRM sobre datos de © colaboradores de OpenStreetMap el 25 de noviembre de 2026: sin tráfico ni paradas, orientativos. La Casa del Agua está en Rioseco (el tiempo es hasta el pueblo); conviene mirar su horario antes de ir.</p>
+    <p class="alrededor__fino">Tiempos y caminos en coche desde la casa, por carretera, calculados con OSRM sobre datos de © colaboradores de OpenStreetMap el 25 de noviembre de 2026: sin tráfico ni paradas, orientativos. Relieve: MDT05, MDT25 y MDT200 del Instituto Geográfico Nacional (CC BY 4.0, © IGN). La Casa del Agua está en Rioseco (el tiempo es hasta el pueblo); conviene mirar su horario antes de ir.</p>
   </div>
 </section>
 
@@ -579,6 +591,8 @@
 <script src="js/lugar.js?v=4ac0e56d" defer></script>
 <!-- la web -->
 <script src="js/reserva.js?v=c8efbee3" defer></script>
+<!-- la lámina del valle («Redes alrededor»); sus datos (js/valle-datos.js) los pide ella al acercarse -->
+<script src="js/valle.js?v=c3bb6a6c" defer></script>
 <script src="js/main.js?v=a13e63ee" defer></script>
 </body>
 </html>
