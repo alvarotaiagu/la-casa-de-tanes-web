@@ -1,0 +1,8 @@
+{
+ "nota": "Portada «La Casa»: dónde va el rótulo gigante sobre la foto 01, en píxeles de la foto (2000×1333). La escena entera (capas y rótulo) es una caja con la proporción de la foto que cubre la portada; fx/fy = qué parte de la foto se ve cuando sobra (0 izquierda/arriba, 1 derecha/abajo). Lo usa construir.mjs (estilos en línea) y scripts/portada-ver.mjs (comprobación sin navegador).",
+ "foto": { "ancho": 2000, "alto": 1333 },
+ "origen": [1330, 1333],
+ "escritorio": { "fx": 0.5, "fy": 0.3, "rotulo": { "x": 70, "y": 150, "ancho": 1190 } },
+ "movil": { "alto": "56svh", "fx": 0.49, "fy": 0, "rotulo": { "x": 520, "y": 170, "ancho": 920 } },
+ "laton": { "luz": "#EBE3C1", "medio": "#B4A380", "canto": "#6E6448" }
+}

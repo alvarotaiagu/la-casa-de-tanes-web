@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Casa de Tanes · Estudios y apartamentos boutique en Redes, Asturias</title>
+<meta name="description" content="Casona de piedra en Tanes (Caso, Asturias), sobre el embalse y en el Parque Natural de Redes. Estudios y apartamentos con cocina, baño propio y vistas al sur.">
+<meta property="og:title" content="La Casa de Tanes · Estudios y apartamentos boutique">
+<meta property="og:description" content="Una casona de piedra sobre el embalse de Tanes, en el Parque Natural de Redes. Todas las estancias miran al sur.">
+<!--precarga-portada-->
+<!--parte:partes/cabeza.html-->
+</head>
+<body>
+<!-- Propuesta de web para La Casa de Tanes (Tanes 9, Caso, Asturias), sin encargar y sin publicar. noindex, nofollow. -->
+<!--parte:partes/cabecera.html-->
+<!--parte:partes/iconos.html-->
+
+<main id="principal">
+
+<!-- ============ 1. PORTADA «La Casa» (js/portada.js, Tanes.portada). La foto 01 en tres capas con el mismo sistema de
+     coordenadas (monte, agua, casa) y, entre el monte y el agua, el rótulo «La Casa» gigante en latón: detrás de la
+     casona y del pueblo. Con movimiento, la portada se fija un tramo: las capas se separan (cada una escala más que la de
+     detrás desde la base de la casa) y el rótulo se encoge hasta quedar de logo en la cabecera. El HTML es el respaldo
+     (sin JS, movimiento reducido o versión sobria): la composición quieta. La capa «monte» es el LCP (se precarga) ============ -->
+<section id="portada" class="portada" aria-labelledby="t-portada">
+  <div class="portada__fija">
+    <div class="portada__marco" data-modulo="portada">
+<!--portada-escena-->
+    </div>
+    <div class="portada__texto">
+      <h1 id="t-portada" class="portada__tit">Estudios y apartamentos boutique sobre el embalse de&nbsp;Tanes</h1>
+      <p class="portada__sub">Una casona de piedra en el Parque Natural de Redes. Todas las estancias miran al sur.</p>
+      <p class="portada__acc"><a class="btn btn--acento" href="#reservar">Ver fechas</a><a class="btn btn--linea-clara cifra" href="tel:+34609053498"><svg class="ico" aria-hidden="true"><use href="#i-telefono"/></svg><span class="vh">Llamar al </span>609 05 34 98</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. Cada una con su color: cifras grandes del conjunto, la carta de colores de las estancias (colores
+     MEDIDOS en sus fotos, sin nombres de apartamento: por confirmar), servicios con icono propio y condiciones aparte ============ -->
+<section id="estancias" class="sec estancias" aria-labelledby="t-estancias">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-estancias" class="sec-tit" data-aparece>Cada una con su color</h2>
+      <p class="sec-txt">Estudios y apartamentos en una casona de piedra. Todos con cocina equipada, baño propio y vistas a la montaña y al embalse.</p>
+    </header>
+<!--cifras-->
+<!--colores-->
+    <div class="ficha">
+<!--servicios-->
+<!--condiciones-->
+    </div>
+<!--vistazo-->
+  </div>
+</section>
+
+<!-- ============ 3. Todo mira al sur: la casa por estancias. Índice fijo que marca la estancia que se ve, fotos sin
+     marco con las alturas igualadas por fila y el visor que abre por NOMBRE de archivo (checklist 11) ============ -->
+<section id="casa" class="sec casa" aria-labelledby="t-casa">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-casa" class="sec-tit" data-aparece>Todo mira al sur</h2>
+      <p class="sec-txt">La casa por estancias, empezando por lo que se ve desde las ventanas. Pulsa una foto para verla grande.</p>
+    </header>
+<!--estancias-->
+  </div>
+</section>
+
+<!-- ============ 4. EL ESPEJO DE TANES (módulo del agente Lugar 3D: js/lugar.js, css/lugar.css). El HTML de
+     [data-modulo="lugar"] es el respaldo que pone la Web: la foto 45 (las montañas reflejadas en el embalse) y un texto.
+     Lugar 3D puede sustituirlo por un plan B 2D mejor dentro de su div. main.js monta Tanes.lugar al acercarse (900 px) ============ -->
+<section id="lugar" class="sec espejo" aria-labelledby="t-lugar">
+  <div class="env espejo__cab">
+    <h2 id="t-lugar" class="sec-tit" data-aparece>El espejo de Tanes</h2>
+    <p class="sec-txt">Las peñas de Redes bajan hasta el embalse y, en los días quietos, se ven dos veces. La casa está en la orilla, en el pueblo de Tanes.</p>
+  </div>
+  <div data-modulo="lugar">
+    <figure class="espejo__respaldo">
+      <img data-foto="reflejo-montanas" sizes="(max-width: 699px) 92vw, 46vw">
+      <figcaption>Las montañas de Redes, reflejadas en el embalse de Tanes.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 5. Redes alrededor: distancias y minutos SOLO de OSRM (ref/raw/rutas.json → construir.mjs) ============ -->
+<section id="alrededor" class="sec alrededor" aria-labelledby="t-alrededor">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-alrededor" class="sec-tit" data-aparece>Redes alrededor</h2>
+      <p class="sec-txt">El Museo de la Apicultura, a un paseo. La cueva del Deboyu, la Casa del Agua y la Ruta del Alba, a unos minutos por la AS-117. El Puerto de Tarna, al fondo del valle.</p>
+    </header>
+<!--alrededor-->
+  </div>
+</section>
+
+<!-- ============ 6. Reseñas: 9,2 con 205 en Booking y 4,6 con 18 en Google (recuento de sobra), con enlace a sus
+     fichas. Sin citas: no hay reseñas copiadas en DATOS ============ -->
+<section id="resenas" class="sec resenas" aria-labelledby="t-resenas">
+  <div class="env">
+<!--resenas-->
+  </div>
+</section>
+
+<!-- ============ 7. Ver fechas: el SIMULADOR (js/reserva.js). No tienen motor propio: simulado y marcado ============ -->
+<section id="reservar" class="sec reservar" aria-labelledby="t-reservar">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-reservar" class="sec-tit" data-aparece>Ver fechas</h2>
+      <p class="sec-txt">Elige llegada, salida y cuántos sois: así se vería su propio motor de reservas.</p>
+    </header>
+<!--parte:partes/reserva.html-->
+  </div>
+</section>
+
+<!-- ============ 8. Contacto y mapa (Google Maps sin clave, solo tras pulsar) ============ -->
+<section id="contacto" class="sec contacto" aria-labelledby="t-contacto">
+  <div class="env contacto__in">
+    <div class="contacto__txt">
+      <h2 id="t-contacto" class="sec-tit" data-aparece>Cómo llegar</h2>
+      <address class="contacto__dir">Tanes 9<br>33994 Tanes, Caso (Asturias)</address>
+      <p class="contacto__lineas"><a class="contacto__tel cifra" href="tel:+34609053498"><svg class="ico" aria-hidden="true"><use href="#i-telefono"/></svg>609 05 34 98</a></p>
+<!--llegar-->
+    </div>
+    <div class="contacto__mapa">
+      <div class="mapa" id="mapa">
+        <button type="button" class="map-consent" id="mapa-btn">
+          <svg class="ico" aria-hidden="true"><use href="#i-mapa-pin"/></svg>
+          <b>Ver el mapa</b>
+          <span>Al pulsar se carga Google Maps, que puede instalar sus cookies.</span>
+        </button>
+      </div>
+      <figure class="contacto__f"><button type="button" class="foto-btn" data-visor="tanes-aerea" data-grupo="contacto" aria-label="Ver más grande: Tanes desde el aire"><img data-foto="tanes-aerea" sizes="(max-width: 899px) 92vw, 30vw"></button><figcaption>Tanes, en su península sobre el embalse.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!--parte:partes/pie.html-->
+
+<!-- visor de fotos (se abre por el NOMBRE de la foto) -->
+<dialog class="visor" id="visor" aria-label="Foto ampliada">
+  <figure class="visor__fig">
+    <img id="visor-img" alt="" width="1600" height="1200">
+    <figcaption><span id="visor-pie"></span> <span class="visor__n cifra" id="visor-n"></span></figcaption>
+  </figure>
+  <button type="button" class="visor__btn visor__btn--ant" id="visor-ant" aria-label="Foto anterior"><svg class="ico" aria-hidden="true"><use href="#i-flecha-izq"/></svg></button>
+  <button type="button" class="visor__btn visor__btn--sig" id="visor-sig" aria-label="Foto siguiente"><svg class="ico" aria-hidden="true"><use href="#i-flecha-der"/></svg></button>
+  <button type="button" class="visor__cerrar" id="visor-cerrar" aria-label="Cerrar"><svg class="ico" aria-hidden="true"><use href="#i-cerrar"/></svg></button>
+</dialog>
+
+<!-- el foco del teclado: un contorno con cuatro tornillos en las esquinas, como las letras atornilladas a la piedra -->
+<svg class="foco-tornillos" id="foco-tornillos" aria-hidden="true" focusable="false"><rect/><circle/><circle/><circle/><circle/></svg>
+
+<!--parte:partes/guiones.html-->
+</body>
+</html>

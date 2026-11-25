@@ -1,0 +1,190 @@
+/* ------------------------------------------------------------------
+   La Casa de Tanes · lugar.css · «El espejo de Tanes» (módulo lugar)
+   Lee las variables comunes de Web (--fondo, --superficie, --texto,
+   --texto-suave, --marca, --acento, --agua, --linea, --letra-*). No
+   define colores de página: solo los de dentro de la escena (rótulos
+   sobre la imagen y la noche del plano).
+   El escenario es sticky: ningún antepasado puede llevar overflow
+   hidden/auto/clip ni transform (ver LUGAR.md, «Para Web»).
+   ------------------------------------------------------------------ */
+[data-modulo="lugar"].lugar {
+  --l-fondo: var(--fondo, Canvas);
+  --l-texto: var(--texto, CanvasText);
+  --l-suave: var(--texto-suave, color-mix(in oklab, var(--l-texto) 68%, var(--l-fondo)));
+  --l-marca: var(--marca, var(--l-texto));
+  --l-agua: var(--agua, var(--l-marca));
+  --l-linea: var(--linea, color-mix(in oklab, var(--l-texto) 18%, transparent));
+  --l-chip: color-mix(in oklab, var(--l-fondo) 86%, transparent);
+  --lugar-noche: 0;
+  position: relative;
+  display: block;
+  font-family: var(--letra-texto, inherit);
+  color: var(--l-texto);
+}
+
+/* ---------- el vuelo: una pista alta con el escenario fijado ---------- */
+.lugar .lugar__pista { position: relative; display: none; }
+.lugar[data-modo="3d"] .lugar__pista { display: block; height: 420vh; height: 420svh; }
+.lugar .lugar__escenario {                     /* --lugar-arriba: alto de una cabecera fija de Web, si la hay */
+  position: sticky; top: var(--lugar-arriba, 0px);
+  height: calc(100vh - var(--lugar-arriba, 0px)); height: calc(100svh - var(--lugar-arriba, 0px)); min-height: 420px;
+  overflow: hidden; isolation: isolate;
+  background: var(--superficie, var(--l-fondo));
+}
+.lugar .lugar__poster,
+.lugar .lugar__lienzo { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+.lugar .lugar__poster { object-fit: cover; object-position: 50% 50%; z-index: 0; transition: opacity .9s ease; }
+.lugar .lugar__lienzo { z-index: 1; opacity: 0; transition: opacity .9s ease; }
+.lugar .lugar__escenario.lugar--listo .lugar__lienzo { opacity: 1; }
+.lugar .lugar__escenario.lugar--listo .lugar__poster { opacity: 0; }
+
+/* rótulos sobre la escena: chip sobrio con un hilo hasta el punto */
+.lugar .lugar__rotulos { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.lugar .lugar__rotulo { position: absolute; left: 0; top: 0; opacity: 0; transition: opacity .45s ease; will-change: transform; }
+.lugar .lugar__rotulo.es-visible { opacity: 1; }
+.lugar .lugar__rotulo::before {
+  content: ""; position: absolute; left: -3px; top: -3px; width: 6px; height: 6px; border-radius: 50%;
+  background: var(--l-fondo); border: 1px solid var(--l-texto);
+}
+.lugar .lugar__rotulo > span {
+  position: absolute; left: 0; bottom: 14px; transform: translateX(-50%);
+  display: grid; gap: 1px; white-space: nowrap; text-align: center;
+  padding: .3em .62em .34em; background: var(--l-chip); color: var(--l-texto);
+  font-size: .78rem; line-height: 1.2; letter-spacing: .02em;
+  box-shadow: 0 1px 0 var(--l-linea);
+}
+.lugar .lugar__rotulo > span::after {
+  content: ""; position: absolute; left: 50%; top: 100%; width: 1px; height: 11px; background: var(--l-texto); opacity: .55;
+}
+.lugar .lugar__rotulo b { font-weight: 600; font-family: var(--letra-titular, inherit); }
+.lugar .lugar__rotulo small { font-size: .74em; color: var(--l-suave); font-family: var(--letra-cifras, inherit); letter-spacing: .04em; }
+/* peñas: más discretas (sin fondo, texto claro con sombra) */
+.lugar .lugar__rotulo--pico > span { background: none; box-shadow: none; color: #f4efe6; text-shadow: 0 1px 2px rgba(0, 0, 0, .65), 0 0 10px rgba(0, 0, 0, .35); }
+.lugar .lugar__rotulo--pico > span::after { background: #f4efe6; opacity: .7; }
+.lugar .lugar__rotulo--pico small { color: #e4ddd0; }
+.lugar .lugar__rotulo--pico::before { background: #f4efe6; border-color: rgba(0, 0, 0, .5); }
+.lugar .lugar__rotulo--casa > span { background: var(--l-marca); color: var(--l-fondo); font-family: var(--letra-script, inherit); font-size: 1rem; }
+.lugar .lugar__rotulo--casa b { font-family: inherit; font-weight: 400; }
+.lugar .lugar__rotulo--casa > span::after { background: var(--l-marca); opacity: 1; }
+.lugar .lugar__rotulo--casa::before { background: var(--l-marca); border-color: var(--l-fondo); }
+
+/* las cuatro paradas, abajo */
+.lugar .lugar__paradas {
+  position: absolute; z-index: 3; left: 0; right: 0; bottom: 0; margin: 0;
+  padding: clamp(48px, 9vh, 96px) clamp(16px, 4vw, 56px) clamp(52px, 8vh, 72px);
+  list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px);
+  background: linear-gradient(to top, color-mix(in oklab, var(--l-fondo) 82%, transparent), color-mix(in oklab, var(--l-fondo) 0%, transparent));
+  pointer-events: none;
+}
+.lugar .lugar__paradas li { position: relative; padding-top: 18px; opacity: .62; transition: opacity .5s ease; }
+.lugar .lugar__paradas li::before {
+  content: ""; position: absolute; left: 0; top: 2px; width: 9px; height: 9px; border-radius: 50%;
+  border: 1px solid currentColor; transition: background-color .5s ease;
+}
+.lugar .lugar__paradas li::after { content: ""; position: absolute; left: 18px; right: 0; top: 6px; height: 1px; background: var(--l-linea); }
+.lugar .lugar__paradas li.es-pasada { opacity: .78; }
+.lugar .lugar__paradas li.es-pasada::before { background: currentColor; }
+.lugar .lugar__paradas li.es-actual { opacity: 1; }
+.lugar .lugar__paradas li.es-actual::before { background: var(--l-marca); border-color: var(--l-marca); }
+.lugar .lugar__paradas b { display: block; font-family: var(--letra-titular, inherit); font-weight: 600; font-size: clamp(1rem, 1.3vw, 1.2rem); }
+.lugar .lugar__paradas span { display: block; margin-top: .3em; font-size: .86rem; line-height: 1.4; color: var(--l-suave); max-width: 34ch; }
+
+.lugar .lugar__pie3d {
+  position: absolute; z-index: 4; left: clamp(16px, 4vw, 56px); right: clamp(16px, 4vw, 56px); bottom: 14px;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+}
+.lugar .lugar__pie3d .lugar__ahora { margin: 0; font-size: .86rem; color: var(--l-suave); }
+.lugar .lugar__aviso {
+  position: absolute; z-index: 4; left: 50%; top: 50%; transform: translate(-50%, -50%); margin: 0;
+  padding: .5em 1em; background: var(--l-chip); font-size: .85rem;
+}
+.lugar .lugar__fps {
+  position: absolute; z-index: 5; right: 8px; top: 8px; margin: 0; padding: 2px 6px;
+  font: 12px/1.3 var(--letra-cifras, ui-monospace, monospace); background: var(--l-chip);
+}
+
+/* ---------- botones ---------- */
+.lugar .lugar__btn {
+  font: inherit; font-size: .9rem; cursor: pointer; border: 1px solid var(--l-marca);
+  background: var(--l-marca); color: var(--l-fondo); padding: .7em 1.2em; min-height: 44px; border-radius: 0;
+}
+.lugar .lugar__btn::before { content: ""; display: inline-block; width: .5em; height: .5em; margin-right: .6em; border: 1px solid currentColor; border-radius: 50%; transform: translateY(-.06em); }
+.lugar .lugar__btn--suave { background: var(--l-chip); color: var(--l-texto); border-color: var(--l-linea); font-size: .8rem; padding: .5em .9em; min-height: 36px; }
+.lugar .lugar__btn:focus-visible { outline: 2px solid var(--acento, var(--l-marca)); outline-offset: 3px; }
+.lugar .lugar__btn[hidden] { display: none; }
+
+/* ---------- plan B (sin WebGL, movimiento reducido, móvil antes del botón) ---------- */
+.lugar .lugar__planob {
+  display: grid; gap: clamp(16px, 2.4vw, 32px);
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  grid-template-areas: "vista pueblo" "pasos pasos" "ahora acciones";
+  align-items: start;
+}
+.lugar[data-modo="3d"] .lugar__planob { display: none; }
+.lugar .lugar__vista { grid-area: vista; margin: 0; }
+.lugar .lugar__pueblo { grid-area: pueblo; margin: 0; }
+.lugar .lugar__marco { position: relative; overflow: hidden; aspect-ratio: 16 / 10; background: var(--superficie, var(--l-fondo)); }
+.lugar .lugar__pueblo .lugar__marco { aspect-ratio: 1 / 1; }
+.lugar .lugar__marco > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
+.lugar figcaption { margin-top: .6em; font-size: .9rem; line-height: 1.45; color: var(--l-suave); }
+/* la noche de ahora, sobre las imágenes */
+.lugar .lugar__noche {
+  position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(to bottom, #060a18, #1a2340 55%, #0c1424);
+  mix-blend-mode: multiply; opacity: calc(var(--lugar-noche) * .82);
+}
+.lugar .lugar__marcas { position: absolute; inset: 0; margin: 0; padding: 0; list-style: none; pointer-events: none; }
+.lugar .lugar__marca { position: absolute; width: 0; height: 0; }
+.lugar .lugar__marca[hidden] { display: none; }
+.lugar .lugar__marca::before {
+  content: ""; position: absolute; left: -4px; top: -4px; width: 8px; height: 8px; border-radius: 50%;
+  background: var(--l-fondo); border: 1px solid var(--l-texto);
+}
+.lugar .lugar__marca > span {
+  position: absolute; left: 10px; top: -1.45em; white-space: nowrap;
+  padding: .18em .5em; background: var(--l-chip); color: var(--l-texto); font-size: .74rem; line-height: 1.25;
+}
+.lugar .lugar__marca small { color: var(--l-suave); font-family: var(--letra-cifras, inherit); }
+.lugar .lugar__marca.a-la-izq > span { left: auto; right: 10px; }
+.lugar .lugar__marca--casa::before { background: var(--l-marca); border-color: var(--l-fondo); box-shadow: 0 0 calc(var(--lugar-noche) * 14px) calc(var(--lugar-noche) * 4px) #ffc27a; }
+.lugar .lugar__marca--casa > span { background: var(--l-marca); color: var(--l-fondo); font-family: var(--letra-script, inherit); font-size: .95rem; }
+.lugar .lugar__marca--pueblo::after {          /* un anillo alrededor de la casa en el plano */
+  content: ""; position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%;
+  border: 1.5px solid var(--l-marca); box-shadow: 0 0 0 1px color-mix(in oklab, var(--l-fondo) 60%, transparent);
+}
+.lugar .lugar__pasos {
+  grid-area: pasos; margin: 0; padding: 0; list-style: none;
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: clamp(12px, 2vw, 28px);
+}
+.lugar .lugar__pasos li { position: relative; padding-top: 18px; }
+.lugar .lugar__pasos li::before { content: ""; position: absolute; left: 0; top: 2px; width: 9px; height: 9px; border-radius: 50%; border: 1px solid var(--l-agua); }
+.lugar .lugar__pasos li::after { content: ""; position: absolute; left: 18px; right: 0; top: 6px; height: 1px; background: var(--l-linea); }
+.lugar .lugar__pasos b { display: block; font-family: var(--letra-titular, inherit); font-weight: 600; font-size: 1.05rem; }
+.lugar .lugar__pasos span { display: block; margin-top: .3em; font-size: .95rem; line-height: 1.5; color: var(--l-suave); }
+.lugar .lugar__planob > .lugar__ahora { grid-area: ahora; margin: 0; font-size: .95rem; color: var(--l-suave); }
+.lugar .lugar__acciones { grid-area: acciones; margin: 0; justify-self: end; }
+.lugar .lugar__fuente { margin: 14px 0 0; font-size: .78rem; line-height: 1.5; color: var(--l-suave); max-width: 110ch; }
+
+/* ---------- móvil ---------- */
+@media (max-width: 820px) {
+  .lugar[data-modo="3d"] .lugar__pista { height: 380vh; height: 380svh; }
+  .lugar .lugar__paradas { grid-template-columns: 1fr; padding-bottom: 64px; }
+  .lugar .lugar__paradas li:not(.es-actual) { display: none; }
+  .lugar .lugar__paradas span { max-width: none; }
+  .lugar .lugar__pie3d { flex-direction: row-reverse; align-items: flex-end; }
+  .lugar .lugar__pie3d .lugar__ahora { font-size: .7rem; text-align: right; }
+  .lugar .lugar__rotulo > span { font-size: .7rem; }
+  .lugar .lugar__planob { grid-template-columns: 1fr; grid-template-areas: "vista" "pueblo" "pasos" "ahora" "acciones"; }
+  .lugar .lugar__marco { aspect-ratio: 4 / 3; }
+  .lugar .lugar__pueblo .lugar__marco { aspect-ratio: 1 / 1; }     /* cuadrado: la marca de la casa va en % */
+  .lugar .lugar__pasos { grid-template-columns: 1fr 1fr; }
+  .lugar .lugar__acciones { justify-self: stretch; }
+  .lugar .lugar__acciones .lugar__btn { width: 100%; }
+}
+@media (max-width: 460px) {
+  .lugar .lugar__pasos { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lugar .lugar__poster, .lugar .lugar__lienzo, .lugar .lugar__rotulo, .lugar .lugar__paradas li, .lugar .lugar__paradas li::before { transition: none; }
+}

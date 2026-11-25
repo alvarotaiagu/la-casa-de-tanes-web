@@ -1,0 +1,41 @@
+    <!-- el simulador (js/reserva.js): SIMULADO y marcado. No reserva, no envía ni guarda nada y no pide datos personales.
+         Supuestos (precio, temporada, mínimo de noches, días ocupados) en data/tanes.json → reserva, y en PENDIENTES.md -->
+    <div class="simu" id="simu">
+      <p class="simu__aviso"><b>Simulador</b> Así funcionaría un motor de reservas propio. No reserva, no envía ni guarda nada y no pide datos. Los días ocupados y los precios son supuestos.</p>
+      <div class="simu__in">
+        <div class="simu__cal">
+          <div class="simu__fechas" aria-live="polite">
+            <p><span class="simu__eti">Llegada</span><b data-fecha="entrada">Elige día</b></p>
+            <p><span class="simu__eti">Salida</span><b data-fecha="salida">Elige día</b></p>
+            <p class="simu__noches cifra" data-noches></p>
+          </div>
+          <div class="cal" id="cal" role="group" aria-label="Calendario simulado: elige llegada y salida"></div>
+          <p class="cal__ley"><span class="ley ley--libre">Libre</span><span class="ley ley--ocupado">Ocupado (simulado)</span><span class="ley ley--alta">Temporada alta (supuesta)</span></p>
+          <noscript><p class="simu__sin">El simulador necesita JavaScript. Para reservar, llama al <a href="tel:+34609053498">609 05 34 98</a>.</p></noscript>
+        </div>
+        <div class="simu__panel">
+          <div class="paso" data-paso="personas">
+            <span class="simu__eti" id="eti-personas">Personas</span>
+            <div class="paso__ctl" role="group" aria-labelledby="eti-personas">
+              <button type="button" data-acc="menos" aria-label="Una persona menos"><svg class="ico" aria-hidden="true"><use href="#i-menos"/></svg></button>
+              <output class="cifra" data-valor aria-live="polite">2</output>
+              <button type="button" data-acc="mas" aria-label="Una persona más"><svg class="ico" aria-hidden="true"><use href="#i-mas"/></svg></button>
+            </div>
+          </div>
+          <p class="simu__pista" data-pista></p>
+          <div class="simu__resumen">
+            <p class="simu__frase" data-resumen aria-live="polite">Elige el día de llegada.</p>
+            <dl class="simu__cuentas">
+              <div><dt>Noches</dt><dd class="cifra" data-n-noches>0</dd></div>
+              <div><dt>Precio por noche <small>(orientativo)</small></dt><dd class="cifra" data-precio>de 68 a 75 €</dd></div>
+              <div class="simu__total"><dt>Total orientativo</dt><dd class="cifra" data-total>elige fechas</dd></div>
+            </dl>
+          </div>
+          <div class="simu__real">
+            <p>Para reservar de verdad, hoy:</p>
+            <p class="simu__acc"><a class="btn btn--acento" href="tel:+34609053498"><svg class="ico" aria-hidden="true"><use href="#i-telefono"/></svg>Llamar al <span class="cifra">609 05 34 98</span></a><!--enlace-booking--></p>
+          </div>
+          <p class="simu__supuestos" data-supuestos></p>
+        </div>
+      </div>
+    </div>

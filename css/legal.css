@@ -1,0 +1,30 @@
+/* La Casa de Tanes · páginas legales y 404 (las variables, en css/base.css) */
+.legal-cab { border-bottom: 1px solid var(--linea); }
+.legal-cab .env { display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 72px; }
+.legal-marca { display: inline-flex; align-items: baseline; gap: .45rem; color: var(--laton); text-decoration: none; }
+.legal-marca__rotulo { height: 32px; width: auto; aspect-ratio: 3003 / 762; }
+.legal-marca__de { font: 400 .95rem/1 var(--letra-titular); letter-spacing: .14em; text-transform: uppercase; color: var(--arenisca-media); }
+.volver { font-size: .95rem; }
+.legal { padding-block: clamp(40px, 7vw, 88px); }
+.legal .env { max-width: 46rem; }
+.legal h1 { font-size: clamp(2.4rem, 6vw, 3.8rem); font-weight: 300; margin-bottom: 1.6rem; }
+.legal h2 { font-size: 1.6rem; font-weight: 400; color: var(--laton); margin: 2.2rem 0 .7rem; }
+.legal p, .legal li { margin-bottom: .8rem; color: var(--texto); }
+.legal ul { padding-left: 1.2rem; list-style: disc; }
+.legal dl { display: grid; grid-template-columns: minmax(9rem, auto) 1fr; gap: .5rem 1.2rem; margin: 1.2rem 0; padding: 1.2rem; background: var(--superficie); }
+.legal dt { color: var(--texto-suave); }
+.legal dd { margin: 0; }
+.legal code { font-family: var(--letra-cifras); font-size: .92em; }
+.aviso { padding: .8rem 1rem; border-left: 3px solid var(--almagre-texto); background: color-mix(in oklab, var(--almagre) 18%, var(--castano-noche)); }
+.aviso-corto { color: var(--almagre-texto); font-style: italic; }
+.legal-pie { border-top: 1px solid var(--linea); padding-block: 24px; }
+.legal-pie .env { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; font-size: .9rem; }
+@media (max-width: 559px) { .legal dl { grid-template-columns: 1fr; gap: .2rem; } .legal dd { margin-bottom: .6rem; } }
+
+.no-hay { min-height: 100svh; display: grid; place-items: center; }
+.no { width: min(100% - 2 * var(--gutter), 40rem); padding-block: 48px; display: grid; gap: 1.2rem; }
+.no__rotulo { color: var(--laton); width: min(100%, 420px); }
+.no__rotulo svg { width: 100%; height: auto; }
+.no h1 { font-size: clamp(2.2rem, 6vw, 3.4rem); font-weight: 300; }
+.no p { color: var(--texto-suave); }
+.no__acc { display: flex; flex-wrap: wrap; gap: .7rem; margin-top: .6rem; }

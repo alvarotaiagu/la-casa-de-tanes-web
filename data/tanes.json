@@ -1,0 +1,77 @@
+{
+ "nota": "Una sola fuente de datos de la web (sale de ref/DATOS-TANES.md). Lo que no está en DATOS va con «por confirmar» y a PENDIENTES.md. Las distancias NO van aquí: solo de ref/raw/rutas.json (OSRM).",
+ "nombre": "La Casa de Tanes",
+ "subtitulo": "Estudios y apartamentos boutique",
+ "contacto": {
+  "direccion": "Tanes 9",
+  "cp": "33994",
+  "lugar": "Tanes, Caso (Asturias)",
+  "telefono": "+34609053498",
+  "telefonoTexto": "609 05 34 98",
+  "mapa": "Apartamentos La Casa de Tanes, Tanes 9, 33994 Tanes, Caso, Asturias"
+ },
+ "registro": "AT 1490 AS",
+ "cifras": [
+  { "n": "14", "t": "viajeros", "nota": "según su ficha de Airbnb" },
+  { "n": "5", "t": "dormitorios", "nota": "según su ficha de Airbnb" },
+  { "n": "Sur", "t": "todas las estancias", "nota": "con vistas a la montaña y al embalse" }
+ ],
+ "colores": [
+  { "id": "almagre", "nombre": "Almagre", "hex": "#872F1A", "medido": "almagre_13", "foto": "comedor-almagre", "texto": "Paredes de almagre en salones y comedores." },
+  { "id": "botella", "nombre": "Verde botella", "hex": "#293C1D", "medido": "verde_botella", "foto": "bano-verde", "texto": "Baños de azulejo verde botella, con el lavabo a juego." },
+  { "id": "cuadros", "nombre": "A cuadros", "hex": "#722D15", "medido": "azulejo_rojo", "foto": "cocina-cuadros", "texto": "Cocinas con azulejo a cuadros rojo y negro junto a la piedra." },
+  { "id": "ocre", "nombre": "Ocre", "hex": "#B7690D", "medido": "ocre", "foto": "bano-ocre", "texto": "Baños de azulejo ocre." },
+  { "id": "azul", "nombre": "Azul", "hex": "#365989", "medido": "azul", "foto": "salon-sofa-azul", "texto": "Sofás azules en los salones." },
+  { "id": "amarillo", "nombre": "Amarillo", "hex": "#DBB957", "medido": "amarillo", "foto": "dormitorio-amarillo", "texto": "Un dormitorio de pared amarilla bajo la cubierta." }
+ ],
+ "servicios": [
+  { "grupo": "En cada estancia", "lista": [
+   { "icono": "cocina", "nombre": "Cocina equipada", "detalle": "Nevera, placa, microondas, tostadora, cafetera, hervidor, té y café" },
+   { "icono": "ducha", "nombre": "Baño propio", "detalle": "Ducha, secador, toallas y artículos de aseo" },
+   { "icono": "sur", "nombre": "Orientada al sur", "detalle": "Vistas a la montaña y al embalse" },
+   { "icono": "calor", "nombre": "Calefacción", "detalle": null },
+   { "icono": "tele", "nombre": "TV de pantalla plana", "detalle": null },
+   { "icono": "plancha", "nombre": "Plancha", "detalle": null }
+  ]},
+  { "grupo": "En la casa", "lista": [
+   { "icono": "wifi", "nombre": "Wi-Fi gratis", "detalle": null },
+   { "icono": "coche", "nombre": "Aparcamiento gratis", "detalle": null },
+   { "icono": "jardin", "nombre": "Patio y jardín", "detalle": "Con mobiliario y zona de picnic" },
+   { "icono": "huella", "nombre": "Se admiten mascotas", "detalle": null }
+  ]},
+  { "grupo": "Fuera", "lista": [
+   { "icono": "bota", "nombre": "Senderismo", "detalle": "En el Parque Natural de Redes" },
+   { "icono": "pala", "nombre": "Piragüismo", "detalle": "En el embalse" },
+   { "icono": "mapa", "nombre": "Excursiones", "detalle": "Te ayudan a reservarlas" }
+  ]}
+ ],
+ "condiciones": [
+  { "t": "Entrada", "v": "De 15:00 a 21:00", "d": "Llegada autónoma y privada" },
+  { "t": "Salida", "v": "De 08:00 a 11:00", "d": null },
+  { "t": "Mascotas", "v": "Se admiten", "d": null },
+  { "t": "Tabaco", "v": "No se fuma", "d": "Toda la casa es de no fumadores" },
+  { "t": "Registro", "v": "AT 1490 AS", "d": "Apartamentos turísticos del Principado de Asturias" }
+ ],
+ "estancias": [
+  { "id": "ventanas", "nombre": "Las ventanas", "corto": "Ventanas", "texto": "Todo mira al sur: desde dentro, el embalse y las peñas de Redes.", "fotos": ["vista-puerta-balcon", "salon-ventana-abierta", "cocina-ventana-embalse", "vista-balcon", "ventana-arco", "vista-ventana-pena"] },
+  { "id": "salones", "nombre": "Salones", "corto": "Salones", "texto": "Piedra, vigas de madera y un sofá frente a la ventana.", "fotos": ["salon-comedor-lago", "salon-paredes-rojas", "salon-sofa-rojo", "sofa-rojo-ventana", "salon-cocina-verde", "sofa-rosa"] },
+  { "id": "cocinas", "nombre": "Cocinas y comedores", "corto": "Cocinas", "texto": "Cocina completa en cada estancia, con su mesa para comer mirando fuera.", "fotos": ["cocina-azulejo-platos", "comedor", "salon-cocina", "cocina-verde-cuadros", "comedor-mesa-redonda", "comedor-pared-roja", "fregadero-cuadros"] },
+  { "id": "dormitorios", "nombre": "Dormitorios", "corto": "Dormir", "texto": "Camas de hierro y de madera, bajo la cubierta o con la ventana al jardín.", "fotos": ["dormitorio-puerta-ventana", "dormitorio-abuhardillado", "dormitorio-colcha-flores", "dormitorio-lampara-verde", "dormitorio-madera"] },
+  { "id": "banos", "nombre": "Baños", "corto": "Baños", "texto": "Un baño propio en cada estancia, de azulejo verde botella u ocre.", "fotos": ["bano-verde-espejo", "bano-verde-lavabo", "bano-verde-ducha", "lavabo-verde", "bano-ocre-ducha"] },
+  { "id": "fuera", "nombre": "La casa por fuera", "corto": "Fuera", "texto": "Una casona de piedra sobre el embalse, con su galería de madera y su jardín.", "fotos": ["casona-niebla", "fachada-lateral", "rotulo-laton", "puerta-placa-at", "escalera-naranja", "embalse-casa"] }
+ ],
+ "resenas": {
+  "booking": { "nota": "9,2", "sobre": "10", "recuento": 205, "url": "https://www.booking.com/searchresults.es.html?ss=Apartamentos+La+Casa+de+Tanes", "etiqueta": "Booking" },
+  "google": { "nota": "4,6", "sobre": "5", "recuento": 18, "url": "https://www.google.com/maps/search/?api=1&query=Apartamentos+La+Casa+de+Tanes%2C+Tanes+9%2C+Caso", "etiqueta": "Google" }
+ },
+ "reserva": {
+  "simulado": true,
+  "precioBaja": 68,
+  "precioAlta": 75,
+  "altaMeses": [6, 7],
+  "minNoches": 2,
+  "maxPersonas": 14,
+  "nota": "Supuestos del simulador (por confirmar con la casa): 68 € la noche en temporada baja y 75 € en julio y agosto, por estancia; mínimo 2 noches; días ocupados inventados."
+ },
+ "titular": { "nombre": "por confirmar", "nif": "por confirmar", "domicilio": "Tanes 9, 33994 Tanes, Caso (Asturias)" }
+}

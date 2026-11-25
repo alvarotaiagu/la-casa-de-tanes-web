@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Prueba del módulo lugar</title>
+<!-- Página de prueba del agente Lugar 3D: variables comunes de relleno (las de verdad las pone Web en css/base.css).
+     Para ver el 3D en local: abrir http://localhost:8952/scripts/lugar-prueba.html (añadir ?fps o ?hora=22:30). -->
+<style>
+  :root { --fondo: #f3ede2; --superficie: #e7dfd0; --texto: #2a231c; --texto-suave: #6a5f52; --marca: #a8823f; --acento: #8f3b26; --agua: #2f6f66; --linea: #d4c9b6;
+          --letra-titular: Georgia, serif; --letra-texto: system-ui, sans-serif; --letra-script: "Segoe Script", cursive; --letra-cifras: ui-monospace, monospace; }
+  body { margin: 0; background: var(--fondo); color: var(--texto); font-family: var(--letra-texto); }
+  .relleno { height: 60vh; display: grid; place-items: center; color: var(--texto-suave); }
+  #lugar > h2, #lugar > p { max-width: 70ch; margin: 0 auto; padding: 0 16px; }
+  #lugar > p { margin-bottom: 24px; }
+  [data-modulo="lugar"] { padding: 0 clamp(16px, 4vw, 56px); }
+  [data-modulo="lugar"][data-modo="3d"] { padding: 0; }
+</style>
+<link rel="stylesheet" href="../css/lugar.css">
+<script src="../js/lugar.js" defer></script>
+</head>
+<body>
+  <div class="relleno">(arriba)</div>
+  <section id="lugar">
+    <h2>El espejo de Tanes</h2>
+    <p>Texto de entrada de la sección (lo escribe Web).</p>
+    <div data-modulo="lugar"><figure class="respaldo"><img src="../ref/origen/45.jpg" alt="Las montañas reflejadas en el embalse de Tanes" width="1200" height="1600" style="max-width:100%;height:auto;max-height:80vh;width:auto"><figcaption>Respaldo de Web.</figcaption></figure></div>
+  </section>
+  <div class="relleno">(abajo)</div>
+  <script>
+    addEventListener('DOMContentLoaded', function () {
+      var el = document.querySelector('[data-modulo="lugar"]');
+      var movimiento = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+      window.__lugar = window.Tanes.lugar.montar(el, { movimiento: movimiento, densidad: 'cargada' });
+    });
+  </script>
+</body>
+</html>

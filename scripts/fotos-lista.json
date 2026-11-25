@@ -1,0 +1,55 @@
+[
+ {"nombre": "comedor-almagre", "ruta": "origen/77.jpg", "tipo": "int", "alt": "Comedor con la pared pintada de almagre, mesa redonda con mantel blanco y sillas de madera"},
+ {"nombre": "bano-verde", "ruta": "origen/61.jpg", "tipo": "int", "alt": "Baño de azulejo verde botella con lavabo de pie, espejo de madera y ducha"},
+ {"nombre": "cocina-cuadros", "ruta": "origen/02.jpg", "tipo": "int", "alt": "Cocina con pared de piedra y azulejo a cuadros rojo y negro"},
+ {"nombre": "bano-ocre", "ruta": "origen/80.jpg", "tipo": "int", "maxAncho": 500, "alt": "Baño de azulejo ocre con ducha y lavabo"},
+ {"nombre": "salon-sofa-azul", "ruta": "origen/49.jpg", "tipo": "int", "alt": "Rincón del salón con sofá azul, cojines rojos y lámpara de pie"},
+ {"nombre": "dormitorio-amarillo", "ruta": "origen/44.jpg", "tipo": "int", "alt": "Dormitorio bajo la cubierta con la pared amarilla y cama de hierro"},
+
+ {"nombre": "vista-puerta-balcon", "ruta": "origen/73.jpg", "tipo": "int", "alt": "Puerta balcón abierta en un muro de piedra, con la montaña verde enfrente"},
+ {"nombre": "cocina-ventana-embalse", "ruta": "origen/04.jpg", "tipo": "int", "alt": "Cocina comedor con una ventana grande abierta al embalse y al monte"},
+ {"nombre": "salon-ventana-abierta", "ruta": "origen/06.jpg", "tipo": "int", "alt": "Salón con sofá azul, sillón verde y la ventana abierta al embalse"},
+ {"nombre": "vista-balcon", "ruta": "origen/50.jpg", "tipo": "int", "alt": "Vista desde el balcón de madera: el valle y la peña al fondo"},
+ {"nombre": "ventana-arco", "ruta": "origen/71.jpg", "tipo": "int", "alt": "Ventana en arco en el muro de piedra, con el monte al otro lado"},
+ {"nombre": "vista-ventana-pena", "ruta": "origen/51.jpg", "tipo": "ext", "alt": "La peña caliza vista desde una ventana, con un arbusto en primer plano"},
+
+ {"nombre": "salon-comedor-lago", "ruta": "origen/03.jpg", "tipo": "int", "alt": "Salón comedor de piedra y vigas con ventanas al lago"},
+ {"nombre": "salon-paredes-rojas", "ruta": "origen/13.jpg", "tipo": "int", "maxAncho": 1400, "alt": "Salón de paredes rojas con un sofá bajo una fila de ventanas"},
+ {"nombre": "salon-sofa-rojo", "ruta": "origen/24.jpg", "tipo": "int", "alt": "Salón de piedra con sofá de rayas rojas, butaca y ventana al valle"},
+ {"nombre": "sofa-rojo-ventana", "ruta": "origen/15.jpg", "tipo": "int", "maxAncho": 1400, "alt": "Sofá rojo junto a una ventana con el verde de fuera"},
+ {"nombre": "salon-cocina-verde", "ruta": "origen/23.jpg", "tipo": "int", "maxAncho": 1100, "alt": "Salón con sofá azul y, al fondo, la cocina con la pared verde"},
+ {"nombre": "sofa-rosa", "ruta": "origen/60.jpg", "tipo": "int", "alt": "Sofá de rayas rosas junto a la ventana"},
+
+ {"nombre": "cocina-azulejo-platos", "ruta": "origen/08.jpg", "tipo": "int", "alt": "Cocina con azulejo a cuadros rojo y negro y un escurreplatos de madera"},
+ {"nombre": "comedor", "ruta": "origen/05.jpg", "tipo": "int", "alt": "Comedor con mesa de mantel blanco, sillas de madera y un sofá de cuero"},
+ {"nombre": "salon-cocina", "ruta": "origen/14.jpg", "tipo": "int", "alt": "Salón cocina con puerta ventana, sofá y mesa de comedor"},
+ {"nombre": "cocina-verde-cuadros", "ruta": "origen/36.jpg", "tipo": "int", "alt": "Cocina de pared verde con azulejo a cuadros y microondas"},
+ {"nombre": "comedor-mesa-redonda", "ruta": "origen/69.jpg", "tipo": "int", "alt": "Mesa redonda con mantel blanco junto a la ventana"},
+ {"nombre": "comedor-pared-roja", "ruta": "origen/65.jpg", "tipo": "int", "alt": "Mesa redonda delante de una pared roja con cuadros"},
+ {"nombre": "fregadero-cuadros", "ruta": "origen/58.jpg", "tipo": "int", "alt": "Fregadero de cerámica con azulejo a cuadros y cazuelas colgadas"},
+
+ {"nombre": "dormitorio-puerta-ventana", "ruta": "origen/30.jpg", "tipo": "int", "maxAncho": 1400, "alt": "Dormitorio con cama de madera y una puerta ventana con flores fuera"},
+ {"nombre": "dormitorio-abuhardillado", "ruta": "origen/07.jpg", "tipo": "int", "alt": "Dormitorio abuhardillado con cama de hierro, lámpara verde y ventana en el techo"},
+ {"nombre": "dormitorio-colcha-flores", "ruta": "origen/48.jpg", "tipo": "int", "alt": "Cama con colcha de flores junto a una ventana en el muro de piedra"},
+ {"nombre": "dormitorio-lampara-verde", "ruta": "origen/64.jpg", "tipo": "int", "alt": "Dormitorio con cama de hierro y una lámpara verde en la mesilla"},
+ {"nombre": "dormitorio-madera", "ruta": "origen/63.jpg", "tipo": "int", "maxAncho": 500, "alt": "Dormitorio de vigas de madera con cama y alfombra azul"},
+
+ {"nombre": "bano-verde-espejo", "ruta": "origen/66.jpg", "tipo": "int", "alt": "Lavabo con espejo de madera en un baño de azulejo verde"},
+ {"nombre": "bano-verde-lavabo", "ruta": "origen/79.jpg", "tipo": "int", "alt": "Baño de azulejo verde con lavabo verde sobre encimera"},
+ {"nombre": "bano-verde-ducha", "ruta": "origen/81.jpg", "tipo": "int", "alt": "Baño verde con ducha de cristal y lavabo de pie"},
+ {"nombre": "lavabo-verde", "ruta": "origen/16.jpg", "tipo": "int", "alt": "Lavabo verde junto a una ventana en el muro de piedra"},
+ {"nombre": "bano-ocre-ducha", "ruta": "origen/82.jpg", "tipo": "int", "maxAncho": 500, "alt": "Baño de azulejo ocre con ducha y lavabo"},
+
+ {"nombre": "fachada-lateral", "ruta": "origen/18.jpg", "tipo": "ext", "alt": "La fachada lateral de piedra de la casona con sus ventanas"},
+ {"nombre": "puerta-placa-at", "ruta": "origen/17.jpg", "tipo": "ext", "alt": "La puerta de madera con la placa roja de apartamentos turísticos"},
+ {"nombre": "rotulo-laton", "ruta": "origen/19.jpg", "tipo": "ext", "alt": "Las letras de latón «La Casa» sobre la piedra, encima de la puerta en arco y la camelia"},
+ {"nombre": "escalera-naranja", "ruta": "origen/20.jpg", "tipo": "int", "alt": "La escalera con la pared naranja y cuadros"},
+ {"nombre": "casona-niebla", "ruta": "origen/10.jpg", "tipo": "ext", "alt": "La casona sobre el embalse, con niebla en las montañas"},
+ {"nombre": "embalse-casa", "ruta": "origen/12.jpg", "tipo": "ext", "alt": "El embalse verde con una casa entre los árboles al fondo"},
+
+ {"nombre": "reflejo-montanas", "ruta": "origen/45.jpg", "tipo": "ext", "alt": "Las montañas de Redes reflejadas en el embalse de Tanes, quieto como un espejo"},
+ {"nombre": "embalse-panoramica", "ruta": "origen/21.jpg", "tipo": "ext", "alt": "El embalse de Tanes entre montes de castaño y robledal"},
+ {"nombre": "arco-iris-valle", "ruta": "origen/42.jpg", "tipo": "ext", "alt": "Un arco iris sobre el valle y el embalse"},
+ {"nombre": "tanes-aerea", "ruta": "origen/11.jpg", "tipo": "ext", "alt": "Tanes desde el aire, en su península sobre el embalse"},
+ {"nombre": "embalse-tejados", "ruta": "origen/09.jpg", "tipo": "ext", "alt": "El embalse y el monte por encima de los tejados de Tanes"}
+]

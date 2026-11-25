@@ -1,0 +1,31 @@
+<a class="saltar" href="#principal">Saltar al contenido</a>
+
+<!-- ============ cabecera fija: el logo es el rótulo «La Casa» (trazado SVG, marca/rotulo.json) + «de Tanes».
+     Sobre la portada, transparente con un velo; al bajar, castaño con desenfoque (.sc). Con movimiento, el logo
+     aparece cuando llegan a él las letras gigantes de la portada (js/portada.js) ============ -->
+<header class="cab" id="cab">
+  <div class="cab__in">
+    <a class="marca" href="#portada" aria-label="La Casa de Tanes, a la portada"><!--rotulo-logo--><span class="marca__de" aria-hidden="true">de Tanes</span></a>
+    <nav class="cab__nav" aria-label="Principal">
+      <a href="#estancias">Estancias</a>
+      <a href="#casa">La casa</a>
+      <a href="#lugar">El espejo</a>
+      <a href="#alrededor">Alrededor</a>
+    </nav>
+    <a class="cab__tel cifra" href="tel:+34609053498"><span class="vh">Teléfono: </span>609 05 34 98</a>
+    <a class="btn btn--acento cab__reservar" href="#reservar">Ver fechas</a>
+    <button class="cab__menu" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-movil"><span class="vh">Menú</span><i></i><i></i></button>
+  </div>
+  <div class="menu-movil" id="menu-movil" aria-hidden="true">
+    <nav aria-label="Menú">
+      <a href="#estancias"><small>Estudios y apartamentos</small>Cada una con su color</a>
+      <a href="#casa"><small>Por estancias</small>Todo mira al sur</a>
+      <a href="#lugar"><small>El valle en 3D</small>El espejo de Tanes</a>
+      <a href="#alrededor"><small>Distancias reales</small>Redes alrededor</a>
+      <a href="#resenas"><small>Booking y Google</small>Reseñas</a>
+      <a href="#reservar"><small>Simulador de fechas</small>Ver fechas</a>
+      <a href="#contacto"><small>Tanes 9, Caso</small>Contacto</a>
+    </nav>
+    <p class="menu-movil__tel"><a class="cifra" href="tel:+34609053498">609 05 34 98</a></p>
+  </div>
+</header>

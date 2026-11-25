@@ -1,0 +1,110 @@
+/* =====================================================================
+   La Casa de Tanes · «La Casa» · base: tokens, letras, reinicio y piezas comunes.
+   VARIABLES COMUNES DEL CONTRATO (las define la Web; Lugar 3D solo las LEE):
+     --fondo, --superficie, --texto, --texto-suave, --marca, --acento, --agua, --linea,
+     --letra-titular, --letra-texto, --letra-script, --letra-cifras.
+   Paleta MEDIDA en sus fotos (scripts/paleta.py → ref/raw/paleta.json; derivados y contrastes en
+   scripts/paleta-derivar.mjs → ref/raw/paleta-derivada.json). Cinco colores de la casa, ninguno más:
+     laton     #B4A380  las letras «La Casa» de la fachada (foto 19, mediana del metal)
+     arenisca  #E6D6C5  la piedra al sol (foto 01); #C8AE92 la piedra media, para el texto secundario
+     castano   #54382E  la madera de la galería (foto 01); el fondo es su tono hondo (#3B2017) llevado a L 0,19
+     embalse   #79AA9C  el agua del embalse (foto 21)
+     almagre   #872F1A  las paredes de los salones (foto 13): solo los botones de reservar
+   Página oscura en castaño (como la madera de dentro), una sola: no hay modo claro (como sus hermanas).
+   Formas: botones y mandos en píldora; fotos y paneles en arista viva. Nada más.
+   ===================================================================== */
+:root {
+  --laton: #B4A380;
+  --arenisca: #E6D6C5;
+  --arenisca-media: #C8AE92;
+  --castano: #54382E;
+  --castano-noche: #1F0F0A;
+  --castano-tarde: #2C1C17;
+  --embalse: #79AA9C;
+  --almagre: #872F1A;
+
+  /* contrato */
+  --fondo: var(--castano-noche);
+  --superficie: var(--castano-tarde);
+  --texto: var(--arenisca);
+  --texto-suave: var(--arenisca-media);
+  --marca: var(--laton);
+  --acento: var(--almagre);
+  --agua: var(--embalse);
+  --linea: color-mix(in oklab, var(--arenisca) 18%, var(--castano-noche));
+  --letra-titular: 'Sofia Sans Condensed', 'Arial Narrow', system-ui, sans-serif;
+  --letra-texto: 'Ubuntu Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --letra-script: 'Imperial Script', 'Brush Script MT', cursive;
+  --letra-cifras: 'Google Sans Code', ui-monospace, 'Cascadia Mono', Consolas, monospace;
+
+  /* derivados */
+  --almagre-texto: #D3745C;   /* el almagre como texto sobre el fondo (5,7:1); la marca no cambia */
+  --linea-fuerte: color-mix(in oklab, var(--arenisca) 34%, var(--castano-noche));
+  --foco: var(--laton);
+
+  --cabecera: 68px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --ancho: 1240px;
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --pildora: 999px;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; overflow-x: clip; scroll-padding-top: calc(var(--cabecera) + 12px); background: var(--fondo); }
+body { margin: 0; background: var(--fondo); color: var(--texto); font: 400 1.0625rem/1.62 var(--letra-texto); font-stretch: 96%; text-rendering: optimizeLegibility; -webkit-font-smoothing: antialiased; }
+img, svg, video { display: block; max-width: 100%; }
+img { height: auto; }
+a { color: inherit; text-underline-offset: .22em; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+button { font: inherit; color: inherit; }
+h1, h2, h3, h4 { margin: 0; font-family: var(--letra-titular); font-weight: 400; line-height: 1.02; letter-spacing: -.01em; text-wrap: balance; }
+p { margin: 0; }
+ul, ol { margin: 0; padding: 0; list-style: none; }
+figure { margin: 0; }
+address { font-style: normal; }
+[hidden] { display: none !important; }
+.vh { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+.cifra { font-family: var(--letra-cifras); font-variant-numeric: tabular-nums; letter-spacing: -.01em; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }
+.ico { width: 24px; height: 24px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* foco del teclado: contorno de 2 px en latón y, por fuera, cuatro tornillos en las esquinas (#foco-tornillos, main.js),
+   como las letras atornilladas a la piedra */
+:focus-visible { outline: 2px solid var(--foco); outline-offset: 4px; }
+:focus:not(:focus-visible) { outline: none; }
+.foco-tornillos { position: absolute; left: 0; top: 0; width: 0; height: 0; pointer-events: none; z-index: 120; overflow: visible; opacity: 0; color: var(--foco); }
+.foco-tornillos.es-fijo { position: fixed; }
+.foco-tornillos.es-visible { opacity: 1; }
+.foco-tornillos rect { fill: none; stroke: none; }
+.foco-tornillos circle { fill: currentColor; stroke: var(--fondo); stroke-width: 1.2; }
+
+.saltar { position: fixed; left: 12px; top: -80px; z-index: 200; background: var(--arenisca); color: var(--castano-noche); padding: .7rem 1rem; text-decoration: none; border-radius: var(--pildora); }
+.saltar:focus { top: 12px; }
+
+.env { width: min(100% - 2 * var(--gutter), var(--ancho)); margin-inline: auto; }
+
+/* ---------- botones (píldora; una sola etiqueta por intención: «Ver fechas») ---------- */
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: .55rem; min-height: 48px; padding: .7rem 1.4rem; border: 1.5px solid transparent; border-radius: var(--pildora);
+  font: 500 1.02rem/1.1 var(--letra-texto); letter-spacing: .005em; text-decoration: none; cursor: pointer; white-space: nowrap;
+  transition: background-color .25s var(--ease), color .25s var(--ease), border-color .25s var(--ease), transform .15s var(--ease); }
+.btn .ico { width: 20px; height: 20px; }
+.btn:active { transform: translateY(1px) scale(.99); }
+.btn--acento { background: var(--almagre); color: var(--arenisca); }
+.btn--acento:hover { background: color-mix(in oklab, var(--almagre) 84%, var(--arenisca)); }
+.btn--linea { border-color: var(--linea-fuerte); color: var(--texto); background: transparent; }
+.btn--linea:hover { border-color: var(--laton); color: var(--laton); }
+.btn--linea-clara { border-color: color-mix(in oklab, var(--arenisca) 70%, transparent); color: var(--arenisca); background: color-mix(in oklab, var(--castano-noche) 28%, transparent); }
+.btn--linea-clara:hover { background: var(--arenisca); color: var(--castano-noche); }
+.enlace-flecha { display: inline-flex; align-items: center; gap: .35rem; color: var(--laton); font-weight: 500; text-decoration: none; border-bottom: 1px solid color-mix(in oklab, var(--laton) 50%, transparent); padding-block: .3rem; }
+.enlace-flecha:hover { border-bottom-color: var(--laton); }
+.enlace-flecha .ico { width: 18px; height: 18px; transition: transform .25s var(--ease); }
+.enlace-flecha:hover .ico { transform: translateX(3px); }
+
+/* ---------- titulares que aparecen (solo con movimiento: «con-movimiento» lo pone main.js) ---------- */
+.con-movimiento [data-aparece] { opacity: 0; transform: translateY(18px); transition: opacity .8s var(--ease), transform .8s var(--ease); }
+.con-movimiento [data-aparece].es-visto { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}

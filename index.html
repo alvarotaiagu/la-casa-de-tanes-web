@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Casa de Tanes · Estudios y apartamentos boutique en Redes, Asturias</title>
+<meta name="description" content="Casona de piedra en Tanes (Caso, Asturias), sobre el embalse y en el Parque Natural de Redes. Estudios y apartamentos con cocina, baño propio y vistas al sur.">
+<meta property="og:title" content="La Casa de Tanes · Estudios y apartamentos boutique">
+<meta property="og:description" content="Una casona de piedra sobre el embalse de Tanes, en el Parque Natural de Redes. Todas las estancias miran al sur.">
+<link rel="preload" as="image" type="image/avif" imagesrcset="img/portada/monte-1000.avif 1000w, img/portada/monte-1500.avif 1500w, img/portada/monte-2000.avif 2000w" imagesizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw" fetchpriority="high">
+<!-- script bloqueante: clase «js», entrar siempre arriba (checklist 12), ?sin-webgl y el mando de maqueta. -->
+<script>
+(function (d) {
+  var h = d.documentElement;
+  h.classList.add('js');
+  window.Tanes = window.Tanes || {};
+  // al recargar, Chrome devuelve la página a media portada (fijada un tramo): se entra siempre arriba, salvo con #ancla
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  if (!location.hash) window.scrollTo(0, 0);
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.has('sin-webgl')) h.classList.add('sin-webgl');
+    // MANDO DE MAQUETA (no viaja al cliente): solo con ?revision
+    if (q.has('revision')) {
+      h.classList.add('revision');
+      if (q.get('densidad') === 'sobria') h.classList.add('densidad-sobria');
+    }
+  } catch (e) {}
+  // con movimiento, el logo de la cabecera espera a que lleguen las letras de la portada (js/portada.js lo quita si no)
+  try {
+    var alto = (innerWidth >= 700 && innerHeight >= 560) || innerHeight >= 700;
+    if (alto && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      h.classList.add('rotulo-en-vuelo');
+      // red de seguridad: si la portada no llega a montarse, el logo vuelve a verse
+      setTimeout(function () { if (!d.querySelector('.portada.es-viva')) h.classList.remove('rotulo-en-vuelo'); }, 4000);
+    }
+  } catch (e) {}
+})(document);
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Sofia+Sans+Condensed:ital,wght@0,300..700;1,300..500&family=Ubuntu+Sans:wdth,wght@75..100,300..700&family=Google+Sans+Code:wght@400..600&display=swap">
+<link rel="stylesheet" href="css/base.css?v=99077f17">
+<link rel="stylesheet" href="css/estilos.css?v=0aeb5bae">
+<link rel="stylesheet" href="css/lugar.css?v=91d7b6da">
+<link rel="icon" href="marca/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="marca/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="marca/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1F0F0A">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body>
+<!-- Propuesta de web para La Casa de Tanes (Tanes 9, Caso, Asturias), sin encargar y sin publicar. noindex, nofollow. -->
+<a class="saltar" href="#principal">Saltar al contenido</a>
+
+<!-- ============ cabecera fija: el logo es el rótulo «La Casa» (trazado SVG, marca/rotulo.json) + «de Tanes».
+     Sobre la portada, transparente con un velo; al bajar, castaño con desenfoque (.sc). Con movimiento, el logo
+     aparece cuando llegan a él las letras gigantes de la portada (js/portada.js) ============ -->
+<header class="cab" id="cab">
+  <div class="cab__in">
+    <a class="marca" href="#portada" aria-label="La Casa de Tanes, a la portada"><svg class="marca__rotulo" viewBox="-64 -677 3003 762" aria-hidden="true" focusable="false"><path fill="currentColor" d="M452 65Q351 65 248 6Q185 35 128 35Q73 35 20 11Q-44 -20 -44 -69Q-44 -103 -17 -124Q8 -143 43 -143Q127 -143 199 -78Q217 -61 231 -49Q245 -37 255 -29Q303 -68 349 -145Q368 -178 386 -211Q404 -244 422 -277Q334 -283 267 -320Q181 -367 181 -444Q181 -504 223 -546Q265 -588 325 -588Q363 -588 391 -569Q422 -546 422 -510Q422 -496 413 -496Q409 -496 409 -512Q409 -514 408 -518Q407 -522 405 -528Q387 -579 326 -579Q276 -579 239 -536Q203 -494 203 -444Q203 -372 283 -328Q346 -293 428 -288Q460 -344 493.5 -390.5Q527 -437 561 -475Q663 -587 746 -587Q775 -587 795 -574Q818 -559 818 -532Q818 -493 772 -436Q755 -415 735 -396Q715 -377 692 -360Q673 -345 652.5 -333Q632 -321 610 -310Q562 -287 501 -280Q459 -184 413 -126Q358 -56 279 -11Q372 55 458 55Q504 55 538 37Q580 14 580 -28Q580 -34 584 -34Q588 -34 588 -27V-24Q588 20 551.5 42.5Q515 65 452 65ZM507 -293Q532 -297 556 -303Q580 -309 603 -318Q623 -326 642 -337Q661 -348 680 -362Q723 -394 758 -438Q804 -493 804 -532Q804 -564 771 -564Q744 -564 707 -545Q648 -514 601 -457Q554 -400 518 -318ZM118 22Q178 22 226 -7Q200 -24 174 -41Q148 -58 122 -74Q48 -120 13 -120Q-32 -120 -32 -79Q-32 -39 12 -9Q49 16 92 21Q99 22 105.5 22Q112 22 118 22ZM884 3Q832 3 832 -69Q832 -97 841 -133Q771 2 702 2Q669 2 652 -31Q638 -56 638 -94Q638 -125 647 -159Q664 -218 719 -270Q780 -326 835 -326Q885 -326 885 -266Q885 -240 874 -205L935 -325H938Q941 -320 951 -320Q971 -320 1002 -344L1004 -342L919 -176Q868 -77 868 -26Q868 -6 886 -6Q898 -6 915 -15Q932 -24 951 -45Q975 -73 992.5 -98.5Q1010 -124 1033 -168Q1036 -173 1039 -173Q1045 -173 1039 -163Q1021 -129 1000.5 -95.5Q980 -62 951 -33Q915 3 884 3ZM706 -5Q762 -5 850 -163Q878 -213 878 -264Q878 -318 843 -318Q805 -318 757 -255Q738 -229 724.5 -204Q711 -179 703 -156Q682 -96 682 -48Q682 -5 706 -5ZM1510 48Q1408 48 1349 -12Q1290 -73 1290 -175Q1290 -336 1424 -467Q1373 -511 1373 -563Q1373 -657 1485 -657Q1514 -657 1541.5 -648.5Q1569 -640 1595 -623L1596 -622Q1598 -621 1597.5 -619.5Q1597 -618 1597 -616Q1597 -613 1595 -613Q1594 -613 1589 -616Q1544 -643 1498 -643Q1454 -643 1425 -622Q1392 -600 1392 -556Q1392 -514 1434 -475Q1564 -596 1761 -596Q1827 -596 1875 -577Q1944 -552 1944 -497Q1944 -455 1889 -424Q1870 -412 1847 -403.5Q1824 -395 1798 -390Q1753 -381 1701 -381Q1564 -381 1466 -438Q1353 -311 1353 -163Q1353 -82 1390 -27Q1432 37 1510 37Q1659 37 1754 -106Q1786 -155 1786 -195Q1786 -230 1762 -252Q1739 -275 1704 -275Q1670 -275 1641 -255Q1611 -236 1598 -203Q1595 -195 1591 -195Q1587 -195 1587 -200Q1587 -201 1587.5 -202.5Q1588 -204 1588 -205Q1601 -242 1636 -263Q1669 -284 1709 -284Q1752 -284 1781 -258Q1808 -231 1808 -189Q1808 -141 1779 -97Q1739 -33 1662 8Q1588 48 1510 48ZM1677 -394Q1714 -394 1750 -400Q1786 -406 1822 -416Q1922 -448 1922 -504Q1922 -584 1769 -584Q1606 -584 1474 -446Q1564 -394 1677 -394ZM2117 3Q2065 3 2065 -69Q2065 -97 2074 -133Q2004 2 1935 2Q1902 2 1885 -31Q1871 -56 1871 -94Q1871 -125 1880 -159Q1897 -218 1952 -270Q2013 -326 2068 -326Q2118 -326 2118 -266Q2118 -240 2107 -205L2168 -325H2171Q2174 -320 2184 -320Q2204 -320 2235 -344L2237 -342L2152 -176Q2101 -77 2101 -26Q2101 -6 2119 -6Q2131 -6 2148 -15Q2165 -24 2184 -45Q2208 -73 2225.5 -98.5Q2243 -124 2266 -168Q2269 -173 2272 -173Q2278 -173 2272 -163Q2254 -129 2233.5 -95.5Q2213 -62 2184 -33Q2148 3 2117 3ZM1939 -5Q1995 -5 2083 -163Q2111 -213 2111 -264Q2111 -318 2076 -318Q2038 -318 1990 -255Q1971 -229 1957.5 -204Q1944 -179 1936 -156Q1915 -96 1915 -48Q1915 -5 1939 -5ZM2326 12Q2225 12 2225 -84Q2225 -111 2234 -142V-141Q2239 -159 2253 -176Q2270 -197 2284 -197Q2284 -197 2287 -197Q2290 -197 2297 -195L2308 -212Q2322 -233 2333.5 -254.5Q2345 -276 2358 -297Q2395 -361 2414 -366Q2420 -368 2423 -368Q2438 -368 2438 -357Q2438 -344 2416 -341Q2396 -338 2391 -336Q2383 -330 2383 -310Q2383 -289 2410 -239Q2437 -190 2437 -152Q2437 -142 2435.5 -133Q2434 -124 2432 -114Q2405 -1 2289 -1Q2312 4 2331 4Q2366 4 2399 -8.5Q2432 -21 2460 -43Q2489 -66 2513.5 -98.5Q2538 -131 2556 -168Q2559 -174 2562 -174Q2568 -174 2563 -164Q2547 -134 2529.5 -107.5Q2512 -81 2492 -60Q2468 -36 2427 -12Q2386 12 2326 12ZM2282 -9Q2333 -9 2366 -86Q2393 -146 2393 -207Q2393 -215 2390.5 -228.5Q2388 -242 2383 -261Q2379 -279 2377 -292.5Q2375 -306 2376 -316Q2357 -278 2338 -247Q2319 -216 2302 -191Q2307 -183 2307 -175Q2307 -161 2296 -144Q2289 -134 2272 -125Q2255 -116 2248 -108Q2237 -92 2237 -66Q2237 -9 2282 -9ZM2761 3Q2709 3 2709 -69Q2709 -97 2718 -133Q2648 2 2579 2Q2546 2 2529 -31Q2515 -56 2515 -94Q2515 -125 2524 -159Q2541 -218 2596 -270Q2657 -326 2712 -326Q2762 -326 2762 -266Q2762 -240 2751 -205L2812 -325H2815Q2818 -320 2828 -320Q2848 -320 2879 -344L2881 -342L2796 -176Q2745 -77 2745 -26Q2745 -6 2763 -6Q2775 -6 2792 -15Q2809 -24 2828 -45Q2852 -73 2869.5 -98.5Q2887 -124 2910 -168Q2913 -173 2916 -173Q2922 -173 2916 -163Q2898 -129 2877.5 -95.5Q2857 -62 2828 -33Q2792 3 2761 3ZM2583 -5Q2639 -5 2727 -163Q2755 -213 2755 -264Q2755 -318 2720 -318Q2682 -318 2634 -255Q2615 -229 2601.5 -204Q2588 -179 2580 -156Q2559 -96 2559 -48Q2559 -5 2583 -5Z"/></svg><span class="marca__de" aria-hidden="true">de Tanes</span></a>
+    <nav class="cab__nav" aria-label="Principal">
+      <a href="#estancias">Estancias</a>
+      <a href="#casa">La casa</a>
+      <a href="#lugar">El espejo</a>
+      <a href="#alrededor">Alrededor</a>
+    </nav>
+    <a class="cab__tel cifra" href="tel:+34609053498"><span class="vh">Teléfono: </span>609 05 34 98</a>
+    <a class="btn btn--acento cab__reservar" href="#reservar">Ver fechas</a>
+    <button class="cab__menu" id="menu-btn" type="button" aria-expanded="false" aria-controls="menu-movil"><span class="vh">Menú</span><i></i><i></i></button>
+  </div>
+  <div class="menu-movil" id="menu-movil" aria-hidden="true">
+    <nav aria-label="Menú">
+      <a href="#estancias"><small>Estudios y apartamentos</small>Cada una con su color</a>
+      <a href="#casa"><small>Por estancias</small>Todo mira al sur</a>
+      <a href="#lugar"><small>El valle en 3D</small>El espejo de Tanes</a>
+      <a href="#alrededor"><small>Distancias reales</small>Redes alrededor</a>
+      <a href="#resenas"><small>Booking y Google</small>Reseñas</a>
+      <a href="#reservar"><small>Simulador de fechas</small>Ver fechas</a>
+      <a href="#contacto"><small>Tanes 9, Caso</small>Contacto</a>
+    </nav>
+    <p class="menu-movil__tel"><a class="cifra" href="tel:+34609053498">609 05 34 98</a></p>
+  </div>
+</header>
+<!-- iconos propios (trazo 1,6, puntas redondas, como el latón de las letras: líneas limpias y algún rizo). <use> siempre con width/height en CSS (.ico) -->
+<svg class="sprite" aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <symbol id="i-cocina" viewBox="0 0 24 24"><path d="M4 10h16v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"/><path d="M2.5 10h19"/><path d="M8 7c0-1.2 1-1.4 1-2.6M12 7c0-1.2 1-1.4 1-2.6M16 7c0-1.2 1-1.4 1-2.6"/></symbol>
+    <symbol id="i-ducha" viewBox="0 0 24 24"><path d="M5 21V7a4 4 0 0 1 8 0"/><path d="M10 9.5h6a3 3 0 0 0-6 0z"/><path d="M11 13v1M13 13.5v1M15 13v1M12 16.5v1M14 16.5v1"/></symbol>
+    <symbol id="i-sur" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 6.5 14.2 12 12 17.5 9.8 12z"/><path d="M12 3.5v1.2M12 19.3v1.2"/></symbol>
+    <symbol id="i-calor" viewBox="0 0 24 24"><path d="M4 19V8M20 19V8"/><rect x="6.5" y="6" width="3" height="13" rx="1.5"/><rect x="10.5" y="6" width="3" height="13" rx="1.5"/><rect x="14.5" y="6" width="3" height="13" rx="1.5"/><path d="M3 19h18"/></symbol>
+    <symbol id="i-tele" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M9 21h6M12 17v4"/></symbol>
+    <symbol id="i-plancha" viewBox="0 0 24 24"><path d="M3 17h17v-3a6 6 0 0 0-6-6H8"/><path d="M8 8c-1.5 0-2.5.8-3 2.3L3 17"/><path d="M10 11h5"/></symbol>
+    <symbol id="i-wifi" viewBox="0 0 24 24"><path d="M2.5 9a14 14 0 0 1 19 0M5.5 12.5a9.5 9.5 0 0 1 13 0M8.6 15.8a5 5 0 0 1 6.8 0"/><circle cx="12" cy="19" r="1"/></symbol>
+    <symbol id="i-coche" viewBox="0 0 24 24"><path d="M4 16v-3.2L6 8h12l2 4.8V16"/><path d="M3 16h18v2.5H3z"/><circle cx="7.5" cy="13" r=".8"/><circle cx="16.5" cy="13" r=".8"/></symbol>
+    <symbol id="i-jardin" viewBox="0 0 24 24"><path d="M12 21v-6"/><path d="M12 15c-4 0-6-2.2-6-5a6 6 0 0 1 12 0c0 2.8-2 5-6 5z"/><path d="M3 21h18"/></symbol>
+    <symbol id="i-huella" viewBox="0 0 24 24"><ellipse cx="12" cy="16" rx="4" ry="3.4"/><ellipse cx="6" cy="10.5" rx="1.6" ry="2.1"/><ellipse cx="10" cy="7" rx="1.6" ry="2.1"/><ellipse cx="14" cy="7" rx="1.6" ry="2.1"/><ellipse cx="18" cy="10.5" rx="1.6" ry="2.1"/></symbol>
+    <symbol id="i-bota" viewBox="0 0 24 24"><path d="M7 3h6v8l6 3.5a2 2 0 0 1 1 1.7V19H4v-3l3-2z"/><path d="M4 19v2h16v-2M10 7h3M10 10h3"/></symbol>
+    <symbol id="i-pala" viewBox="0 0 24 24"><path d="M5.5 18.5 18.5 5.5"/><path d="M4.2 15.5c-1.3 1.3-1.6 3.1-.6 4.1s2.8.7 4.1-.6l1.2-1.6-3.1-3.1z"/><path d="M19.8 8.5c1.3-1.3 1.6-3.1.6-4.1s-2.8-.7-4.1.6l-1.2 1.6 3.1 3.1z"/></symbol>
+    <symbol id="i-mapa" viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></symbol>
+    <symbol id="i-pie" viewBox="0 0 24 24"><circle cx="13" cy="4.5" r="1.6"/><path d="M11 21l2-6-2.5-2.5 1-4.5L15 11l3 1"/><path d="M11.5 8 8 10l-1 3.5M13 15l3 6"/></symbol>
+    <symbol id="i-telefono" viewBox="0 0 24 24"><path d="M5 3.5h3.5l1.5 4.5-2.2 1.5a11 11 0 0 0 6.7 6.7l1.5-2.2 4.5 1.5V19a2 2 0 0 1-2 2A16.5 16.5 0 0 1 3 5.5a2 2 0 0 1 2-2z"/></symbol>
+    <symbol id="i-flecha-izq" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+    <symbol id="i-flecha-der" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></symbol>
+    <symbol id="i-cerrar" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+    <symbol id="i-menos" viewBox="0 0 24 24"><path d="M6 12h12"/></symbol>
+    <symbol id="i-mas" viewBox="0 0 24 24"><path d="M6 12h12M12 6v12"/></symbol>
+    <symbol id="i-mapa-pin" viewBox="0 0 24 24"><path d="M12 21s-6.5-6.2-6.5-11a6.5 6.5 0 0 1 13 0c0 4.8-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></symbol>
+  </defs>
+</svg>
+
+<main id="principal">
+
+<!-- ============ 1. PORTADA «La Casa» (js/portada.js, Tanes.portada). La foto 01 en tres capas con el mismo sistema de
+     coordenadas (monte, agua, casa) y, entre el monte y el agua, el rótulo «La Casa» gigante en latón: detrás de la
+     casona y del pueblo. Con movimiento, la portada se fija un tramo: las capas se separan (cada una escala más que la de
+     detrás desde la base de la casa) y el rótulo se encoge hasta quedar de logo en la cabecera. El HTML es el respaldo
+     (sin JS, movimiento reducido o versión sobria): la composición quieta. La capa «monte» es el LCP (se precarga) ============ -->
+<section id="portada" class="portada" aria-labelledby="t-portada">
+  <div class="portada__fija">
+    <div class="portada__marco" data-modulo="portada">
+      <div class="escena" style="--fx:0.5;--fy:0.3;--fxm:0.49;--fym:0;--ox:66.5%;--oy:100%">
+        <picture class="capa capa--monte"><source type="image/avif" srcset="img/portada/monte-1000.avif 1000w, img/portada/monte-1500.avif 1500w, img/portada/monte-2000.avif 2000w" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw"><source type="image/webp" srcset="img/portada/monte-1000.webp 1000w, img/portada/monte-1500.webp 1500w, img/portada/monte-2000.webp 2000w" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw"><img src="img/portada/monte-1500.jpg" srcset="img/portada/monte-1000.jpg 1000w, img/portada/monte-1500.jpg 1500w, img/portada/monte-2000.jpg 2000w" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw" width="2000" height="1333" alt="La casona de piedra de La Casa de Tanes, con su galería de madera y su jardín, sobre el embalse y con las peñas de Redes detrás" fetchpriority="high" loading="eager"></picture>
+        <svg class="rotulo" viewBox="-64 -677 3003 762" style="--x:3.5%;--y:11.25%;--w:59.5%;--xm:26%;--ym:12.75%;--wm:46%" aria-hidden="true" focusable="false"><defs><linearGradient id="g-laton" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBE3C1"/><stop offset=".55" stop-color="#B4A380"/><stop offset="1" stop-color="#6E6448"/></linearGradient></defs><path class="rotulo__canto" fill="#6E6448" transform="translate(13.5 13.5)" d="M452 65Q351 65 248 6Q185 35 128 35Q73 35 20 11Q-44 -20 -44 -69Q-44 -103 -17 -124Q8 -143 43 -143Q127 -143 199 -78Q217 -61 231 -49Q245 -37 255 -29Q303 -68 349 -145Q368 -178 386 -211Q404 -244 422 -277Q334 -283 267 -320Q181 -367 181 -444Q181 -504 223 -546Q265 -588 325 -588Q363 -588 391 -569Q422 -546 422 -510Q422 -496 413 -496Q409 -496 409 -512Q409 -514 408 -518Q407 -522 405 -528Q387 -579 326 -579Q276 -579 239 -536Q203 -494 203 -444Q203 -372 283 -328Q346 -293 428 -288Q460 -344 493.5 -390.5Q527 -437 561 -475Q663 -587 746 -587Q775 -587 795 -574Q818 -559 818 -532Q818 -493 772 -436Q755 -415 735 -396Q715 -377 692 -360Q673 -345 652.5 -333Q632 -321 610 -310Q562 -287 501 -280Q459 -184 413 -126Q358 -56 279 -11Q372 55 458 55Q504 55 538 37Q580 14 580 -28Q580 -34 584 -34Q588 -34 588 -27V-24Q588 20 551.5 42.5Q515 65 452 65ZM507 -293Q532 -297 556 -303Q580 -309 603 -318Q623 -326 642 -337Q661 -348 680 -362Q723 -394 758 -438Q804 -493 804 -532Q804 -564 771 -564Q744 -564 707 -545Q648 -514 601 -457Q554 -400 518 -318ZM118 22Q178 22 226 -7Q200 -24 174 -41Q148 -58 122 -74Q48 -120 13 -120Q-32 -120 -32 -79Q-32 -39 12 -9Q49 16 92 21Q99 22 105.5 22Q112 22 118 22ZM884 3Q832 3 832 -69Q832 -97 841 -133Q771 2 702 2Q669 2 652 -31Q638 -56 638 -94Q638 -125 647 -159Q664 -218 719 -270Q780 -326 835 -326Q885 -326 885 -266Q885 -240 874 -205L935 -325H938Q941 -320 951 -320Q971 -320 1002 -344L1004 -342L919 -176Q868 -77 868 -26Q868 -6 886 -6Q898 -6 915 -15Q932 -24 951 -45Q975 -73 992.5 -98.5Q1010 -124 1033 -168Q1036 -173 1039 -173Q1045 -173 1039 -163Q1021 -129 1000.5 -95.5Q980 -62 951 -33Q915 3 884 3ZM706 -5Q762 -5 850 -163Q878 -213 878 -264Q878 -318 843 -318Q805 -318 757 -255Q738 -229 724.5 -204Q711 -179 703 -156Q682 -96 682 -48Q682 -5 706 -5ZM1510 48Q1408 48 1349 -12Q1290 -73 1290 -175Q1290 -336 1424 -467Q1373 -511 1373 -563Q1373 -657 1485 -657Q1514 -657 1541.5 -648.5Q1569 -640 1595 -623L1596 -622Q1598 -621 1597.5 -619.5Q1597 -618 1597 -616Q1597 -613 1595 -613Q1594 -613 1589 -616Q1544 -643 1498 -643Q1454 -643 1425 -622Q1392 -600 1392 -556Q1392 -514 1434 -475Q1564 -596 1761 -596Q1827 -596 1875 -577Q1944 -552 1944 -497Q1944 -455 1889 -424Q1870 -412 1847 -403.5Q1824 -395 1798 -390Q1753 -381 1701 -381Q1564 -381 1466 -438Q1353 -311 1353 -163Q1353 -82 1390 -27Q1432 37 1510 37Q1659 37 1754 -106Q1786 -155 1786 -195Q1786 -230 1762 -252Q1739 -275 1704 -275Q1670 -275 1641 -255Q1611 -236 1598 -203Q1595 -195 1591 -195Q1587 -195 1587 -200Q1587 -201 1587.5 -202.5Q1588 -204 1588 -205Q1601 -242 1636 -263Q1669 -284 1709 -284Q1752 -284 1781 -258Q1808 -231 1808 -189Q1808 -141 1779 -97Q1739 -33 1662 8Q1588 48 1510 48ZM1677 -394Q1714 -394 1750 -400Q1786 -406 1822 -416Q1922 -448 1922 -504Q1922 -584 1769 -584Q1606 -584 1474 -446Q1564 -394 1677 -394ZM2117 3Q2065 3 2065 -69Q2065 -97 2074 -133Q2004 2 1935 2Q1902 2 1885 -31Q1871 -56 1871 -94Q1871 -125 1880 -159Q1897 -218 1952 -270Q2013 -326 2068 -326Q2118 -326 2118 -266Q2118 -240 2107 -205L2168 -325H2171Q2174 -320 2184 -320Q2204 -320 2235 -344L2237 -342L2152 -176Q2101 -77 2101 -26Q2101 -6 2119 -6Q2131 -6 2148 -15Q2165 -24 2184 -45Q2208 -73 2225.5 -98.5Q2243 -124 2266 -168Q2269 -173 2272 -173Q2278 -173 2272 -163Q2254 -129 2233.5 -95.5Q2213 -62 2184 -33Q2148 3 2117 3ZM1939 -5Q1995 -5 2083 -163Q2111 -213 2111 -264Q2111 -318 2076 -318Q2038 -318 1990 -255Q1971 -229 1957.5 -204Q1944 -179 1936 -156Q1915 -96 1915 -48Q1915 -5 1939 -5ZM2326 12Q2225 12 2225 -84Q2225 -111 2234 -142V-141Q2239 -159 2253 -176Q2270 -197 2284 -197Q2284 -197 2287 -197Q2290 -197 2297 -195L2308 -212Q2322 -233 2333.5 -254.5Q2345 -276 2358 -297Q2395 -361 2414 -366Q2420 -368 2423 -368Q2438 -368 2438 -357Q2438 -344 2416 -341Q2396 -338 2391 -336Q2383 -330 2383 -310Q2383 -289 2410 -239Q2437 -190 2437 -152Q2437 -142 2435.5 -133Q2434 -124 2432 -114Q2405 -1 2289 -1Q2312 4 2331 4Q2366 4 2399 -8.5Q2432 -21 2460 -43Q2489 -66 2513.5 -98.5Q2538 -131 2556 -168Q2559 -174 2562 -174Q2568 -174 2563 -164Q2547 -134 2529.5 -107.5Q2512 -81 2492 -60Q2468 -36 2427 -12Q2386 12 2326 12ZM2282 -9Q2333 -9 2366 -86Q2393 -146 2393 -207Q2393 -215 2390.5 -228.5Q2388 -242 2383 -261Q2379 -279 2377 -292.5Q2375 -306 2376 -316Q2357 -278 2338 -247Q2319 -216 2302 -191Q2307 -183 2307 -175Q2307 -161 2296 -144Q2289 -134 2272 -125Q2255 -116 2248 -108Q2237 -92 2237 -66Q2237 -9 2282 -9ZM2761 3Q2709 3 2709 -69Q2709 -97 2718 -133Q2648 2 2579 2Q2546 2 2529 -31Q2515 -56 2515 -94Q2515 -125 2524 -159Q2541 -218 2596 -270Q2657 -326 2712 -326Q2762 -326 2762 -266Q2762 -240 2751 -205L2812 -325H2815Q2818 -320 2828 -320Q2848 -320 2879 -344L2881 -342L2796 -176Q2745 -77 2745 -26Q2745 -6 2763 -6Q2775 -6 2792 -15Q2809 -24 2828 -45Q2852 -73 2869.5 -98.5Q2887 -124 2910 -168Q2913 -173 2916 -173Q2922 -173 2916 -163Q2898 -129 2877.5 -95.5Q2857 -62 2828 -33Q2792 3 2761 3ZM2583 -5Q2639 -5 2727 -163Q2755 -213 2755 -264Q2755 -318 2720 -318Q2682 -318 2634 -255Q2615 -229 2601.5 -204Q2588 -179 2580 -156Q2559 -96 2559 -48Q2559 -5 2583 -5Z"/><path class="rotulo__cara" fill="url(#g-laton)" d="M452 65Q351 65 248 6Q185 35 128 35Q73 35 20 11Q-44 -20 -44 -69Q-44 -103 -17 -124Q8 -143 43 -143Q127 -143 199 -78Q217 -61 231 -49Q245 -37 255 -29Q303 -68 349 -145Q368 -178 386 -211Q404 -244 422 -277Q334 -283 267 -320Q181 -367 181 -444Q181 -504 223 -546Q265 -588 325 -588Q363 -588 391 -569Q422 -546 422 -510Q422 -496 413 -496Q409 -496 409 -512Q409 -514 408 -518Q407 -522 405 -528Q387 -579 326 -579Q276 -579 239 -536Q203 -494 203 -444Q203 -372 283 -328Q346 -293 428 -288Q460 -344 493.5 -390.5Q527 -437 561 -475Q663 -587 746 -587Q775 -587 795 -574Q818 -559 818 -532Q818 -493 772 -436Q755 -415 735 -396Q715 -377 692 -360Q673 -345 652.5 -333Q632 -321 610 -310Q562 -287 501 -280Q459 -184 413 -126Q358 -56 279 -11Q372 55 458 55Q504 55 538 37Q580 14 580 -28Q580 -34 584 -34Q588 -34 588 -27V-24Q588 20 551.5 42.5Q515 65 452 65ZM507 -293Q532 -297 556 -303Q580 -309 603 -318Q623 -326 642 -337Q661 -348 680 -362Q723 -394 758 -438Q804 -493 804 -532Q804 -564 771 -564Q744 -564 707 -545Q648 -514 601 -457Q554 -400 518 -318ZM118 22Q178 22 226 -7Q200 -24 174 -41Q148 -58 122 -74Q48 -120 13 -120Q-32 -120 -32 -79Q-32 -39 12 -9Q49 16 92 21Q99 22 105.5 22Q112 22 118 22ZM884 3Q832 3 832 -69Q832 -97 841 -133Q771 2 702 2Q669 2 652 -31Q638 -56 638 -94Q638 -125 647 -159Q664 -218 719 -270Q780 -326 835 -326Q885 -326 885 -266Q885 -240 874 -205L935 -325H938Q941 -320 951 -320Q971 -320 1002 -344L1004 -342L919 -176Q868 -77 868 -26Q868 -6 886 -6Q898 -6 915 -15Q932 -24 951 -45Q975 -73 992.5 -98.5Q1010 -124 1033 -168Q1036 -173 1039 -173Q1045 -173 1039 -163Q1021 -129 1000.5 -95.5Q980 -62 951 -33Q915 3 884 3ZM706 -5Q762 -5 850 -163Q878 -213 878 -264Q878 -318 843 -318Q805 -318 757 -255Q738 -229 724.5 -204Q711 -179 703 -156Q682 -96 682 -48Q682 -5 706 -5ZM1510 48Q1408 48 1349 -12Q1290 -73 1290 -175Q1290 -336 1424 -467Q1373 -511 1373 -563Q1373 -657 1485 -657Q1514 -657 1541.5 -648.5Q1569 -640 1595 -623L1596 -622Q1598 -621 1597.5 -619.5Q1597 -618 1597 -616Q1597 -613 1595 -613Q1594 -613 1589 -616Q1544 -643 1498 -643Q1454 -643 1425 -622Q1392 -600 1392 -556Q1392 -514 1434 -475Q1564 -596 1761 -596Q1827 -596 1875 -577Q1944 -552 1944 -497Q1944 -455 1889 -424Q1870 -412 1847 -403.5Q1824 -395 1798 -390Q1753 -381 1701 -381Q1564 -381 1466 -438Q1353 -311 1353 -163Q1353 -82 1390 -27Q1432 37 1510 37Q1659 37 1754 -106Q1786 -155 1786 -195Q1786 -230 1762 -252Q1739 -275 1704 -275Q1670 -275 1641 -255Q1611 -236 1598 -203Q1595 -195 1591 -195Q1587 -195 1587 -200Q1587 -201 1587.5 -202.5Q1588 -204 1588 -205Q1601 -242 1636 -263Q1669 -284 1709 -284Q1752 -284 1781 -258Q1808 -231 1808 -189Q1808 -141 1779 -97Q1739 -33 1662 8Q1588 48 1510 48ZM1677 -394Q1714 -394 1750 -400Q1786 -406 1822 -416Q1922 -448 1922 -504Q1922 -584 1769 -584Q1606 -584 1474 -446Q1564 -394 1677 -394ZM2117 3Q2065 3 2065 -69Q2065 -97 2074 -133Q2004 2 1935 2Q1902 2 1885 -31Q1871 -56 1871 -94Q1871 -125 1880 -159Q1897 -218 1952 -270Q2013 -326 2068 -326Q2118 -326 2118 -266Q2118 -240 2107 -205L2168 -325H2171Q2174 -320 2184 -320Q2204 -320 2235 -344L2237 -342L2152 -176Q2101 -77 2101 -26Q2101 -6 2119 -6Q2131 -6 2148 -15Q2165 -24 2184 -45Q2208 -73 2225.5 -98.5Q2243 -124 2266 -168Q2269 -173 2272 -173Q2278 -173 2272 -163Q2254 -129 2233.5 -95.5Q2213 -62 2184 -33Q2148 3 2117 3ZM1939 -5Q1995 -5 2083 -163Q2111 -213 2111 -264Q2111 -318 2076 -318Q2038 -318 1990 -255Q1971 -229 1957.5 -204Q1944 -179 1936 -156Q1915 -96 1915 -48Q1915 -5 1939 -5ZM2326 12Q2225 12 2225 -84Q2225 -111 2234 -142V-141Q2239 -159 2253 -176Q2270 -197 2284 -197Q2284 -197 2287 -197Q2290 -197 2297 -195L2308 -212Q2322 -233 2333.5 -254.5Q2345 -276 2358 -297Q2395 -361 2414 -366Q2420 -368 2423 -368Q2438 -368 2438 -357Q2438 -344 2416 -341Q2396 -338 2391 -336Q2383 -330 2383 -310Q2383 -289 2410 -239Q2437 -190 2437 -152Q2437 -142 2435.5 -133Q2434 -124 2432 -114Q2405 -1 2289 -1Q2312 4 2331 4Q2366 4 2399 -8.5Q2432 -21 2460 -43Q2489 -66 2513.5 -98.5Q2538 -131 2556 -168Q2559 -174 2562 -174Q2568 -174 2563 -164Q2547 -134 2529.5 -107.5Q2512 -81 2492 -60Q2468 -36 2427 -12Q2386 12 2326 12ZM2282 -9Q2333 -9 2366 -86Q2393 -146 2393 -207Q2393 -215 2390.5 -228.5Q2388 -242 2383 -261Q2379 -279 2377 -292.5Q2375 -306 2376 -316Q2357 -278 2338 -247Q2319 -216 2302 -191Q2307 -183 2307 -175Q2307 -161 2296 -144Q2289 -134 2272 -125Q2255 -116 2248 -108Q2237 -92 2237 -66Q2237 -9 2282 -9ZM2761 3Q2709 3 2709 -69Q2709 -97 2718 -133Q2648 2 2579 2Q2546 2 2529 -31Q2515 -56 2515 -94Q2515 -125 2524 -159Q2541 -218 2596 -270Q2657 -326 2712 -326Q2762 -326 2762 -266Q2762 -240 2751 -205L2812 -325H2815Q2818 -320 2828 -320Q2848 -320 2879 -344L2881 -342L2796 -176Q2745 -77 2745 -26Q2745 -6 2763 -6Q2775 -6 2792 -15Q2809 -24 2828 -45Q2852 -73 2869.5 -98.5Q2887 -124 2910 -168Q2913 -173 2916 -173Q2922 -173 2916 -163Q2898 -129 2877.5 -95.5Q2857 -62 2828 -33Q2792 3 2761 3ZM2583 -5Q2639 -5 2727 -163Q2755 -213 2755 -264Q2755 -318 2720 -318Q2682 -318 2634 -255Q2615 -229 2601.5 -204Q2588 -179 2580 -156Q2559 -96 2559 -48Q2559 -5 2583 -5Z"/></svg>
+        <picture class="capa capa--agua" aria-hidden="true"><source type="image/avif" srcset="img/portada/agua-1000.avif 1000w, img/portada/agua-1500.avif 1500w, img/portada/agua-2000.avif 2000w" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw"><source type="image/webp" srcset="img/portada/agua-1000.webp 1000w, img/portada/agua-1500.webp 1500w, img/portada/agua-2000.webp 2000w" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw"><img srcset="img/portada/agua-1000.webp 1000w, img/portada/agua-1500.webp 1500w, img/portada/agua-2000.webp 2000w" src="img/portada/agua-1500.webp" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw" width="2000" height="1333" alt="" loading="eager" decoding="async"></picture>
+        <picture class="capa capa--casa" aria-hidden="true"><source type="image/avif" srcset="img/portada/casa-1000.avif 1000w, img/portada/casa-1500.avif 1500w, img/portada/casa-2000.avif 2000w" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw"><source type="image/webp" srcset="img/portada/casa-1000.webp 1000w, img/portada/casa-1500.webp 1500w, img/portada/casa-2000.webp 2000w" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw"><img srcset="img/portada/casa-1000.webp 1000w, img/portada/casa-1500.webp 1500w, img/portada/casa-2000.webp 2000w" src="img/portada/casa-1500.webp" sizes="(max-width: 699px) 84vh, (max-aspect-ratio: 1/1) 84vh, (max-aspect-ratio: 3/2) 150vh, 100vw" width="2000" height="1333" alt="" loading="eager" decoding="async"></picture>
+      </div>
+    </div>
+    <div class="portada__texto">
+      <h1 id="t-portada" class="portada__tit">Estudios y apartamentos boutique sobre el embalse de&nbsp;Tanes</h1>
+      <p class="portada__sub">Una casona de piedra en el Parque Natural de Redes. Todas las estancias miran al sur.</p>
+      <p class="portada__acc"><a class="btn btn--acento" href="#reservar">Ver fechas</a><a class="btn btn--linea-clara cifra" href="tel:+34609053498"><svg class="ico" aria-hidden="true"><use href="#i-telefono"/></svg><span class="vh">Llamar al </span>609 05 34 98</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. Cada una con su color: cifras grandes del conjunto, la carta de colores de las estancias (colores
+     MEDIDOS en sus fotos, sin nombres de apartamento: por confirmar), servicios con icono propio y condiciones aparte ============ -->
+<section id="estancias" class="sec estancias" aria-labelledby="t-estancias">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-estancias" class="sec-tit" data-aparece>Cada una con su color</h2>
+      <p class="sec-txt">Estudios y apartamentos en una casona de piedra. Todos con cocina equipada, baño propio y vistas a la montaña y al embalse.</p>
+    </header>
+    <dl class="cifras">
+      <div class="cifras__i"><dt>viajeros</dt><dd class="cifra">14</dd></div>
+      <div class="cifras__i"><dt>dormitorios</dt><dd class="cifra">5</dd></div>
+      <div class="cifras__i"><dt>todas las estancias</dt><dd class="cifra">Sur</dd></div>
+    </dl>
+    <p class="cifras__nota">Viajeros y dormitorios, según su ficha de Airbnb (por confirmar con la casa). Todas las estancias, orientadas al sur.</p>
+    <div class="carta" role="group" aria-label="Los colores de las estancias">
+      <ul class="carta__lista">
+        <li class="chip es-abierta" style="--c:#872F1A" data-color="almagre">
+          <button type="button" class="chip__boton" aria-expanded="true" aria-controls="chip-almagre"><span class="chip__muestra" aria-hidden="true"></span><span class="chip__nombre">Almagre</span><span class="chip__hex cifra">#872F1A</span></button>
+          <div class="chip__cuerpo" id="chip-almagre">
+            <button type="button" class="foto-btn chip__f" data-visor="comedor-almagre" data-grupo="colores" aria-label="Ver más grande: Comedor con la pared pintada de almagre, mesa redonda con mantel blanco y sillas de madera"><picture data-foto="comedor-almagre"><source type="image/avif" srcset="img/fotos/comedor-almagre-480.avif 480w, img/fotos/comedor-almagre-800.avif 800w, img/fotos/comedor-almagre-900.avif 900w" sizes="(max-width: 699px) 80vw, 40vw"><source type="image/webp" srcset="img/fotos/comedor-almagre-480.webp 480w, img/fotos/comedor-almagre-800.webp 800w, img/fotos/comedor-almagre-900.webp 900w" sizes="(max-width: 699px) 80vw, 40vw"><img src="img/fotos/comedor-almagre-800.jpg" srcset="img/fotos/comedor-almagre-480.jpg 480w, img/fotos/comedor-almagre-800.jpg 800w, img/fotos/comedor-almagre-900.jpg 900w" sizes="(max-width: 699px) 80vw, 40vw" width="900" height="1600" alt="Comedor con la pared pintada de almagre, mesa redonda con mantel blanco y sillas de madera" loading="lazy" decoding="async"></picture></button>
+            <p class="chip__txt">Paredes de almagre en salones y comedores.</p>
+          </div>
+        </li>
+        <li class="chip" style="--c:#293C1D" data-color="botella">
+          <button type="button" class="chip__boton" aria-expanded="false" aria-controls="chip-botella"><span class="chip__muestra" aria-hidden="true"></span><span class="chip__nombre">Verde botella</span><span class="chip__hex cifra">#293C1D</span></button>
+          <div class="chip__cuerpo" id="chip-botella">
+            <button type="button" class="foto-btn chip__f" data-visor="bano-verde" data-grupo="colores" aria-label="Ver más grande: Baño de azulejo verde botella con lavabo de pie, espejo de madera y ducha"><picture data-foto="bano-verde"><source type="image/avif" srcset="img/fotos/bano-verde-480.avif 480w, img/fotos/bano-verde-800.avif 800w, img/fotos/bano-verde-1200.avif 1200w, img/fotos/bano-verde-1600.avif 1600w, img/fotos/bano-verde-1920.avif 1920w, img/fotos/bano-verde-2000.avif 2000w" sizes="(max-width: 699px) 80vw, 40vw"><source type="image/webp" srcset="img/fotos/bano-verde-480.webp 480w, img/fotos/bano-verde-800.webp 800w, img/fotos/bano-verde-1200.webp 1200w, img/fotos/bano-verde-1600.webp 1600w, img/fotos/bano-verde-1920.webp 1920w, img/fotos/bano-verde-2000.webp 2000w" sizes="(max-width: 699px) 80vw, 40vw"><img src="img/fotos/bano-verde-800.jpg" srcset="img/fotos/bano-verde-480.jpg 480w, img/fotos/bano-verde-800.jpg 800w, img/fotos/bano-verde-1200.jpg 1200w, img/fotos/bano-verde-1600.jpg 1600w, img/fotos/bano-verde-1920.jpg 1920w, img/fotos/bano-verde-2000.jpg 2000w" sizes="(max-width: 699px) 80vw, 40vw" width="2000" height="1500" alt="Baño de azulejo verde botella con lavabo de pie, espejo de madera y ducha" loading="lazy" decoding="async"></picture></button>
+            <p class="chip__txt">Baños de azulejo verde botella, con el lavabo a juego.</p>
+          </div>
+        </li>
+        <li class="chip" style="--c:#722D15" data-color="cuadros">
+          <button type="button" class="chip__boton" aria-expanded="false" aria-controls="chip-cuadros"><span class="chip__muestra" aria-hidden="true"></span><span class="chip__nombre">A cuadros</span><span class="chip__hex cifra">#722D15</span></button>
+          <div class="chip__cuerpo" id="chip-cuadros">
+            <button type="button" class="foto-btn chip__f" data-visor="cocina-cuadros" data-grupo="colores" aria-label="Ver más grande: Cocina con pared de piedra y azulejo a cuadros rojo y negro"><picture data-foto="cocina-cuadros"><source type="image/avif" srcset="img/fotos/cocina-cuadros-480.avif 480w, img/fotos/cocina-cuadros-800.avif 800w, img/fotos/cocina-cuadros-1200.avif 1200w, img/fotos/cocina-cuadros-1600.avif 1600w, img/fotos/cocina-cuadros-1920.avif 1920w, img/fotos/cocina-cuadros-2000.avif 2000w" sizes="(max-width: 699px) 80vw, 40vw"><source type="image/webp" srcset="img/fotos/cocina-cuadros-480.webp 480w, img/fotos/cocina-cuadros-800.webp 800w, img/fotos/cocina-cuadros-1200.webp 1200w, img/fotos/cocina-cuadros-1600.webp 1600w, img/fotos/cocina-cuadros-1920.webp 1920w, img/fotos/cocina-cuadros-2000.webp 2000w" sizes="(max-width: 699px) 80vw, 40vw"><img src="img/fotos/cocina-cuadros-800.jpg" srcset="img/fotos/cocina-cuadros-480.jpg 480w, img/fotos/cocina-cuadros-800.jpg 800w, img/fotos/cocina-cuadros-1200.jpg 1200w, img/fotos/cocina-cuadros-1600.jpg 1600w, img/fotos/cocina-cuadros-1920.jpg 1920w, img/fotos/cocina-cuadros-2000.jpg 2000w" sizes="(max-width: 699px) 80vw, 40vw" width="2000" height="1500" alt="Cocina con pared de piedra y azulejo a cuadros rojo y negro" loading="lazy" decoding="async"></picture></button>
+            <p class="chip__txt">Cocinas con azulejo a cuadros rojo y negro junto a la piedra.</p>
+          </div>
+        </li>
+        <li class="chip" style="--c:#B7690D" data-color="ocre">
+          <button type="button" class="chip__boton" aria-expanded="false" aria-controls="chip-ocre"><span class="chip__muestra" aria-hidden="true"></span><span class="chip__nombre">Ocre</span><span class="chip__hex cifra">#B7690D</span></button>
+          <div class="chip__cuerpo" id="chip-ocre">
+            <button type="button" class="foto-btn chip__f" data-visor="bano-ocre" data-grupo="colores" aria-label="Ver más grande: Baño de azulejo ocre con ducha y lavabo"><picture data-foto="bano-ocre"><source type="image/avif" srcset="img/fotos/bano-ocre-500.avif 500w" sizes="(max-width: 699px) 80vw, 40vw"><source type="image/webp" srcset="img/fotos/bano-ocre-500.webp 500w" sizes="(max-width: 699px) 80vw, 40vw"><img src="img/fotos/bano-ocre-500.jpg" srcset="img/fotos/bano-ocre-500.jpg 500w" sizes="(max-width: 699px) 80vw, 40vw" width="500" height="1110" alt="Baño de azulejo ocre con ducha y lavabo" loading="lazy" decoding="async"></picture></button>
+            <p class="chip__txt">Baños de azulejo ocre.</p>
+          </div>
+        </li>
+        <li class="chip" style="--c:#365989" data-color="azul">
+          <button type="button" class="chip__boton" aria-expanded="false" aria-controls="chip-azul"><span class="chip__muestra" aria-hidden="true"></span><span class="chip__nombre">Azul</span><span class="chip__hex cifra">#365989</span></button>
+          <div class="chip__cuerpo" id="chip-azul">
+            <button type="button" class="foto-btn chip__f" data-visor="salon-sofa-azul" data-grupo="colores" aria-label="Ver más grande: Rincón del salón con sofá azul, cojines rojos y lámpara de pie"><picture data-foto="salon-sofa-azul"><source type="image/avif" srcset="img/fotos/salon-sofa-azul-480.avif 480w, img/fotos/salon-sofa-azul-719.avif 719w" sizes="(max-width: 699px) 80vw, 40vw"><source type="image/webp" srcset="img/fotos/salon-sofa-azul-480.webp 480w, img/fotos/salon-sofa-azul-719.webp 719w" sizes="(max-width: 699px) 80vw, 40vw"><img src="img/fotos/salon-sofa-azul-719.jpg" srcset="img/fotos/salon-sofa-azul-480.jpg 480w, img/fotos/salon-sofa-azul-719.jpg 719w" sizes="(max-width: 699px) 80vw, 40vw" width="719" height="1600" alt="Rincón del salón con sofá azul, cojines rojos y lámpara de pie" loading="lazy" decoding="async"></picture></button>
+            <p class="chip__txt">Sofás azules en los salones.</p>
+          </div>
+        </li>
+        <li class="chip" style="--c:#DBB957" data-color="amarillo">
+          <button type="button" class="chip__boton" aria-expanded="false" aria-controls="chip-amarillo"><span class="chip__muestra" aria-hidden="true"></span><span class="chip__nombre">Amarillo</span><span class="chip__hex cifra">#DBB957</span></button>
+          <div class="chip__cuerpo" id="chip-amarillo">
+            <button type="button" class="foto-btn chip__f" data-visor="dormitorio-amarillo" data-grupo="colores" aria-label="Ver más grande: Dormitorio bajo la cubierta con la pared amarilla y cama de hierro"><picture data-foto="dormitorio-amarillo"><source type="image/avif" srcset="img/fotos/dormitorio-amarillo-480.avif 480w, img/fotos/dormitorio-amarillo-800.avif 800w, img/fotos/dormitorio-amarillo-1125.avif 1125w" sizes="(max-width: 699px) 80vw, 40vw"><source type="image/webp" srcset="img/fotos/dormitorio-amarillo-480.webp 480w, img/fotos/dormitorio-amarillo-800.webp 800w, img/fotos/dormitorio-amarillo-1125.webp 1125w" sizes="(max-width: 699px) 80vw, 40vw"><img src="img/fotos/dormitorio-amarillo-800.jpg" srcset="img/fotos/dormitorio-amarillo-480.jpg 480w, img/fotos/dormitorio-amarillo-800.jpg 800w, img/fotos/dormitorio-amarillo-1125.jpg 1125w" sizes="(max-width: 699px) 80vw, 40vw" width="1125" height="2000" alt="Dormitorio bajo la cubierta con la pared amarilla y cama de hierro" loading="lazy" decoding="async"></picture></button>
+            <p class="chip__txt">Un dormitorio de pared amarilla bajo la cubierta.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <p class="carta__nota">Cada estancia tiene su color. Cuál es cuál, y cómo se llama cada una, por confirmar con la casa.</p>
+    <div class="ficha">
+      <div class="servicios">
+        <section class="servicios__g" aria-labelledby="sv-en-cada-estancia">
+          <h3 class="ficha__h" id="sv-en-cada-estancia">En cada estancia</h3>
+          <ul class="servicios__lista">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-cocina"/></svg><b>Cocina equipada</b><span>Nevera, placa, microondas, tostadora, cafetera, hervidor, té y café</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-ducha"/></svg><b>Baño propio</b><span>Ducha, secador, toallas y artículos de aseo</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-sur"/></svg><b>Orientada al sur</b><span>Vistas a la montaña y al embalse</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-calor"/></svg><b>Calefacción</b></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-tele"/></svg><b>TV de pantalla plana</b></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-plancha"/></svg><b>Plancha</b></li>
+          </ul>
+        </section>
+        <section class="servicios__g" aria-labelledby="sv-en-la-casa">
+          <h3 class="ficha__h" id="sv-en-la-casa">En la casa</h3>
+          <ul class="servicios__lista">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-wifi"/></svg><b>Wi-Fi gratis</b></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><b>Aparcamiento gratis</b></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-jardin"/></svg><b>Patio y jardín</b><span>Con mobiliario y zona de picnic</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-huella"/></svg><b>Se admiten mascotas</b></li>
+          </ul>
+        </section>
+        <section class="servicios__g" aria-labelledby="sv-fuera">
+          <h3 class="ficha__h" id="sv-fuera">Fuera</h3>
+          <ul class="servicios__lista">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-bota"/></svg><b>Senderismo</b><span>En el Parque Natural de Redes</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-pala"/></svg><b>Piragüismo</b><span>En el embalse</span></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-mapa"/></svg><b>Excursiones</b><span>Te ayudan a reservarlas</span></li>
+          </ul>
+        </section>
+      </div>
+      <aside class="condiciones" aria-labelledby="t-condiciones">
+        <h3 class="ficha__h" id="t-condiciones">Condiciones</h3>
+        <dl>
+          <div><dt>Entrada</dt><dd><b class="">De 15:00 a 21:00</b><span>Llegada autónoma y privada</span></dd></div>
+          <div><dt>Salida</dt><dd><b class="">De 08:00 a 11:00</b></dd></div>
+          <div><dt>Mascotas</dt><dd><b class="">Se admiten</b></dd></div>
+          <div><dt>Tabaco</dt><dd><b class="">No se fuma</b><span>Toda la casa es de no fumadores</span></dd></div>
+          <div><dt>Registro</dt><dd><b class="cifra">AT 1490 AS</b><span>Apartamentos turísticos del Principado de Asturias</span></dd></div>
+        </dl>
+        <p><a class="btn btn--acento" href="#reservar">Ver fechas</a></p>
+      </aside>
+    </div>
+    <div class="vistazo" id="vistazo">
+      <h3 class="vistazo__tit">La casa, de un vistazo</h3>
+      <table class="vistazo__tabla">
+        <caption class="vh">Datos de La Casa de Tanes</caption>
+        <tbody>
+          <tr><th scope="row">Viajeros</th><td>14, según Airbnb (por confirmar)</td></tr>
+          <tr><th scope="row">Dormitorios</th><td>5, según Airbnb (por confirmar)</td></tr>
+          <tr><th scope="row">Estancias</th><td>Estudios y apartamentos (cuántos, por confirmar)</td></tr>
+          <tr><th scope="row">Cocina</th><td>Equipada, en cada estancia</td></tr>
+          <tr><th scope="row">Baño</th><td>Propio, con ducha, en cada estancia</td></tr>
+          <tr><th scope="row">Orientación</th><td>Al sur, con vistas a la montaña y al embalse</td></tr>
+          <tr><th scope="row">Entrada</th><td>De 15:00 a 21:00, autónoma</td></tr>
+          <tr><th scope="row">Salida</th><td>De 08:00 a 11:00</td></tr>
+          <tr><th scope="row">Mascotas</th><td>Se admiten</td></tr>
+          <tr><th scope="row">Wi-Fi y aparcamiento</th><td>Gratis</td></tr>
+          <tr><th scope="row">Registro</th><td>AT 1490 AS</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. Todo mira al sur: la casa por estancias. Índice fijo que marca la estancia que se ve, fotos sin
+     marco con las alturas igualadas por fila y el visor que abre por NOMBRE de archivo (checklist 11) ============ -->
+<section id="casa" class="sec casa" aria-labelledby="t-casa">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-casa" class="sec-tit" data-aparece>Todo mira al sur</h2>
+      <p class="sec-txt">La casa por estancias, empezando por lo que se ve desde las ventanas. Pulsa una foto para verla grande.</p>
+    </header>
+    <div class="estancias-casa">
+    <nav class="estancias__indice" aria-label="Estancias de la casa">
+      <ol>
+        <li><a href="#est-ventanas" data-est="ventanas" aria-current="true"><span class="estancias__largo">Las ventanas</span><span class="estancias__corto" aria-hidden="true">Ventanas</span><span class="estancias__n cifra" aria-hidden="true">6</span></a></li>
+        <li><a href="#est-salones" data-est="salones"><span class="estancias__largo">Salones</span><span class="estancias__corto" aria-hidden="true">Salones</span><span class="estancias__n cifra" aria-hidden="true">6</span></a></li>
+        <li><a href="#est-cocinas" data-est="cocinas"><span class="estancias__largo">Cocinas y comedores</span><span class="estancias__corto" aria-hidden="true">Cocinas</span><span class="estancias__n cifra" aria-hidden="true">7</span></a></li>
+        <li><a href="#est-dormitorios" data-est="dormitorios"><span class="estancias__largo">Dormitorios</span><span class="estancias__corto" aria-hidden="true">Dormir</span><span class="estancias__n cifra" aria-hidden="true">5</span></a></li>
+        <li><a href="#est-banos" data-est="banos"><span class="estancias__largo">Baños</span><span class="estancias__corto" aria-hidden="true">Baños</span><span class="estancias__n cifra" aria-hidden="true">5</span></a></li>
+        <li><a href="#est-fuera" data-est="fuera"><span class="estancias__largo">La casa por fuera</span><span class="estancias__corto" aria-hidden="true">Fuera</span><span class="estancias__n cifra" aria-hidden="true">6</span></a></li>
+      </ol>
+    </nav>
+      <div class="estancias__grupos">
+      <section class="estancia estancia--ventanas" id="est-ventanas" aria-labelledby="t-est-ventanas">
+        <h3 class="estancia__tit" id="t-est-ventanas">Las ventanas</h3>
+        <p class="estancia__txt">Todo mira al sur: desde dentro, el embalse y las peñas de Redes.</p>
+        <div class="filas">
+          <figure class="foto" style="--r:0.750"><button type="button" class="foto-btn" data-visor="vista-puerta-balcon" data-grupo="casa" aria-label="Ver más grande: Puerta balcón abierta en un muro de piedra, con la montaña verde enfrente"><picture data-foto="vista-puerta-balcon"><source type="image/avif" srcset="img/fotos/vista-puerta-balcon-480.avif 480w, img/fotos/vista-puerta-balcon-800.avif 800w, img/fotos/vista-puerta-balcon-1200.avif 1200w, img/fotos/vista-puerta-balcon-1500.avif 1500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/vista-puerta-balcon-480.webp 480w, img/fotos/vista-puerta-balcon-800.webp 800w, img/fotos/vista-puerta-balcon-1200.webp 1200w, img/fotos/vista-puerta-balcon-1500.webp 1500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/vista-puerta-balcon-800.jpg" srcset="img/fotos/vista-puerta-balcon-480.jpg 480w, img/fotos/vista-puerta-balcon-800.jpg 800w, img/fotos/vista-puerta-balcon-1200.jpg 1200w, img/fotos/vista-puerta-balcon-1500.jpg 1500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1500" height="2000" alt="Puerta balcón abierta en un muro de piedra, con la montaña verde enfrente" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:1.333"><button type="button" class="foto-btn" data-visor="salon-ventana-abierta" data-grupo="casa" aria-label="Ver más grande: Salón con sofá azul, sillón verde y la ventana abierta al embalse"><picture data-foto="salon-ventana-abierta"><source type="image/avif" srcset="img/fotos/salon-ventana-abierta-480.avif 480w, img/fotos/salon-ventana-abierta-800.avif 800w, img/fotos/salon-ventana-abierta-1200.avif 1200w, img/fotos/salon-ventana-abierta-1600.avif 1600w, img/fotos/salon-ventana-abierta-1920.avif 1920w, img/fotos/salon-ventana-abierta-2000.avif 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/salon-ventana-abierta-480.webp 480w, img/fotos/salon-ventana-abierta-800.webp 800w, img/fotos/salon-ventana-abierta-1200.webp 1200w, img/fotos/salon-ventana-abierta-1600.webp 1600w, img/fotos/salon-ventana-abierta-1920.webp 1920w, img/fotos/salon-ventana-abierta-2000.webp 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/salon-ventana-abierta-800.jpg" srcset="img/fotos/salon-ventana-abierta-480.jpg 480w, img/fotos/salon-ventana-abierta-800.jpg 800w, img/fotos/salon-ventana-abierta-1200.jpg 1200w, img/fotos/salon-ventana-abierta-1600.jpg 1600w, img/fotos/salon-ventana-abierta-1920.jpg 1920w, img/fotos/salon-ventana-abierta-2000.jpg 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="2000" height="1500" alt="Salón con sofá azul, sillón verde y la ventana abierta al embalse" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:1.333"><button type="button" class="foto-btn" data-visor="cocina-ventana-embalse" data-grupo="casa" aria-label="Ver más grande: Cocina comedor con una ventana grande abierta al embalse y al monte"><picture data-foto="cocina-ventana-embalse"><source type="image/avif" srcset="img/fotos/cocina-ventana-embalse-480.avif 480w, img/fotos/cocina-ventana-embalse-800.avif 800w, img/fotos/cocina-ventana-embalse-1200.avif 1200w, img/fotos/cocina-ventana-embalse-1600.avif 1600w, img/fotos/cocina-ventana-embalse-1920.avif 1920w, img/fotos/cocina-ventana-embalse-2000.avif 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/cocina-ventana-embalse-480.webp 480w, img/fotos/cocina-ventana-embalse-800.webp 800w, img/fotos/cocina-ventana-embalse-1200.webp 1200w, img/fotos/cocina-ventana-embalse-1600.webp 1600w, img/fotos/cocina-ventana-embalse-1920.webp 1920w, img/fotos/cocina-ventana-embalse-2000.webp 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/cocina-ventana-embalse-800.jpg" srcset="img/fotos/cocina-ventana-embalse-480.jpg 480w, img/fotos/cocina-ventana-embalse-800.jpg 800w, img/fotos/cocina-ventana-embalse-1200.jpg 1200w, img/fotos/cocina-ventana-embalse-1600.jpg 1600w, img/fotos/cocina-ventana-embalse-1920.jpg 1920w, img/fotos/cocina-ventana-embalse-2000.jpg 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="2000" height="1500" alt="Cocina comedor con una ventana grande abierta al embalse y al monte" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="vista-balcon" data-grupo="casa" aria-label="Ver más grande: Vista desde el balcón de madera: el valle y la peña al fondo"><picture data-foto="vista-balcon"><source type="image/avif" srcset="img/fotos/vista-balcon-480.avif 480w, img/fotos/vista-balcon-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/vista-balcon-480.webp 480w, img/fotos/vista-balcon-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/vista-balcon-719.jpg" srcset="img/fotos/vista-balcon-480.jpg 480w, img/fotos/vista-balcon-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Vista desde el balcón de madera: el valle y la peña al fondo" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="ventana-arco" data-grupo="casa" aria-label="Ver más grande: Ventana en arco en el muro de piedra, con el monte al otro lado"><picture data-foto="ventana-arco"><source type="image/avif" srcset="img/fotos/ventana-arco-480.avif 480w, img/fotos/ventana-arco-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/ventana-arco-480.webp 480w, img/fotos/ventana-arco-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/ventana-arco-719.jpg" srcset="img/fotos/ventana-arco-480.jpg 480w, img/fotos/ventana-arco-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Ventana en arco en el muro de piedra, con el monte al otro lado" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="vista-ventana-pena" data-grupo="casa" aria-label="Ver más grande: La peña caliza vista desde una ventana, con un arbusto en primer plano"><picture data-foto="vista-ventana-pena"><source type="image/avif" srcset="img/fotos/vista-ventana-pena-480.avif 480w, img/fotos/vista-ventana-pena-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/vista-ventana-pena-480.webp 480w, img/fotos/vista-ventana-pena-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/vista-ventana-pena-719.jpg" srcset="img/fotos/vista-ventana-pena-480.jpg 480w, img/fotos/vista-ventana-pena-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="La peña caliza vista desde una ventana, con un arbusto en primer plano" loading="lazy" decoding="async"></picture></button></figure>
+        </div>
+      </section>
+      <section class="estancia estancia--salones" id="est-salones" aria-labelledby="t-est-salones">
+        <h3 class="estancia__tit" id="t-est-salones">Salones</h3>
+        <p class="estancia__txt">Piedra, vigas de madera y un sofá frente a la ventana.</p>
+        <div class="filas">
+          <figure class="foto" style="--r:1.333"><button type="button" class="foto-btn" data-visor="salon-comedor-lago" data-grupo="casa" aria-label="Ver más grande: Salón comedor de piedra y vigas con ventanas al lago"><picture data-foto="salon-comedor-lago"><source type="image/avif" srcset="img/fotos/salon-comedor-lago-480.avif 480w, img/fotos/salon-comedor-lago-800.avif 800w, img/fotos/salon-comedor-lago-1200.avif 1200w, img/fotos/salon-comedor-lago-1600.avif 1600w, img/fotos/salon-comedor-lago-1920.avif 1920w, img/fotos/salon-comedor-lago-2000.avif 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/salon-comedor-lago-480.webp 480w, img/fotos/salon-comedor-lago-800.webp 800w, img/fotos/salon-comedor-lago-1200.webp 1200w, img/fotos/salon-comedor-lago-1600.webp 1600w, img/fotos/salon-comedor-lago-1920.webp 1920w, img/fotos/salon-comedor-lago-2000.webp 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/salon-comedor-lago-800.jpg" srcset="img/fotos/salon-comedor-lago-480.jpg 480w, img/fotos/salon-comedor-lago-800.jpg 800w, img/fotos/salon-comedor-lago-1200.jpg 1200w, img/fotos/salon-comedor-lago-1600.jpg 1600w, img/fotos/salon-comedor-lago-1920.jpg 1920w, img/fotos/salon-comedor-lago-2000.jpg 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="2000" height="1500" alt="Salón comedor de piedra y vigas con ventanas al lago" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:2.215"><button type="button" class="foto-btn" data-visor="salon-paredes-rojas" data-grupo="casa" aria-label="Ver más grande: Salón de paredes rojas con un sofá bajo una fila de ventanas"><picture data-foto="salon-paredes-rojas"><source type="image/avif" srcset="img/fotos/salon-paredes-rojas-480.avif 480w, img/fotos/salon-paredes-rojas-800.avif 800w, img/fotos/salon-paredes-rojas-1200.avif 1200w, img/fotos/salon-paredes-rojas-1400.avif 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/salon-paredes-rojas-480.webp 480w, img/fotos/salon-paredes-rojas-800.webp 800w, img/fotos/salon-paredes-rojas-1200.webp 1200w, img/fotos/salon-paredes-rojas-1400.webp 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/salon-paredes-rojas-800.jpg" srcset="img/fotos/salon-paredes-rojas-480.jpg 480w, img/fotos/salon-paredes-rojas-800.jpg 800w, img/fotos/salon-paredes-rojas-1200.jpg 1200w, img/fotos/salon-paredes-rojas-1400.jpg 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1400" height="632" alt="Salón de paredes rojas con un sofá bajo una fila de ventanas" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:1.778"><button type="button" class="foto-btn" data-visor="salon-sofa-rojo" data-grupo="casa" aria-label="Ver más grande: Salón de piedra con sofá de rayas rojas, butaca y ventana al valle"><picture data-foto="salon-sofa-rojo"><source type="image/avif" srcset="img/fotos/salon-sofa-rojo-480.avif 480w, img/fotos/salon-sofa-rojo-800.avif 800w, img/fotos/salon-sofa-rojo-1200.avif 1200w, img/fotos/salon-sofa-rojo-1600.avif 1600w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/salon-sofa-rojo-480.webp 480w, img/fotos/salon-sofa-rojo-800.webp 800w, img/fotos/salon-sofa-rojo-1200.webp 1200w, img/fotos/salon-sofa-rojo-1600.webp 1600w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/salon-sofa-rojo-800.jpg" srcset="img/fotos/salon-sofa-rojo-480.jpg 480w, img/fotos/salon-sofa-rojo-800.jpg 800w, img/fotos/salon-sofa-rojo-1200.jpg 1200w, img/fotos/salon-sofa-rojo-1600.jpg 1600w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1600" height="900" alt="Salón de piedra con sofá de rayas rojas, butaca y ventana al valle" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:1.333"><button type="button" class="foto-btn" data-visor="sofa-rojo-ventana" data-grupo="casa" aria-label="Ver más grande: Sofá rojo junto a una ventana con el verde de fuera"><picture data-foto="sofa-rojo-ventana"><source type="image/avif" srcset="img/fotos/sofa-rojo-ventana-480.avif 480w, img/fotos/sofa-rojo-ventana-800.avif 800w, img/fotos/sofa-rojo-ventana-1200.avif 1200w, img/fotos/sofa-rojo-ventana-1400.avif 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/sofa-rojo-ventana-480.webp 480w, img/fotos/sofa-rojo-ventana-800.webp 800w, img/fotos/sofa-rojo-ventana-1200.webp 1200w, img/fotos/sofa-rojo-ventana-1400.webp 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/sofa-rojo-ventana-800.jpg" srcset="img/fotos/sofa-rojo-ventana-480.jpg 480w, img/fotos/sofa-rojo-ventana-800.jpg 800w, img/fotos/sofa-rojo-ventana-1200.jpg 1200w, img/fotos/sofa-rojo-ventana-1400.jpg 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1400" height="1050" alt="Sofá rojo junto a una ventana con el verde de fuera" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:2.218"><button type="button" class="foto-btn" data-visor="salon-cocina-verde" data-grupo="casa" aria-label="Ver más grande: Salón con sofá azul y, al fondo, la cocina con la pared verde"><picture data-foto="salon-cocina-verde"><source type="image/avif" srcset="img/fotos/salon-cocina-verde-480.avif 480w, img/fotos/salon-cocina-verde-800.avif 800w, img/fotos/salon-cocina-verde-1100.avif 1100w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/salon-cocina-verde-480.webp 480w, img/fotos/salon-cocina-verde-800.webp 800w, img/fotos/salon-cocina-verde-1100.webp 1100w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/salon-cocina-verde-800.jpg" srcset="img/fotos/salon-cocina-verde-480.jpg 480w, img/fotos/salon-cocina-verde-800.jpg 800w, img/fotos/salon-cocina-verde-1100.jpg 1100w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1100" height="496" alt="Salón con sofá azul y, al fondo, la cocina con la pared verde" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.603"><button type="button" class="foto-btn" data-visor="sofa-rosa" data-grupo="casa" aria-label="Ver más grande: Sofá de rayas rosas junto a la ventana"><picture data-foto="sofa-rosa"><source type="image/avif" srcset="img/fotos/sofa-rosa-480.avif 480w, img/fotos/sofa-rosa-721.avif 721w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/sofa-rosa-480.webp 480w, img/fotos/sofa-rosa-721.webp 721w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/sofa-rosa-721.jpg" srcset="img/fotos/sofa-rosa-480.jpg 480w, img/fotos/sofa-rosa-721.jpg 721w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="721" height="1195" alt="Sofá de rayas rosas junto a la ventana" loading="lazy" decoding="async"></picture></button></figure>
+        </div>
+      </section>
+      <section class="estancia estancia--cocinas" id="est-cocinas" aria-labelledby="t-est-cocinas">
+        <h3 class="estancia__tit" id="t-est-cocinas">Cocinas y comedores</h3>
+        <p class="estancia__txt">Cocina completa en cada estancia, con su mesa para comer mirando fuera.</p>
+        <div class="filas">
+          <figure class="foto" style="--r:1.778"><button type="button" class="foto-btn" data-visor="cocina-azulejo-platos" data-grupo="casa" aria-label="Ver más grande: Cocina con azulejo a cuadros rojo y negro y un escurreplatos de madera"><picture data-foto="cocina-azulejo-platos"><source type="image/avif" srcset="img/fotos/cocina-azulejo-platos-480.avif 480w, img/fotos/cocina-azulejo-platos-800.avif 800w, img/fotos/cocina-azulejo-platos-1200.avif 1200w, img/fotos/cocina-azulejo-platos-1600.avif 1600w, img/fotos/cocina-azulejo-platos-1920.avif 1920w, img/fotos/cocina-azulejo-platos-2000.avif 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/cocina-azulejo-platos-480.webp 480w, img/fotos/cocina-azulejo-platos-800.webp 800w, img/fotos/cocina-azulejo-platos-1200.webp 1200w, img/fotos/cocina-azulejo-platos-1600.webp 1600w, img/fotos/cocina-azulejo-platos-1920.webp 1920w, img/fotos/cocina-azulejo-platos-2000.webp 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/cocina-azulejo-platos-800.jpg" srcset="img/fotos/cocina-azulejo-platos-480.jpg 480w, img/fotos/cocina-azulejo-platos-800.jpg 800w, img/fotos/cocina-azulejo-platos-1200.jpg 1200w, img/fotos/cocina-azulejo-platos-1600.jpg 1600w, img/fotos/cocina-azulejo-platos-1920.jpg 1920w, img/fotos/cocina-azulejo-platos-2000.jpg 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="2000" height="1125" alt="Cocina con azulejo a cuadros rojo y negro y un escurreplatos de madera" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:1.333"><button type="button" class="foto-btn" data-visor="comedor" data-grupo="casa" aria-label="Ver más grande: Comedor con mesa de mantel blanco, sillas de madera y un sofá de cuero"><picture data-foto="comedor"><source type="image/avif" srcset="img/fotos/comedor-480.avif 480w, img/fotos/comedor-800.avif 800w, img/fotos/comedor-1200.avif 1200w, img/fotos/comedor-1600.avif 1600w, img/fotos/comedor-1920.avif 1920w, img/fotos/comedor-2000.avif 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/comedor-480.webp 480w, img/fotos/comedor-800.webp 800w, img/fotos/comedor-1200.webp 1200w, img/fotos/comedor-1600.webp 1600w, img/fotos/comedor-1920.webp 1920w, img/fotos/comedor-2000.webp 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/comedor-800.jpg" srcset="img/fotos/comedor-480.jpg 480w, img/fotos/comedor-800.jpg 800w, img/fotos/comedor-1200.jpg 1200w, img/fotos/comedor-1600.jpg 1600w, img/fotos/comedor-1920.jpg 1920w, img/fotos/comedor-2000.jpg 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="2000" height="1500" alt="Comedor con mesa de mantel blanco, sillas de madera y un sofá de cuero" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:1.778"><button type="button" class="foto-btn" data-visor="salon-cocina" data-grupo="casa" aria-label="Ver más grande: Salón cocina con puerta ventana, sofá y mesa de comedor"><picture data-foto="salon-cocina"><source type="image/avif" srcset="img/fotos/salon-cocina-480.avif 480w, img/fotos/salon-cocina-800.avif 800w, img/fotos/salon-cocina-1200.avif 1200w, img/fotos/salon-cocina-1600.avif 1600w, img/fotos/salon-cocina-1920.avif 1920w, img/fotos/salon-cocina-2000.avif 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/salon-cocina-480.webp 480w, img/fotos/salon-cocina-800.webp 800w, img/fotos/salon-cocina-1200.webp 1200w, img/fotos/salon-cocina-1600.webp 1600w, img/fotos/salon-cocina-1920.webp 1920w, img/fotos/salon-cocina-2000.webp 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/salon-cocina-800.jpg" srcset="img/fotos/salon-cocina-480.jpg 480w, img/fotos/salon-cocina-800.jpg 800w, img/fotos/salon-cocina-1200.jpg 1200w, img/fotos/salon-cocina-1600.jpg 1600w, img/fotos/salon-cocina-1920.jpg 1920w, img/fotos/salon-cocina-2000.jpg 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="2000" height="1125" alt="Salón cocina con puerta ventana, sofá y mesa de comedor" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.563"><button type="button" class="foto-btn" data-visor="cocina-verde-cuadros" data-grupo="casa" aria-label="Ver más grande: Cocina de pared verde con azulejo a cuadros y microondas"><picture data-foto="cocina-verde-cuadros"><source type="image/avif" srcset="img/fotos/cocina-verde-cuadros-480.avif 480w, img/fotos/cocina-verde-cuadros-800.avif 800w, img/fotos/cocina-verde-cuadros-1125.avif 1125w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/cocina-verde-cuadros-480.webp 480w, img/fotos/cocina-verde-cuadros-800.webp 800w, img/fotos/cocina-verde-cuadros-1125.webp 1125w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/cocina-verde-cuadros-800.jpg" srcset="img/fotos/cocina-verde-cuadros-480.jpg 480w, img/fotos/cocina-verde-cuadros-800.jpg 800w, img/fotos/cocina-verde-cuadros-1125.jpg 1125w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1125" height="2000" alt="Cocina de pared verde con azulejo a cuadros y microondas" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="comedor-mesa-redonda" data-grupo="casa" aria-label="Ver más grande: Mesa redonda con mantel blanco junto a la ventana"><picture data-foto="comedor-mesa-redonda"><source type="image/avif" srcset="img/fotos/comedor-mesa-redonda-480.avif 480w, img/fotos/comedor-mesa-redonda-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/comedor-mesa-redonda-480.webp 480w, img/fotos/comedor-mesa-redonda-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/comedor-mesa-redonda-719.jpg" srcset="img/fotos/comedor-mesa-redonda-480.jpg 480w, img/fotos/comedor-mesa-redonda-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Mesa redonda con mantel blanco junto a la ventana" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="comedor-pared-roja" data-grupo="casa" aria-label="Ver más grande: Mesa redonda delante de una pared roja con cuadros"><picture data-foto="comedor-pared-roja"><source type="image/avif" srcset="img/fotos/comedor-pared-roja-480.avif 480w, img/fotos/comedor-pared-roja-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/comedor-pared-roja-480.webp 480w, img/fotos/comedor-pared-roja-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/comedor-pared-roja-719.jpg" srcset="img/fotos/comedor-pared-roja-480.jpg 480w, img/fotos/comedor-pared-roja-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Mesa redonda delante de una pared roja con cuadros" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.563"><button type="button" class="foto-btn" data-visor="fregadero-cuadros" data-grupo="casa" aria-label="Ver más grande: Fregadero de cerámica con azulejo a cuadros y cazuelas colgadas"><picture data-foto="fregadero-cuadros"><source type="image/avif" srcset="img/fotos/fregadero-cuadros-480.avif 480w, img/fotos/fregadero-cuadros-800.avif 800w, img/fotos/fregadero-cuadros-900.avif 900w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/fregadero-cuadros-480.webp 480w, img/fotos/fregadero-cuadros-800.webp 800w, img/fotos/fregadero-cuadros-900.webp 900w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/fregadero-cuadros-800.jpg" srcset="img/fotos/fregadero-cuadros-480.jpg 480w, img/fotos/fregadero-cuadros-800.jpg 800w, img/fotos/fregadero-cuadros-900.jpg 900w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="900" height="1600" alt="Fregadero de cerámica con azulejo a cuadros y cazuelas colgadas" loading="lazy" decoding="async"></picture></button></figure>
+        </div>
+      </section>
+      <section class="estancia estancia--dormitorios" id="est-dormitorios" aria-labelledby="t-est-dormitorios">
+        <h3 class="estancia__tit" id="t-est-dormitorios">Dormitorios</h3>
+        <p class="estancia__txt">Camas de hierro y de madera, bajo la cubierta o con la ventana al jardín.</p>
+        <div class="filas">
+          <figure class="foto" style="--r:1.333"><button type="button" class="foto-btn" data-visor="dormitorio-puerta-ventana" data-grupo="casa" aria-label="Ver más grande: Dormitorio con cama de madera y una puerta ventana con flores fuera"><picture data-foto="dormitorio-puerta-ventana"><source type="image/avif" srcset="img/fotos/dormitorio-puerta-ventana-480.avif 480w, img/fotos/dormitorio-puerta-ventana-800.avif 800w, img/fotos/dormitorio-puerta-ventana-1200.avif 1200w, img/fotos/dormitorio-puerta-ventana-1400.avif 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/dormitorio-puerta-ventana-480.webp 480w, img/fotos/dormitorio-puerta-ventana-800.webp 800w, img/fotos/dormitorio-puerta-ventana-1200.webp 1200w, img/fotos/dormitorio-puerta-ventana-1400.webp 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/dormitorio-puerta-ventana-800.jpg" srcset="img/fotos/dormitorio-puerta-ventana-480.jpg 480w, img/fotos/dormitorio-puerta-ventana-800.jpg 800w, img/fotos/dormitorio-puerta-ventana-1200.jpg 1200w, img/fotos/dormitorio-puerta-ventana-1400.jpg 1400w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1400" height="1050" alt="Dormitorio con cama de madera y una puerta ventana con flores fuera" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:1.540"><button type="button" class="foto-btn" data-visor="dormitorio-abuhardillado" data-grupo="casa" aria-label="Ver más grande: Dormitorio abuhardillado con cama de hierro, lámpara verde y ventana en el techo"><picture data-foto="dormitorio-abuhardillado"><source type="image/avif" srcset="img/fotos/dormitorio-abuhardillado-480.avif 480w, img/fotos/dormitorio-abuhardillado-800.avif 800w, img/fotos/dormitorio-abuhardillado-1200.avif 1200w, img/fotos/dormitorio-abuhardillado-1600.avif 1600w, img/fotos/dormitorio-abuhardillado-1920.avif 1920w, img/fotos/dormitorio-abuhardillado-2000.avif 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/dormitorio-abuhardillado-480.webp 480w, img/fotos/dormitorio-abuhardillado-800.webp 800w, img/fotos/dormitorio-abuhardillado-1200.webp 1200w, img/fotos/dormitorio-abuhardillado-1600.webp 1600w, img/fotos/dormitorio-abuhardillado-1920.webp 1920w, img/fotos/dormitorio-abuhardillado-2000.webp 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/dormitorio-abuhardillado-800.jpg" srcset="img/fotos/dormitorio-abuhardillado-480.jpg 480w, img/fotos/dormitorio-abuhardillado-800.jpg 800w, img/fotos/dormitorio-abuhardillado-1200.jpg 1200w, img/fotos/dormitorio-abuhardillado-1600.jpg 1600w, img/fotos/dormitorio-abuhardillado-1920.jpg 1920w, img/fotos/dormitorio-abuhardillado-2000.jpg 2000w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="2000" height="1299" alt="Dormitorio abuhardillado con cama de hierro, lámpara verde y ventana en el techo" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="dormitorio-colcha-flores" data-grupo="casa" aria-label="Ver más grande: Cama con colcha de flores junto a una ventana en el muro de piedra"><picture data-foto="dormitorio-colcha-flores"><source type="image/avif" srcset="img/fotos/dormitorio-colcha-flores-480.avif 480w, img/fotos/dormitorio-colcha-flores-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/dormitorio-colcha-flores-480.webp 480w, img/fotos/dormitorio-colcha-flores-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/dormitorio-colcha-flores-719.jpg" srcset="img/fotos/dormitorio-colcha-flores-480.jpg 480w, img/fotos/dormitorio-colcha-flores-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Cama con colcha de flores junto a una ventana en el muro de piedra" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="dormitorio-lampara-verde" data-grupo="casa" aria-label="Ver más grande: Dormitorio con cama de hierro y una lámpara verde en la mesilla"><picture data-foto="dormitorio-lampara-verde"><source type="image/avif" srcset="img/fotos/dormitorio-lampara-verde-480.avif 480w, img/fotos/dormitorio-lampara-verde-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/dormitorio-lampara-verde-480.webp 480w, img/fotos/dormitorio-lampara-verde-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/dormitorio-lampara-verde-719.jpg" srcset="img/fotos/dormitorio-lampara-verde-480.jpg 480w, img/fotos/dormitorio-lampara-verde-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Dormitorio con cama de hierro y una lámpara verde en la mesilla" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.450"><button type="button" class="foto-btn" data-visor="dormitorio-madera" data-grupo="casa" aria-label="Ver más grande: Dormitorio de vigas de madera con cama y alfombra azul"><picture data-foto="dormitorio-madera"><source type="image/avif" srcset="img/fotos/dormitorio-madera-500.avif 500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/dormitorio-madera-500.webp 500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/dormitorio-madera-500.jpg" srcset="img/fotos/dormitorio-madera-500.jpg 500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="500" height="1110" alt="Dormitorio de vigas de madera con cama y alfombra azul" loading="lazy" decoding="async"></picture></button></figure>
+        </div>
+      </section>
+      <section class="estancia estancia--banos" id="est-banos" aria-labelledby="t-est-banos">
+        <h3 class="estancia__tit" id="t-est-banos">Baños</h3>
+        <p class="estancia__txt">Un baño propio en cada estancia, de azulejo verde botella u ocre.</p>
+        <div class="filas">
+          <figure class="foto" style="--r:0.563"><button type="button" class="foto-btn" data-visor="bano-verde-espejo" data-grupo="casa" aria-label="Ver más grande: Lavabo con espejo de madera en un baño de azulejo verde"><picture data-foto="bano-verde-espejo"><source type="image/avif" srcset="img/fotos/bano-verde-espejo-480.avif 480w, img/fotos/bano-verde-espejo-800.avif 800w, img/fotos/bano-verde-espejo-1125.avif 1125w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/bano-verde-espejo-480.webp 480w, img/fotos/bano-verde-espejo-800.webp 800w, img/fotos/bano-verde-espejo-1125.webp 1125w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/bano-verde-espejo-800.jpg" srcset="img/fotos/bano-verde-espejo-480.jpg 480w, img/fotos/bano-verde-espejo-800.jpg 800w, img/fotos/bano-verde-espejo-1125.jpg 1125w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1125" height="2000" alt="Lavabo con espejo de madera en un baño de azulejo verde" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.750"><button type="button" class="foto-btn" data-visor="bano-verde-lavabo" data-grupo="casa" aria-label="Ver más grande: Baño de azulejo verde con lavabo verde sobre encimera"><picture data-foto="bano-verde-lavabo"><source type="image/avif" srcset="img/fotos/bano-verde-lavabo-480.avif 480w, img/fotos/bano-verde-lavabo-800.avif 800w, img/fotos/bano-verde-lavabo-1200.avif 1200w, img/fotos/bano-verde-lavabo-1500.avif 1500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/bano-verde-lavabo-480.webp 480w, img/fotos/bano-verde-lavabo-800.webp 800w, img/fotos/bano-verde-lavabo-1200.webp 1200w, img/fotos/bano-verde-lavabo-1500.webp 1500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/bano-verde-lavabo-800.jpg" srcset="img/fotos/bano-verde-lavabo-480.jpg 480w, img/fotos/bano-verde-lavabo-800.jpg 800w, img/fotos/bano-verde-lavabo-1200.jpg 1200w, img/fotos/bano-verde-lavabo-1500.jpg 1500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1500" height="2000" alt="Baño de azulejo verde con lavabo verde sobre encimera" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="bano-verde-ducha" data-grupo="casa" aria-label="Ver más grande: Baño verde con ducha de cristal y lavabo de pie"><picture data-foto="bano-verde-ducha"><source type="image/avif" srcset="img/fotos/bano-verde-ducha-480.avif 480w, img/fotos/bano-verde-ducha-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/bano-verde-ducha-480.webp 480w, img/fotos/bano-verde-ducha-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/bano-verde-ducha-719.jpg" srcset="img/fotos/bano-verde-ducha-480.jpg 480w, img/fotos/bano-verde-ducha-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Baño verde con ducha de cristal y lavabo de pie" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="lavabo-verde" data-grupo="casa" aria-label="Ver más grande: Lavabo verde junto a una ventana en el muro de piedra"><picture data-foto="lavabo-verde"><source type="image/avif" srcset="img/fotos/lavabo-verde-480.avif 480w, img/fotos/lavabo-verde-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/lavabo-verde-480.webp 480w, img/fotos/lavabo-verde-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/lavabo-verde-719.jpg" srcset="img/fotos/lavabo-verde-480.jpg 480w, img/fotos/lavabo-verde-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Lavabo verde junto a una ventana en el muro de piedra" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.450"><button type="button" class="foto-btn" data-visor="bano-ocre-ducha" data-grupo="casa" aria-label="Ver más grande: Baño de azulejo ocre con ducha y lavabo"><picture data-foto="bano-ocre-ducha"><source type="image/avif" srcset="img/fotos/bano-ocre-ducha-500.avif 500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/bano-ocre-ducha-500.webp 500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/bano-ocre-ducha-500.jpg" srcset="img/fotos/bano-ocre-ducha-500.jpg 500w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="500" height="1110" alt="Baño de azulejo ocre con ducha y lavabo" loading="lazy" decoding="async"></picture></button></figure>
+        </div>
+      </section>
+      <section class="estancia estancia--fuera" id="est-fuera" aria-labelledby="t-est-fuera">
+        <h3 class="estancia__tit" id="t-est-fuera">La casa por fuera</h3>
+        <p class="estancia__txt">Una casona de piedra sobre el embalse, con su galería de madera y su jardín.</p>
+        <div class="filas">
+          <figure class="foto" style="--r:2.218"><button type="button" class="foto-btn" data-visor="casona-niebla" data-grupo="casa" aria-label="Ver más grande: La casona sobre el embalse, con niebla en las montañas"><picture data-foto="casona-niebla"><source type="image/avif" srcset="img/fotos/casona-niebla-480.avif 480w, img/fotos/casona-niebla-800.avif 800w, img/fotos/casona-niebla-1200.avif 1200w, img/fotos/casona-niebla-1600.avif 1600w, img/fotos/casona-niebla-1930.avif 1930w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/casona-niebla-480.webp 480w, img/fotos/casona-niebla-800.webp 800w, img/fotos/casona-niebla-1200.webp 1200w, img/fotos/casona-niebla-1600.webp 1600w, img/fotos/casona-niebla-1930.webp 1930w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/casona-niebla-800.jpg" srcset="img/fotos/casona-niebla-480.jpg 480w, img/fotos/casona-niebla-800.jpg 800w, img/fotos/casona-niebla-1200.jpg 1200w, img/fotos/casona-niebla-1600.jpg 1600w, img/fotos/casona-niebla-1930.jpg 1930w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1930" height="870" alt="La casona sobre el embalse, con niebla en las montañas" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="fachada-lateral" data-grupo="casa" aria-label="Ver más grande: La fachada lateral de piedra de la casona con sus ventanas"><picture data-foto="fachada-lateral"><source type="image/avif" srcset="img/fotos/fachada-lateral-480.avif 480w, img/fotos/fachada-lateral-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/fachada-lateral-480.webp 480w, img/fotos/fachada-lateral-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/fachada-lateral-719.jpg" srcset="img/fotos/fachada-lateral-480.jpg 480w, img/fotos/fachada-lateral-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="La fachada lateral de piedra de la casona con sus ventanas" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="rotulo-laton" data-grupo="casa" aria-label="Ver más grande: Las letras de latón «La Casa» sobre la piedra, encima de la puerta en arco y la camelia"><picture data-foto="rotulo-laton"><source type="image/avif" srcset="img/fotos/rotulo-laton-480.avif 480w, img/fotos/rotulo-laton-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/rotulo-laton-480.webp 480w, img/fotos/rotulo-laton-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/rotulo-laton-719.jpg" srcset="img/fotos/rotulo-laton-480.jpg 480w, img/fotos/rotulo-laton-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="Las letras de latón «La Casa» sobre la piedra, encima de la puerta en arco y la camelia" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="puerta-placa-at" data-grupo="casa" aria-label="Ver más grande: La puerta de madera con la placa roja de apartamentos turísticos"><picture data-foto="puerta-placa-at"><source type="image/avif" srcset="img/fotos/puerta-placa-at-480.avif 480w, img/fotos/puerta-placa-at-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/puerta-placa-at-480.webp 480w, img/fotos/puerta-placa-at-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/puerta-placa-at-719.jpg" srcset="img/fotos/puerta-placa-at-480.jpg 480w, img/fotos/puerta-placa-at-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="La puerta de madera con la placa roja de apartamentos turísticos" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.449"><button type="button" class="foto-btn" data-visor="escalera-naranja" data-grupo="casa" aria-label="Ver más grande: La escalera con la pared naranja y cuadros"><picture data-foto="escalera-naranja"><source type="image/avif" srcset="img/fotos/escalera-naranja-480.avif 480w, img/fotos/escalera-naranja-719.avif 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/escalera-naranja-480.webp 480w, img/fotos/escalera-naranja-719.webp 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/escalera-naranja-719.jpg" srcset="img/fotos/escalera-naranja-480.jpg 480w, img/fotos/escalera-naranja-719.jpg 719w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="719" height="1600" alt="La escalera con la pared naranja y cuadros" loading="lazy" decoding="async"></picture></button></figure>
+          <figure class="foto" style="--r:0.771"><button type="button" class="foto-btn" data-visor="embalse-casa" data-grupo="casa" aria-label="Ver más grande: El embalse verde con una casa entre los árboles al fondo"><picture data-foto="embalse-casa"><source type="image/avif" srcset="img/fotos/embalse-casa-480.avif 480w, img/fotos/embalse-casa-800.avif 800w, img/fotos/embalse-casa-1200.avif 1200w, img/fotos/embalse-casa-1233.avif 1233w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><source type="image/webp" srcset="img/fotos/embalse-casa-480.webp 480w, img/fotos/embalse-casa-800.webp 800w, img/fotos/embalse-casa-1200.webp 1200w, img/fotos/embalse-casa-1233.webp 1233w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw"><img src="img/fotos/embalse-casa-800.jpg" srcset="img/fotos/embalse-casa-480.jpg 480w, img/fotos/embalse-casa-800.jpg 800w, img/fotos/embalse-casa-1200.jpg 1200w, img/fotos/embalse-casa-1233.jpg 1233w" sizes="(max-width: 699px) 92vw, (max-width: 1099px) 46vw, 30vw" width="1233" height="1600" alt="El embalse verde con una casa entre los árboles al fondo" loading="lazy" decoding="async"></picture></button></figure>
+        </div>
+      </section>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. EL ESPEJO DE TANES (módulo del agente Lugar 3D: js/lugar.js, css/lugar.css). El HTML de
+     [data-modulo="lugar"] es el respaldo que pone la Web: la foto 45 (las montañas reflejadas en el embalse) y un texto.
+     Lugar 3D puede sustituirlo por un plan B 2D mejor dentro de su div. main.js monta Tanes.lugar al acercarse (900 px) ============ -->
+<section id="lugar" class="sec espejo" aria-labelledby="t-lugar">
+  <div class="env espejo__cab">
+    <h2 id="t-lugar" class="sec-tit" data-aparece>El espejo de Tanes</h2>
+    <p class="sec-txt">Las peñas de Redes bajan hasta el embalse y, en los días quietos, se ven dos veces. La casa está en la orilla, en el pueblo de Tanes.</p>
+  </div>
+  <div data-modulo="lugar">
+    <figure class="espejo__respaldo">
+      <picture data-foto="reflejo-montanas"><source type="image/avif" srcset="img/fotos/reflejo-montanas-480.avif 480w, img/fotos/reflejo-montanas-800.avif 800w, img/fotos/reflejo-montanas-1200.avif 1200w" sizes="(max-width: 699px) 92vw, 46vw"><source type="image/webp" srcset="img/fotos/reflejo-montanas-480.webp 480w, img/fotos/reflejo-montanas-800.webp 800w, img/fotos/reflejo-montanas-1200.webp 1200w" sizes="(max-width: 699px) 92vw, 46vw"><img src="img/fotos/reflejo-montanas-800.jpg" srcset="img/fotos/reflejo-montanas-480.jpg 480w, img/fotos/reflejo-montanas-800.jpg 800w, img/fotos/reflejo-montanas-1200.jpg 1200w" sizes="(max-width: 699px) 92vw, 46vw" width="1200" height="1600" alt="Las montañas de Redes reflejadas en el embalse de Tanes, quieto como un espejo" loading="lazy" decoding="async"></picture>
+      <figcaption>Las montañas de Redes, reflejadas en el embalse de Tanes.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 5. Redes alrededor: distancias y minutos SOLO de OSRM (ref/raw/rutas.json → construir.mjs) ============ -->
+<section id="alrededor" class="sec alrededor" aria-labelledby="t-alrededor">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-alrededor" class="sec-tit" data-aparece>Redes alrededor</h2>
+      <p class="sec-txt">El Museo de la Apicultura, a un paseo. La cueva del Deboyu, la Casa del Agua y la Ruta del Alba, a unos minutos por la AS-117. El Puerto de Tarna, al fondo del valle.</p>
+    </header>
+    <div class="alrededor__in">
+      <figure class="alrededor__f"><button type="button" class="foto-btn" data-visor="arco-iris-valle" data-grupo="alrededor" aria-label="Ver más grande: Un arco iris sobre el valle y el embalse"><picture data-foto="arco-iris-valle"><source type="image/avif" srcset="img/fotos/arco-iris-valle-480.avif 480w, img/fotos/arco-iris-valle-800.avif 800w, img/fotos/arco-iris-valle-1200.avif 1200w, img/fotos/arco-iris-valle-1280.avif 1280w" sizes="(max-width: 899px) 92vw, 36vw"><source type="image/webp" srcset="img/fotos/arco-iris-valle-480.webp 480w, img/fotos/arco-iris-valle-800.webp 800w, img/fotos/arco-iris-valle-1200.webp 1200w, img/fotos/arco-iris-valle-1280.webp 1280w" sizes="(max-width: 899px) 92vw, 36vw"><img src="img/fotos/arco-iris-valle-800.jpg" srcset="img/fotos/arco-iris-valle-480.jpg 480w, img/fotos/arco-iris-valle-800.jpg 800w, img/fotos/arco-iris-valle-1200.jpg 1200w, img/fotos/arco-iris-valle-1280.jpg 1280w" sizes="(max-width: 899px) 92vw, 36vw" width="1280" height="1600" alt="Un arco iris sobre el valle y el embalse" loading="lazy" decoding="async"></picture></button></figure>
+      <div class="trayecto">
+        <section class="tramo" aria-labelledby="t-tramo-cerca">
+          <h3 class="tramo__tit" id="t-tramo-cerca">En el valle</h3>
+          <ol class="tramo__lista">
+            <li data-ruta="museo"><span class="parada__min cifra">1 min</span><span class="parada__que"><b>Museo de la Apicultura</b><small>Tanes</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">500 m</span><span class="parada__pie"><svg class="ico" aria-hidden="true"><use href="#i-pie"/></svg><span class="vh">A pie: </span><span class="cifra">500 m, 7 min</span></span></span></li>
+            <li data-ruta="agua"><span class="parada__min cifra">7 min</span><span class="parada__que"><b>La Casa del Agua</b><small>Rioseco (Sobrescobio)</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">6,4 km</span></span></li>
+            <li data-ruta="deboyu"><span class="parada__min cifra">6 min</span><span class="parada__que"><b>Cueva del Deboyu</b><small>junto a Campo de Caso</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">5,6 km</span></span></li>
+          </ol>
+        </section>
+        <section class="tramo" aria-labelledby="t-tramo-redes">
+          <h3 class="tramo__tit" id="t-tramo-redes">Por Redes</h3>
+          <ol class="tramo__lista">
+            <li data-ruta="centro"><span class="parada__min cifra">8 min</span><span class="parada__que"><b>Centro del Parque Natural de Redes</b><small>Campo de Caso</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">7,3 km</span></span></li>
+            <li data-ruta="alba"><span class="parada__min cifra">12 min</span><span class="parada__que"><b>Ruta del Alba</b><small>salida en Soto de Agues</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">9,9 km</span></span></li>
+            <li data-ruta="tarna"><span class="parada__min cifra">35 min</span><span class="parada__que"><b>Puerto de Tarna</b><small>1490 m, el límite con León</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">29,8 km</span></span></li>
+          </ol>
+        </section>
+        <section class="tramo" aria-labelledby="t-tramo-lejos">
+          <h3 class="tramo__tit" id="t-tramo-lejos">Para llegar</h3>
+          <ol class="tramo__lista">
+            <li data-ruta="oviedo"><span class="parada__min cifra">51 min</span><span class="parada__que"><b>Oviedo</b><small>la capital</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">54,7 km</span></span></li>
+            <li data-ruta="aeropuerto"><span class="parada__min cifra">1 h 12 min</span><span class="parada__que"><b>Aeropuerto de Asturias</b><small>Santiago del Monte</small></span><span class="parada__km"><svg class="ico" aria-hidden="true"><use href="#i-coche"/></svg><span class="vh">En coche: </span><span class="cifra">88,9 km</span></span></li>
+          </ol>
+        </section>
+      </div>
+    </div>
+    <p class="alrededor__fino">Tiempos en coche desde la casa, por carretera, calculados con OSRM sobre datos de © colaboradores de OpenStreetMap el 25 de noviembre de 2026: sin tráfico ni paradas, orientativos. La Casa del Agua está en Rioseco (el tiempo es hasta el pueblo); conviene mirar su horario antes de ir.</p>
+  </div>
+</section>
+
+<!-- ============ 6. Reseñas: 9,2 con 205 en Booking y 4,6 con 18 en Google (recuento de sobra), con enlace a sus
+     fichas. Sin citas: no hay reseñas copiadas en DATOS ============ -->
+<section id="resenas" class="sec resenas" aria-labelledby="t-resenas">
+  <div class="env">
+    <h2 id="t-resenas" class="sec-tit resenas__tit" data-aparece>Lo que dicen quienes han estado</h2>
+    <div class="notas">
+      <div class="nota">
+        <p class="nota__n" aria-hidden="true"><span class="cifra">9,2</span><span class="nota__sobre">/ 10</span></p>
+        <p class="nota__dato"><span class="vh">9,2 sobre 10, </span>con <span class="cifra">205</span> reseñas en Booking</p>
+        <p><a class="enlace-flecha" href="https://www.booking.com/searchresults.es.html?ss=Apartamentos+La+Casa+de+Tanes" target="_blank" rel="noopener">Leerlas en Booking<span class="vh"> (se abre en otra pestaña)</span><svg class="ico" aria-hidden="true"><use href="#i-flecha-der"/></svg></a></p>
+      </div>
+      <div class="nota">
+        <p class="nota__n" aria-hidden="true"><span class="cifra">4,6</span><span class="nota__sobre">/ 5</span></p>
+        <p class="nota__dato"><span class="vh">4,6 sobre 5, </span>con <span class="cifra">18</span> reseñas en Google</p>
+        <p><a class="enlace-flecha" href="https://www.google.com/maps/search/?api=1&amp;query=Apartamentos+La+Casa+de+Tanes%2C+Tanes+9%2C+Caso" target="_blank" rel="noopener">Leerlas en Google<span class="vh"> (se abre en otra pestaña)</span><svg class="ico" aria-hidden="true"><use href="#i-flecha-der"/></svg></a></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. Ver fechas: el SIMULADOR (js/reserva.js). No tienen motor propio: simulado y marcado ============ -->
+<section id="reservar" class="sec reservar" aria-labelledby="t-reservar">
+  <div class="env">
+    <header class="sec-cab">
+      <h2 id="t-reservar" class="sec-tit" data-aparece>Ver fechas</h2>
+      <p class="sec-txt">Elige llegada, salida y cuántos sois: así se vería su propio motor de reservas.</p>
+    </header>
+<!-- el simulador (js/reserva.js): SIMULADO y marcado. No reserva, no envía ni guarda nada y no pide datos personales.
+         Supuestos (precio, temporada, mínimo de noches, días ocupados) en data/tanes.json → reserva, y en PENDIENTES.md -->
+    <div class="simu" id="simu">
+      <p class="simu__aviso"><b>Simulador</b> Así funcionaría un motor de reservas propio. No reserva, no envía ni guarda nada y no pide datos. Los días ocupados y los precios son supuestos.</p>
+      <div class="simu__in">
+        <div class="simu__cal">
+          <div class="simu__fechas" aria-live="polite">
+            <p><span class="simu__eti">Llegada</span><b data-fecha="entrada">Elige día</b></p>
+            <p><span class="simu__eti">Salida</span><b data-fecha="salida">Elige día</b></p>
+            <p class="simu__noches cifra" data-noches></p>
+          </div>
+          <div class="cal" id="cal" role="group" aria-label="Calendario simulado: elige llegada y salida"></div>
+          <p class="cal__ley"><span class="ley ley--libre">Libre</span><span class="ley ley--ocupado">Ocupado (simulado)</span><span class="ley ley--alta">Temporada alta (supuesta)</span></p>
+          <noscript><p class="simu__sin">El simulador necesita JavaScript. Para reservar, llama al <a href="tel:+34609053498">609 05 34 98</a>.</p></noscript>
+        </div>
+        <div class="simu__panel">
+          <div class="paso" data-paso="personas">
+            <span class="simu__eti" id="eti-personas">Personas</span>
+            <div class="paso__ctl" role="group" aria-labelledby="eti-personas">
+              <button type="button" data-acc="menos" aria-label="Una persona menos"><svg class="ico" aria-hidden="true"><use href="#i-menos"/></svg></button>
+              <output class="cifra" data-valor aria-live="polite">2</output>
+              <button type="button" data-acc="mas" aria-label="Una persona más"><svg class="ico" aria-hidden="true"><use href="#i-mas"/></svg></button>
+            </div>
+          </div>
+          <p class="simu__pista" data-pista></p>
+          <div class="simu__resumen">
+            <p class="simu__frase" data-resumen aria-live="polite">Elige el día de llegada.</p>
+            <dl class="simu__cuentas">
+              <div><dt>Noches</dt><dd class="cifra" data-n-noches>0</dd></div>
+              <div><dt>Precio por noche <small>(orientativo)</small></dt><dd class="cifra" data-precio>de 68 a 75 €</dd></div>
+              <div class="simu__total"><dt>Total orientativo</dt><dd class="cifra" data-total>elige fechas</dd></div>
+            </dl>
+          </div>
+          <div class="simu__real">
+            <p>Para reservar de verdad, hoy:</p>
+            <p class="simu__acc"><a class="btn btn--acento" href="tel:+34609053498"><svg class="ico" aria-hidden="true"><use href="#i-telefono"/></svg>Llamar al <span class="cifra">609 05 34 98</span></a><a class="btn btn--linea" href="https://www.booking.com/searchresults.es.html?ss=Apartamentos+La+Casa+de+Tanes" target="_blank" rel="noopener">Buscarla en Booking<span class="vh"> (se abre en otra pestaña)</span></a></p>
+          </div>
+          <p class="simu__supuestos" data-supuestos></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. Contacto y mapa (Google Maps sin clave, solo tras pulsar) ============ -->
+<section id="contacto" class="sec contacto" aria-labelledby="t-contacto">
+  <div class="env contacto__in">
+    <div class="contacto__txt">
+      <h2 id="t-contacto" class="sec-tit" data-aparece>Cómo llegar</h2>
+      <address class="contacto__dir">Tanes 9<br>33994 Tanes, Caso (Asturias)</address>
+      <p class="contacto__lineas"><a class="contacto__tel cifra" href="tel:+34609053498"><svg class="ico" aria-hidden="true"><use href="#i-telefono"/></svg>609 05 34 98</a></p>
+      <p class="contacto__ruta">Desde Oviedo, <span class="cifra">54,7 km</span> por la AS-17 y la AS-117 (unos <span class="cifra">51 min</span> sin tráfico). Desde el aeropuerto de Asturias, <span class="cifra">88,9 km</span> (<span class="cifra">1 h 12 min</span>).</p>
+    </div>
+    <div class="contacto__mapa">
+      <div class="mapa" id="mapa" data-q="Apartamentos La Casa de Tanes, Tanes 9, 33994 Tanes, Caso, Asturias">
+        <button type="button" class="map-consent" id="mapa-btn">
+          <svg class="ico" aria-hidden="true"><use href="#i-mapa-pin"/></svg>
+          <b>Ver el mapa</b>
+          <span>Al pulsar se carga Google Maps, que puede instalar sus cookies.</span>
+        </button>
+      </div>
+      <figure class="contacto__f"><button type="button" class="foto-btn" data-visor="tanes-aerea" data-grupo="contacto" aria-label="Ver más grande: Tanes desde el aire"><picture data-foto="tanes-aerea"><source type="image/avif" srcset="img/fotos/tanes-aerea-480.avif 480w, img/fotos/tanes-aerea-800.avif 800w, img/fotos/tanes-aerea-959.avif 959w" sizes="(max-width: 899px) 92vw, 30vw"><source type="image/webp" srcset="img/fotos/tanes-aerea-480.webp 480w, img/fotos/tanes-aerea-800.webp 800w, img/fotos/tanes-aerea-959.webp 959w" sizes="(max-width: 899px) 92vw, 30vw"><img src="img/fotos/tanes-aerea-800.jpg" srcset="img/fotos/tanes-aerea-480.jpg 480w, img/fotos/tanes-aerea-800.jpg 800w, img/fotos/tanes-aerea-959.jpg 959w" sizes="(max-width: 899px) 92vw, 30vw" width="959" height="553" alt="Tanes desde el aire, en su península sobre el embalse" loading="lazy" decoding="async"></picture></button><figcaption>Tanes, en su península sobre el embalse.</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ pie: el rótulo «La Casa» vuelve a escribirse entero, en latón (lo que la portada abrió, el pie lo
+     cierra: las letras que se fueron al menú vuelven grandes). Con movimiento reducido, ya escrito ============ -->
+<footer class="pie" id="pie">
+  <div class="env">
+    <a class="pie__rotulo" href="#portada" aria-label="La Casa de Tanes, a la portada">
+      <svg class="pie__letras" viewBox="-64 -677 3003 762" aria-hidden="true" focusable="false"><defs><linearGradient id="g-laton-pie" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#EBE3C1"/><stop offset=".6" stop-color="#B4A380"/><stop offset="1" stop-color="#6E6448"/></linearGradient></defs><path class="pl" style="--i:0" pathLength="1" d="M452 65Q351 65 248 6Q185 35 128 35Q73 35 20 11Q-44 -20 -44 -69Q-44 -103 -17 -124Q8 -143 43 -143Q127 -143 199 -78Q217 -61 231 -49Q245 -37 255 -29Q303 -68 349 -145Q368 -178 386 -211Q404 -244 422 -277Q334 -283 267 -320Q181 -367 181 -444Q181 -504 223 -546Q265 -588 325 -588Q363 -588 391 -569Q422 -546 422 -510Q422 -496 413 -496Q409 -496 409 -512Q409 -514 408 -518Q407 -522 405 -528Q387 -579 326 -579Q276 -579 239 -536Q203 -494 203 -444Q203 -372 283 -328Q346 -293 428 -288Q460 -344 493.5 -390.5Q527 -437 561 -475Q663 -587 746 -587Q775 -587 795 -574Q818 -559 818 -532Q818 -493 772 -436Q755 -415 735 -396Q715 -377 692 -360Q673 -345 652.5 -333Q632 -321 610 -310Q562 -287 501 -280Q459 -184 413 -126Q358 -56 279 -11Q372 55 458 55Q504 55 538 37Q580 14 580 -28Q580 -34 584 -34Q588 -34 588 -27V-24Q588 20 551.5 42.5Q515 65 452 65ZM507 -293Q532 -297 556 -303Q580 -309 603 -318Q623 -326 642 -337Q661 -348 680 -362Q723 -394 758 -438Q804 -493 804 -532Q804 -564 771 -564Q744 -564 707 -545Q648 -514 601 -457Q554 -400 518 -318ZM118 22Q178 22 226 -7Q200 -24 174 -41Q148 -58 122 -74Q48 -120 13 -120Q-32 -120 -32 -79Q-32 -39 12 -9Q49 16 92 21Q99 22 105.5 22Q112 22 118 22Z"/><path class="pl" style="--i:1" pathLength="1" d="M884 3Q832 3 832 -69Q832 -97 841 -133Q771 2 702 2Q669 2 652 -31Q638 -56 638 -94Q638 -125 647 -159Q664 -218 719 -270Q780 -326 835 -326Q885 -326 885 -266Q885 -240 874 -205L935 -325H938Q941 -320 951 -320Q971 -320 1002 -344L1004 -342L919 -176Q868 -77 868 -26Q868 -6 886 -6Q898 -6 915 -15Q932 -24 951 -45Q975 -73 992.5 -98.5Q1010 -124 1033 -168Q1036 -173 1039 -173Q1045 -173 1039 -163Q1021 -129 1000.5 -95.5Q980 -62 951 -33Q915 3 884 3ZM706 -5Q762 -5 850 -163Q878 -213 878 -264Q878 -318 843 -318Q805 -318 757 -255Q738 -229 724.5 -204Q711 -179 703 -156Q682 -96 682 -48Q682 -5 706 -5Z"/><path class="pl" style="--i:2" pathLength="1" d="M1510 48Q1408 48 1349 -12Q1290 -73 1290 -175Q1290 -336 1424 -467Q1373 -511 1373 -563Q1373 -657 1485 -657Q1514 -657 1541.5 -648.5Q1569 -640 1595 -623L1596 -622Q1598 -621 1597.5 -619.5Q1597 -618 1597 -616Q1597 -613 1595 -613Q1594 -613 1589 -616Q1544 -643 1498 -643Q1454 -643 1425 -622Q1392 -600 1392 -556Q1392 -514 1434 -475Q1564 -596 1761 -596Q1827 -596 1875 -577Q1944 -552 1944 -497Q1944 -455 1889 -424Q1870 -412 1847 -403.5Q1824 -395 1798 -390Q1753 -381 1701 -381Q1564 -381 1466 -438Q1353 -311 1353 -163Q1353 -82 1390 -27Q1432 37 1510 37Q1659 37 1754 -106Q1786 -155 1786 -195Q1786 -230 1762 -252Q1739 -275 1704 -275Q1670 -275 1641 -255Q1611 -236 1598 -203Q1595 -195 1591 -195Q1587 -195 1587 -200Q1587 -201 1587.5 -202.5Q1588 -204 1588 -205Q1601 -242 1636 -263Q1669 -284 1709 -284Q1752 -284 1781 -258Q1808 -231 1808 -189Q1808 -141 1779 -97Q1739 -33 1662 8Q1588 48 1510 48ZM1677 -394Q1714 -394 1750 -400Q1786 -406 1822 -416Q1922 -448 1922 -504Q1922 -584 1769 -584Q1606 -584 1474 -446Q1564 -394 1677 -394Z"/><path class="pl" style="--i:3" pathLength="1" d="M2117 3Q2065 3 2065 -69Q2065 -97 2074 -133Q2004 2 1935 2Q1902 2 1885 -31Q1871 -56 1871 -94Q1871 -125 1880 -159Q1897 -218 1952 -270Q2013 -326 2068 -326Q2118 -326 2118 -266Q2118 -240 2107 -205L2168 -325H2171Q2174 -320 2184 -320Q2204 -320 2235 -344L2237 -342L2152 -176Q2101 -77 2101 -26Q2101 -6 2119 -6Q2131 -6 2148 -15Q2165 -24 2184 -45Q2208 -73 2225.5 -98.5Q2243 -124 2266 -168Q2269 -173 2272 -173Q2278 -173 2272 -163Q2254 -129 2233.5 -95.5Q2213 -62 2184 -33Q2148 3 2117 3ZM1939 -5Q1995 -5 2083 -163Q2111 -213 2111 -264Q2111 -318 2076 -318Q2038 -318 1990 -255Q1971 -229 1957.5 -204Q1944 -179 1936 -156Q1915 -96 1915 -48Q1915 -5 1939 -5Z"/><path class="pl" style="--i:4" pathLength="1" d="M2326 12Q2225 12 2225 -84Q2225 -111 2234 -142V-141Q2239 -159 2253 -176Q2270 -197 2284 -197Q2284 -197 2287 -197Q2290 -197 2297 -195L2308 -212Q2322 -233 2333.5 -254.5Q2345 -276 2358 -297Q2395 -361 2414 -366Q2420 -368 2423 -368Q2438 -368 2438 -357Q2438 -344 2416 -341Q2396 -338 2391 -336Q2383 -330 2383 -310Q2383 -289 2410 -239Q2437 -190 2437 -152Q2437 -142 2435.5 -133Q2434 -124 2432 -114Q2405 -1 2289 -1Q2312 4 2331 4Q2366 4 2399 -8.5Q2432 -21 2460 -43Q2489 -66 2513.5 -98.5Q2538 -131 2556 -168Q2559 -174 2562 -174Q2568 -174 2563 -164Q2547 -134 2529.5 -107.5Q2512 -81 2492 -60Q2468 -36 2427 -12Q2386 12 2326 12ZM2282 -9Q2333 -9 2366 -86Q2393 -146 2393 -207Q2393 -215 2390.5 -228.5Q2388 -242 2383 -261Q2379 -279 2377 -292.5Q2375 -306 2376 -316Q2357 -278 2338 -247Q2319 -216 2302 -191Q2307 -183 2307 -175Q2307 -161 2296 -144Q2289 -134 2272 -125Q2255 -116 2248 -108Q2237 -92 2237 -66Q2237 -9 2282 -9Z"/><path class="pl" style="--i:5" pathLength="1" d="M2761 3Q2709 3 2709 -69Q2709 -97 2718 -133Q2648 2 2579 2Q2546 2 2529 -31Q2515 -56 2515 -94Q2515 -125 2524 -159Q2541 -218 2596 -270Q2657 -326 2712 -326Q2762 -326 2762 -266Q2762 -240 2751 -205L2812 -325H2815Q2818 -320 2828 -320Q2848 -320 2879 -344L2881 -342L2796 -176Q2745 -77 2745 -26Q2745 -6 2763 -6Q2775 -6 2792 -15Q2809 -24 2828 -45Q2852 -73 2869.5 -98.5Q2887 -124 2910 -168Q2913 -173 2916 -173Q2922 -173 2916 -163Q2898 -129 2877.5 -95.5Q2857 -62 2828 -33Q2792 3 2761 3ZM2583 -5Q2639 -5 2727 -163Q2755 -213 2755 -264Q2755 -318 2720 -318Q2682 -318 2634 -255Q2615 -229 2601.5 -204Q2588 -179 2580 -156Q2559 -96 2559 -48Q2559 -5 2583 -5Z"/></svg>
+      <span class="pie__de" aria-hidden="true">de Tanes</span>
+    </a>
+    <div class="pie__cols">
+      <div>
+        <h2 class="pie__h">Dónde</h2>
+        <p>Tanes 9<br>33994 Tanes, Caso (Asturias)</p>
+        <p><a href="#contacto">Cómo llegar</a></p>
+      </div>
+      <div>
+        <h2 class="pie__h">Reservas</h2>
+        <p><a class="cifra" href="tel:+34609053498">609 05 34 98</a></p>
+        <p><a href="#reservar">Ver fechas</a></p>
+      </div>
+      <div>
+        <h2 class="pie__h">La casa</h2>
+        <p><a href="#estancias">Cada una con su color</a><br><a href="#casa">Todo mira al sur</a><br><a href="#lugar">El espejo de Tanes</a><br><a href="#alrededor">Redes alrededor</a></p>
+      </div>
+    </div>
+    <div class="pie__legal">
+      <nav aria-label="Legal"><a href="aviso-legal.html">Aviso legal</a><a href="privacidad.html">Privacidad</a><a href="cookies.html">Cookies</a><a href="accesibilidad.html">Accesibilidad</a><button type="button" id="abrir-cookies">Preferencias de cookies</button></nav>
+      <p>© <span id="anno">2026</span> La Casa de Tanes · Apartamentos turísticos AT 1490 AS</p>
+    </div>
+  </div>
+</footer>
+
+<div class="cookies" id="cookies" role="region" aria-label="Aviso de cookies" hidden>
+  <p>Sin cookies de análisis ni de publicidad: solo se guarda que has visto este aviso. Las letras vienen de Google Fonts; el mapa de Google solo se carga si lo pides. <a href="cookies.html">Más información</a></p>
+  <div class="cookies__acc">
+    <button class="btn btn--acento" type="button" id="ck-si">Entendido</button>
+    <button class="btn btn--linea" type="button" id="ck-no">Solo lo necesario</button>
+  </div>
+</div>
+
+<!-- MANDO DE MAQUETA (no viaja al cliente): solo con ?revision -->
+<div class="mando" id="mando" role="group" aria-label="Dos versiones de la misma web" hidden>
+  <span class="mando__eti">Versión</span>
+  <button type="button" data-densidad="la-casa" aria-pressed="true">La Casa</button>
+  <button type="button" data-densidad="sobria" aria-pressed="false">Sobria</button>
+</div>
+<!-- fin del MANDO DE MAQUETA -->
+
+<!-- visor de fotos (se abre por el NOMBRE de la foto) -->
+<dialog class="visor" id="visor" aria-label="Foto ampliada">
+  <figure class="visor__fig">
+    <img id="visor-img" alt="" width="1600" height="1200">
+    <figcaption><span id="visor-pie"></span> <span class="visor__n cifra" id="visor-n"></span></figcaption>
+  </figure>
+  <button type="button" class="visor__btn visor__btn--ant" id="visor-ant" aria-label="Foto anterior"><svg class="ico" aria-hidden="true"><use href="#i-flecha-izq"/></svg></button>
+  <button type="button" class="visor__btn visor__btn--sig" id="visor-sig" aria-label="Foto siguiente"><svg class="ico" aria-hidden="true"><use href="#i-flecha-der"/></svg></button>
+  <button type="button" class="visor__cerrar" id="visor-cerrar" aria-label="Cerrar"><svg class="ico" aria-hidden="true"><use href="#i-cerrar"/></svg></button>
+</dialog>
+
+<!-- el foco del teclado: un contorno con cuatro tornillos en las esquinas, como las letras atornilladas a la piedra -->
+<svg class="foco-tornillos" id="foco-tornillos" aria-hidden="true" focusable="false"><rect/><circle/><circle/><circle/><circle/></svg>
+
+<!-- los supuestos del simulador (data/tanes.json → reserva), para js/reserva.js -->
+<script type="application/json" id="datos-reserva">{"simulado":true,"precioBaja":68,"precioAlta":75,"altaMeses":[6,7],"minNoches":2,"maxPersonas":14,"nota":"Supuestos del simulador (por confirmar con la casa): 68 € la noche en temporada baja y 75 € en julio y agosto, por estancia; mínimo 2 noches; días ocupados inventados.","telefono":"+34609053498","telefonoTexto":"609 05 34 98"}</script>
+<!-- los módulos: la portada (Web) y el 3D (Lugar 3D). Si falta el de Lugar, la página no falla: se queda el respaldo -->
+<script src="js/portada.js?v=684dd9a0" defer></script>
+<script src="js/lugar.js?v=4ac0e56d" defer></script>
+<!-- la web -->
+<script src="js/reserva.js?v=c8efbee3" defer></script>
+<script src="js/main.js?v=a13e63ee" defer></script>
+</body>
+</html>

@@ -1,0 +1,372 @@
+/* =====================================================================
+   La Casa de Tanes · «La Casa» · estilos de la página (las variables, en css/base.css)
+   Orden: cabecera · portada · secciones · 2 colores y ficha · 3 estancias · 4 lugar (respaldo) · 5 alrededor ·
+          6 reseñas · 7 simulador · 8 contacto · pie · visor · cookies · mando · versión sobria
+   ===================================================================== */
+
+/* ============ cabecera ============ */
+.cab { position: fixed; inset: 0 0 auto; z-index: 60; height: var(--cabecera); color: var(--arenisca); transition: background-color .35s var(--ease), box-shadow .35s var(--ease); }
+.cab.sc { background: color-mix(in oklab, var(--castano-noche) 90%, transparent); backdrop-filter: blur(14px) saturate(1.1); -webkit-backdrop-filter: blur(14px) saturate(1.1); box-shadow: 0 1px 0 var(--linea); }
+.cab__in { height: 100%; width: min(100% - 2 * var(--gutter), 1400px); margin-inline: auto; display: flex; align-items: center; gap: clamp(14px, 2.2vw, 32px); }
+.marca { display: inline-flex; align-items: baseline; gap: .45rem; color: var(--laton); text-decoration: none; margin-right: auto; padding-block: 6px; }
+.marca__rotulo { height: 34px; width: auto; aspect-ratio: 3003 / 762; transition: opacity .3s var(--ease); }
+.marca__de { font: 400 .95rem/1 var(--letra-titular); letter-spacing: .14em; text-transform: uppercase; color: var(--arenisca-media); transform: translateY(-3px); }
+/* mientras el rótulo gigante de la portada viaja hacia aquí, el logo espera (js/portada.js) */
+.rotulo-en-vuelo .marca__rotulo { opacity: 0; transition: none; }
+.cab__nav { display: flex; gap: clamp(14px, 2vw, 28px); }
+.cab__nav a { font-size: .96rem; text-decoration: none; padding-block: .5rem; border-bottom: 1px solid transparent; }
+.cab__nav a:hover, .cab__nav a[aria-current] { border-bottom-color: var(--laton); color: var(--laton); }
+.cab__tel { font-size: .92rem; text-decoration: none; white-space: nowrap; }
+.cab__reservar { min-height: 42px; padding: .55rem 1.15rem; font-size: .95rem; }
+.cab__menu { display: none; width: 44px; height: 44px; border: 1.5px solid var(--linea-fuerte); border-radius: var(--pildora); background: transparent; cursor: pointer; position: relative; }
+.cab__menu i { position: absolute; left: 13px; right: 13px; height: 1.5px; background: currentColor; transition: transform .3s var(--ease), top .3s var(--ease); }
+.cab__menu i:first-of-type { top: 17px; }
+.cab__menu i:last-of-type { top: 25px; }
+.menu .cab__menu i:first-of-type { top: 21px; transform: rotate(45deg); }
+.menu .cab__menu i:last-of-type { top: 21px; transform: rotate(-45deg); }
+/* el menú vive dentro de la cabecera (que lleva backdrop-filter): altura explícita con dvh, nunca inset:0 */
+.menu-movil { position: absolute; left: 0; right: 0; top: var(--cabecera); height: calc(100dvh - var(--cabecera)); overflow-y: auto; background: var(--castano-noche); padding: 18px var(--gutter) 32px;
+  opacity: 0; visibility: hidden; transform: translateY(-6px); transition: opacity .3s var(--ease), transform .3s var(--ease), visibility 0s linear .3s; }
+.menu .menu-movil { opacity: 1; visibility: visible; transform: none; transition: opacity .3s var(--ease), transform .3s var(--ease); }
+.menu-movil nav { display: grid; }
+.menu-movil nav a { display: grid; padding: .85rem 0; border-bottom: 1px solid var(--linea); text-decoration: none; font: 300 1.9rem/1.05 var(--letra-titular); }
+.menu-movil nav a small { font: 400 .85rem/1.3 var(--letra-texto); color: var(--arenisca-media); order: 2; margin-top: .25rem; }
+.menu-movil__tel { margin-top: 1.4rem; font-size: 1.2rem; }
+.menu-movil__tel a { color: var(--laton); }
+@media (max-width: 999px) {
+  .cab__nav, .cab__tel { display: none; }
+  .cab__menu { display: inline-block; }
+}
+@media (max-width: 420px) {
+  .cab__reservar { padding-inline: .9rem; }
+  .marca__de { display: none; }
+  .marca__rotulo { height: 30px; }
+}
+
+/* ============ 1. portada «La Casa» ============
+   La escena es una caja con la proporción de la foto (2000×1333) que CUBRE el marco: con unidades de contenedor
+   (cqw/cqh) el ancho es max(100% del ancho, 150 % del alto). Dentro, las tres capas a todo el ancho y el rótulo en %
+   de la escena: todo comparte el mismo sistema de coordenadas. */
+.portada { position: relative; background: var(--fondo); }
+.portada__fija { position: relative; height: 100svh; min-height: 560px; overflow: clip; }
+.portada__marco { position: absolute; inset: 0; overflow: hidden; container-type: size; touch-action: pan-y; cursor: grab; user-select: none; -webkit-user-select: none; }
+.portada__marco.es-arrastre { cursor: grabbing; }
+.escena { position: absolute; width: max(100cqw, 150.04cqh); aspect-ratio: 2000 / 1333;
+  left: calc((100cqw - max(100cqw, 150.04cqh)) * var(--fx)); top: calc((100cqh - max(100cqw, 150.04cqh) / 1.5004) * var(--fy)); }
+.capa, .capa img { position: absolute; inset: 0; width: 100%; height: 100%; }
+.capa { display: block; transform-origin: var(--ox) var(--oy); }
+.capa img { object-fit: fill; -webkit-user-drag: none; }
+.capa--monte { z-index: 1; }
+.rotulo { position: absolute; z-index: 2; left: var(--x); top: var(--y); width: var(--w); height: auto; overflow: visible; transform-origin: 0 0; pointer-events: none; }
+.capa--agua { z-index: 3; }
+.capa--casa { z-index: 4; }
+.es-viva .capa, .es-viva .rotulo { will-change: transform; }
+/* velo: arriba para la cabecera, abajo para el titular (nada de tarjeta encima de la foto) */
+.portada__marco::after { content: ""; position: absolute; inset: 0; z-index: 5; pointer-events: none;
+  background: linear-gradient(to bottom, rgb(31 15 10 / .5) 0, rgb(31 15 10 / 0) 17%),
+              linear-gradient(to top, rgb(31 15 10 / .96) 0, rgb(31 15 10 / .82) 20%, rgb(31 15 10 / .35) 40%, rgb(31 15 10 / 0) 56%); }
+.portada__texto { position: absolute; z-index: 6; left: max(var(--gutter), calc((100% - 1400px) / 2)); bottom: clamp(28px, 7svh, 72px); width: min(100% - 2 * var(--gutter), 46rem); }
+.portada__tit { font-size: clamp(2.3rem, 4.4vw, 4.1rem); font-weight: 300; line-height: 1.02; color: var(--arenisca); }
+.portada__sub { margin-top: 1rem; font-size: clamp(1.02rem, 1.3vw, 1.18rem); color: var(--arenisca); max-width: 34rem; }
+.portada__acc { margin-top: 1.6rem; display: flex; flex-wrap: wrap; gap: .75rem; }
+/* móvil y pantallas en vertical: bajo la cabecera, la foto (56 % del alto, la casa entera) y el texto debajo, en el castaño */
+@media (max-width: 699px), (max-aspect-ratio: 1/1) {
+  .portada__fija { height: auto; min-height: 100svh; display: flex; flex-direction: column; padding-top: var(--cabecera); }
+  .portada__marco { position: relative; inset: auto; height: 56svh; flex: none; }
+  .escena { left: calc((100cqw - max(100cqw, 150.04cqh)) * var(--fxm)); top: calc((100cqh - max(100cqw, 150.04cqh) / 1.5004) * var(--fym)); }
+  .rotulo { left: var(--xm); top: var(--ym); width: var(--wm); }
+  .portada__marco::after { background: linear-gradient(to bottom, rgb(31 15 10 / .5) 0, rgb(31 15 10 / 0) 18%), linear-gradient(to top, rgb(31 15 10) 0, rgb(31 15 10 / 0) 22%); }
+  .portada__texto { position: relative; left: auto; bottom: auto; width: auto; padding: 4px var(--gutter) 32px; margin-top: -8px; }
+  .portada__tit { font-size: clamp(2rem, 8.6vw, 2.6rem); }
+  .portada__acc .btn { flex: 1 1 auto; }
+}
+/* portada viva (js/portada.js): se fija un tramo y las capas se separan; el tramo lo da el alto de la sección */
+.portada.es-viva { height: calc(100svh + var(--recorrido, 70svh)); }
+.portada.es-viva .portada__fija { position: sticky; top: 0; height: 100svh; }
+@media (max-width: 699px), (max-aspect-ratio: 1/1) { .portada.es-viva .portada__fija { min-height: 0; } }
+
+/* ============ secciones ============ */
+.sec { padding-block: clamp(80px, 11vw, 156px); position: relative; }
+.sec + .sec { border-top: 1px solid var(--linea); }
+.sec-cab { max-width: 48rem; margin-bottom: clamp(36px, 5vw, 64px); }
+.sec-tit { font-size: clamp(2.6rem, 6vw, 5rem); font-weight: 300; color: var(--arenisca); }
+.sec-txt { margin-top: 1.1rem; font-size: clamp(1.05rem, 1.3vw, 1.2rem); color: var(--texto-suave); max-width: 40rem; }
+
+/* ============ 2. cada una con su color ============ */
+.cifras { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0; border-top: 1px solid var(--linea-fuerte); }
+.cifras__i { display: flex; flex-direction: column-reverse; justify-content: flex-end; gap: .4rem; padding: 1.4rem 1.2rem 0 0; }
+.cifras__i + .cifras__i { padding-left: clamp(16px, 2.4vw, 36px); border-left: 1px solid var(--linea); }
+.cifras dd { margin: 0; font: 200 clamp(4rem, 11vw, 9rem)/.86 var(--letra-titular); color: var(--laton); letter-spacing: -.02em; }
+.cifras dt { font-size: 1rem; color: var(--arenisca); }
+.cifras__nota { margin-top: 1rem; font-size: .9rem; color: var(--texto-suave); }
+@media (max-width: 559px) {
+  .cifras { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .cifras__i:nth-child(3) { grid-column: 1 / -1; border-left: 0; padding-left: 0; border-top: 1px solid var(--linea); margin-top: 1.2rem; }
+}
+
+/* la carta de colores: una tira por color MEDIDO en su foto; la abierta se ensancha (js/main.js) */
+.carta { margin-top: clamp(48px, 7vw, 96px); }
+.carta__lista { display: flex; gap: 10px; height: clamp(440px, 50vw, 620px); }
+.chip { --t: var(--arenisca); flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; background: var(--c); color: var(--t); transition: flex-grow .7s var(--ease); }
+.chip.es-abierta { flex-grow: 3.6; }
+.chip[data-color="ocre"], .chip[data-color="amarillo"] { --t: var(--castano-noche); }
+.chip__boton { all: unset; box-sizing: border-box; display: grid; grid-template-columns: 1fr auto; align-items: end; gap: .3rem .8rem; padding: 18px 18px 14px; cursor: pointer; min-height: 96px; }
+.chip__boton:focus-visible { outline: 2px solid var(--t); outline-offset: -6px; }
+.chip__muestra { display: none; }
+.chip__nombre { font: 300 clamp(1.5rem, 2.3vw, 2.2rem)/1 var(--letra-titular); overflow-wrap: anywhere; }
+.chip__hex { font-size: .78rem; opacity: 1; }
+.chip__cuerpo { flex: 1; min-height: 0; display: flex; flex-direction: column; }
+.chip__txt { padding: 0 18px 16px; font-size: .98rem; max-width: 30rem; }
+.chip__f { flex: 1; min-height: 0; }
+.chip__f picture, .chip__f img { width: 100%; height: 100%; object-fit: cover; }
+.js .chip:not(.es-abierta) .chip__hex, .js .chip:not(.es-abierta) .chip__txt { visibility: hidden; }
+.carta__nota { margin-top: 1rem; font-size: .9rem; color: var(--texto-suave); }
+@media (max-width: 899px) {
+  .chip__nombre { font-size: 1.4rem; }
+}
+@media (max-width: 699px) {
+  .carta__lista { height: auto; overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; margin-inline: calc(-1 * var(--gutter)); padding-inline: var(--gutter); scroll-padding-inline: var(--gutter); }
+  .chip, .chip.es-abierta { flex: 0 0 80%; height: 460px; scroll-snap-align: start; }
+  .js .chip:not(.es-abierta) .chip__hex, .js .chip:not(.es-abierta) .chip__txt { visibility: visible; }
+  .chip__boton { cursor: default; }
+}
+
+/* la ficha: servicios con icono propio y las condiciones aparte */
+.ficha { margin-top: clamp(64px, 8vw, 112px); display: grid; grid-template-columns: minmax(0, 2.15fr) minmax(0, 1fr); gap: clamp(28px, 4vw, 64px); align-items: start; }
+.ficha__h { font: 400 1.6rem/1.1 var(--letra-titular); color: var(--laton); margin-bottom: 1.1rem; }
+.servicios { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(24px, 3vw, 44px); }
+.servicios__lista { display: grid; gap: 1.1rem; }
+.servicios__lista li { display: grid; grid-template-columns: 30px 1fr; column-gap: .8rem; align-items: start; }
+.servicios__lista .ico { width: 28px; height: 28px; color: var(--laton); grid-row: span 2; }
+.servicios__lista b { font-weight: 500; line-height: 1.3; }
+.servicios__lista span { grid-column: 2; font-size: .93rem; color: var(--texto-suave); line-height: 1.45; }
+.condiciones { background: var(--superficie); padding: clamp(22px, 2.6vw, 34px); border-top: 2px solid var(--laton); }
+.condiciones dl { margin: 0; display: grid; }
+.condiciones dl > div { display: grid; grid-template-columns: 6.5rem 1fr; gap: .8rem; padding-block: .8rem; border-bottom: 1px solid var(--linea); }
+.condiciones dt { color: var(--texto-suave); font-size: .93rem; }
+.condiciones dd { margin: 0; display: grid; }
+.condiciones dd b { font-weight: 500; }
+.condiciones dd span { font-size: .88rem; color: var(--texto-suave); }
+.condiciones p { margin-top: 1.4rem; }
+@media (max-width: 1099px) { .ficha { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 759px) { .servicios { grid-template-columns: minmax(0, 1fr); } }
+
+/* versión sobria: la tabla «de un vistazo» */
+.vistazo { display: none; margin-top: 56px; }
+.vistazo__tit { font: 400 1.8rem/1.1 var(--letra-titular); margin-bottom: 1rem; color: var(--laton); }
+.vistazo__tabla { width: 100%; max-width: 44rem; border-collapse: collapse; }
+.vistazo__tabla th, .vistazo__tabla td { text-align: left; padding: .65rem .8rem .65rem 0; border-bottom: 1px solid var(--linea); vertical-align: top; }
+.vistazo__tabla th { font-weight: 400; color: var(--texto-suave); width: 12rem; }
+
+/* ============ 3. todo mira al sur: la casa por estancias ============ */
+.estancias-casa { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: clamp(24px, 4vw, 64px); align-items: start; }
+.estancias__indice { position: sticky; top: calc(var(--cabecera) + 28px); }
+.estancias__indice ol { display: grid; }
+.estancias__indice a { display: flex; align-items: baseline; justify-content: space-between; gap: .6rem; padding: .7rem 0; border-bottom: 1px solid var(--linea); text-decoration: none; color: var(--texto-suave); transition: color .25s var(--ease); }
+.estancias__indice a:hover { color: var(--arenisca); }
+.estancias__indice a[aria-current] { color: var(--laton); border-bottom-color: var(--laton); }
+.estancias__corto { display: none; }
+.estancias__n { font-size: .8rem; }
+.estancias__grupos { display: grid; gap: clamp(56px, 7vw, 96px); }
+.estancia { scroll-margin-top: calc(var(--cabecera) + 70px); }
+.estancia__tit { font: 300 clamp(1.9rem, 3.4vw, 2.8rem)/1.05 var(--letra-titular); }
+.estancia__txt { margin: .6rem 0 1.4rem; color: var(--texto-suave); max-width: 38rem; }
+/* filas de la misma altura: cada foto crece en proporción a su ancho/alto (--r) */
+.filas { --alto-fila: 230px; display: flex; flex-wrap: wrap; gap: 8px; }
+.filas::after { content: ""; flex: 999 1 0; }
+.estancia--ventanas .filas { --alto-fila: 360px; }
+.foto { flex: var(--r) 1 calc(var(--r) * var(--alto-fila)); aspect-ratio: var(--r); min-width: 0; }
+.foto-btn { all: unset; box-sizing: border-box; display: block; width: 100%; height: 100%; cursor: zoom-in; overflow: hidden; background: var(--superficie); }
+.foto-btn:focus-visible { outline: 2px solid var(--foco); outline-offset: 3px; }
+.foto-btn picture, .foto-btn img { width: 100%; height: 100%; object-fit: cover; }
+.foto-btn img { transition: transform .9s var(--ease); }
+.foto-btn:hover img { transform: scale(1.03); }
+@media (max-width: 899px) {
+  .estancias-casa { grid-template-columns: minmax(0, 1fr); }
+  .estancias__indice { top: var(--cabecera); z-index: 20; margin-inline: calc(-1 * var(--gutter)); padding: 0 var(--gutter); background: color-mix(in oklab, var(--castano-noche) 94%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); overflow-x: auto; }
+  .estancias__indice ol { display: flex; gap: 1.2rem; }
+  .estancias__indice a { border-bottom-width: 2px; border-bottom-color: transparent; white-space: nowrap; min-height: 44px; align-items: center; }
+  .estancias__largo, .estancias__n { display: none; }
+  .estancias__corto { display: inline; }
+  .filas { --alto-fila: 160px; }
+  .estancia--ventanas .filas { --alto-fila: 230px; }
+}
+
+/* ============ 4. el espejo de Tanes: el respaldo de la Web (Lugar 3D lo sustituye dentro de su div) ============
+   Contrato con Lugar (LUGAR.md, «Para Web»): su escenario es sticky, así que ningún antepasado del div lleva overflow,
+   transform ni filter (el html lleva overflow-x: clip, que no crea caja de scroll); el div va a todo el ancho y en
+   [data-modo="plano"] lleva el margen lateral; la cabecera fija, en --lugar-arriba. */
+#lugar { --lugar-arriba: var(--cabecera); }
+#lugar [data-modulo="lugar"][data-modo="plano"] { padding-inline: var(--gutter); }
+.espejo__cab { margin-bottom: clamp(32px, 4vw, 56px); }
+.espejo__respaldo { width: min(100% - 2 * var(--gutter), 760px); margin-inline: auto; }
+.espejo__respaldo picture, .espejo__respaldo img { width: 100%; height: auto; }
+.espejo__respaldo figcaption { margin-top: .8rem; font-size: .92rem; color: var(--texto-suave); }
+
+/* ============ 5. Redes alrededor: el trayecto por la AS-117 ============ */
+.alrededor__in { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
+.alrededor__f { position: sticky; top: calc(var(--cabecera) + 28px); }
+.alrededor__f .foto-btn { aspect-ratio: 4 / 5; }
+.trayecto { display: grid; gap: clamp(32px, 4vw, 48px); }
+.tramo__tit { font: 400 1.5rem/1.1 var(--letra-titular); color: var(--laton); margin-bottom: .6rem; }
+.tramo__lista { border-left: 1px solid var(--linea-fuerte); margin-left: 6px; }
+.tramo__lista li { position: relative; display: grid; grid-template-columns: 7.2rem minmax(0, 1fr) auto; gap: .4rem 1.2rem; align-items: baseline; padding: 1rem 0 1rem 1.4rem; border-bottom: 1px solid var(--linea); }
+.tramo__lista li::before { content: ""; position: absolute; left: -6px; top: 1.45rem; width: 11px; height: 11px; border-radius: 50%; background: var(--fondo); border: 1.5px solid var(--laton); }
+.parada__min { font-size: clamp(1.35rem, 2vw, 1.7rem); color: var(--arenisca); white-space: nowrap; }
+.parada__que { display: grid; }
+.parada__que b { font-weight: 500; }
+.parada__que small { font-size: .9rem; color: var(--texto-suave); }
+.parada__km { display: inline-flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: .3rem .9rem; font-size: .92rem; color: var(--texto-suave); }
+.parada__km .ico, .parada__pie .ico { width: 18px; height: 18px; color: var(--agua); }
+.parada__pie { display: inline-flex; align-items: center; gap: .3rem; }
+.alrededor__fino { margin-top: 2rem; font-size: .88rem; color: var(--texto-suave); max-width: 52rem; }
+@media (max-width: 899px) {
+  .alrededor__in { grid-template-columns: minmax(0, 1fr); }
+  .alrededor__f { position: static; }
+  .alrededor__f .foto-btn { aspect-ratio: 16 / 10; }
+}
+@media (max-width: 559px) {
+  .tramo__lista li { grid-template-columns: minmax(0, 1fr); padding-left: 1.2rem; }
+  .parada__km { justify-content: flex-start; }
+}
+
+/* ============ 6. reseñas ============ */
+.resenas__tit { max-width: 40rem; margin-bottom: clamp(32px, 5vw, 64px); }
+.notas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid var(--linea-fuerte); }
+.nota { padding: clamp(22px, 3vw, 40px) clamp(16px, 3vw, 40px) 0 0; display: grid; gap: .8rem; align-content: start; }
+.nota + .nota { padding-left: clamp(16px, 3vw, 40px); border-left: 1px solid var(--linea); }
+.nota__n { display: flex; align-items: baseline; gap: .6rem; }
+.nota__n .cifra { font: 200 clamp(5rem, 14vw, 11rem)/.82 var(--letra-titular); color: var(--laton); letter-spacing: -.03em; }
+.nota__sobre { font: 300 clamp(1.4rem, 2.6vw, 2.2rem)/1 var(--letra-titular); color: var(--texto-suave); }
+.nota__dato { font-size: 1.08rem; }
+@media (max-width: 599px) {
+  .notas { grid-template-columns: minmax(0, 1fr); }
+  .nota + .nota { padding-left: 0; border-left: 0; border-top: 1px solid var(--linea); margin-top: 2rem; }
+}
+
+/* ============ 7. el simulador ============ */
+.simu__aviso { display: flex; flex-wrap: wrap; gap: .3rem .8rem; align-items: baseline; padding: .9rem 1.1rem; background: color-mix(in oklab, var(--agua) 14%, var(--castano-noche)); border-left: 3px solid var(--agua); font-size: .96rem; margin-bottom: clamp(20px, 3vw, 32px); }
+.simu__aviso b { font: 500 .8rem/1 var(--letra-cifras); text-transform: uppercase; letter-spacing: .1em; color: var(--agua); }
+.simu__in { display: grid; grid-template-columns: minmax(0, 1.7fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 44px); align-items: start; }
+.simu__cal, .simu__panel { background: var(--superficie); padding: clamp(18px, 2.4vw, 30px); }
+.simu__fechas { display: flex; flex-wrap: wrap; gap: .8rem 2rem; align-items: end; padding-bottom: 1rem; border-bottom: 1px solid var(--linea); margin-bottom: 1rem; }
+.simu__fechas p { display: grid; }
+.simu__fechas b { font: 400 1.5rem/1.15 var(--letra-titular); }
+.simu__eti { font-size: .82rem; color: var(--texto-suave); }
+.simu__noches { margin-left: auto; color: var(--laton); }
+.cal { position: relative; }
+.cal__nav { position: absolute; right: 0; top: -4px; display: flex; gap: .4rem; }
+.cal__flecha { width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--linea-fuerte); background: transparent; display: grid; place-items: center; cursor: pointer; }
+.cal__flecha:disabled { opacity: .35; cursor: default; }
+.cal__flecha .ico { width: 18px; height: 18px; }
+.cal__meses { display: grid; grid-template-columns: repeat(var(--meses), minmax(0, 1fr)); gap: clamp(16px, 2.6vw, 36px); }
+.cal__tit { font: 400 1.25rem/1 var(--letra-titular); text-transform: capitalize; height: 32px; display: flex; align-items: center; }
+.cal__sem, .cal__dias { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); text-align: center; }
+.cal__sem span { font-size: .74rem; color: var(--texto-suave); padding: .5rem 0; }
+.cal__dias button, .cal__dias span { aspect-ratio: 1; min-height: 38px; }
+.cal__dias button { position: relative; border: 0; background: transparent; border-radius: 50%; cursor: pointer; font: 400 .92rem/1 var(--letra-cifras); color: var(--arenisca); }
+.cal__dias button:hover:not(:disabled) { background: color-mix(in oklab, var(--arenisca) 12%, transparent); }
+.cal__dias button:disabled { cursor: default; color: color-mix(in oklab, var(--arenisca-media) 62%, var(--castano-tarde)); }
+.cal__dias button.es-ocupado { text-decoration: line-through; text-decoration-thickness: 1px; background: repeating-linear-gradient(135deg, transparent 0 4px, color-mix(in oklab, var(--arenisca) 8%, transparent) 4px 5px); }
+.cal__dias button.es-alta::after { content: ""; position: absolute; left: 50%; bottom: 14%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: var(--laton); }
+.cal__dias button.es-hoy { box-shadow: inset 0 0 0 1px var(--linea-fuerte); }
+.cal__dias button.es-entre { background: color-mix(in oklab, var(--agua) 22%, transparent); border-radius: 0; }
+.cal__dias button.es-ini, .cal__dias button.es-fin { background: var(--agua); color: var(--castano-noche); font-weight: 600; }
+.cal__ley { display: flex; flex-wrap: wrap; gap: .5rem 1.4rem; margin-top: 1rem; font-size: .84rem; color: var(--texto-suave); }
+.ley { display: inline-flex; align-items: center; gap: .45rem; }
+.ley::before { content: ""; width: 14px; height: 14px; border-radius: 50%; }
+.ley--libre::before { box-shadow: inset 0 0 0 1px var(--linea-fuerte); }
+.ley--ocupado::before { background: repeating-linear-gradient(135deg, transparent 0 3px, var(--arenisca-media) 3px 4px); }
+.ley--alta::before { width: 6px; height: 6px; background: var(--laton); margin-inline: 4px; }
+.simu__sin { margin-top: 1rem; }
+.paso { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid var(--linea); }
+.paso__ctl { display: inline-flex; align-items: center; gap: .9rem; }
+.paso__ctl button { width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--linea-fuerte); background: transparent; display: grid; place-items: center; cursor: pointer; }
+.paso__ctl button:disabled { opacity: .35; cursor: default; }
+.paso__ctl output { min-width: 2ch; text-align: center; font-size: 1.3rem; }
+.simu__pista { min-height: 1.4em; margin-top: .8rem; font-size: .9rem; color: var(--texto-suave); }
+.simu__resumen { margin-top: 1rem; }
+.simu__frase { font-size: 1.02rem; }
+.simu__cuentas { margin: 1rem 0 0; display: grid; }
+.simu__cuentas > div { display: flex; justify-content: space-between; gap: 1rem; padding: .55rem 0; border-bottom: 1px solid var(--linea); }
+.simu__cuentas dt { color: var(--texto-suave); font-size: .93rem; }
+.simu__cuentas dt small { font-size: .8rem; }
+.simu__cuentas dd { margin: 0; text-align: right; }
+.simu__total dd { font-size: 1.35rem; color: var(--laton); }
+.simu__real { margin-top: 1.4rem; display: grid; gap: .7rem; }
+.simu__acc { display: flex; flex-wrap: wrap; gap: .6rem; }
+.simu__supuestos { margin-top: 1.2rem; font-size: .84rem; color: var(--texto-suave); }
+@media (max-width: 899px) { .simu__in { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 420px) { .simu__acc .btn { width: 100%; } }
+
+/* ============ 8. contacto ============ */
+.contacto__in { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 80px); align-items: start; }
+.contacto__dir { margin-top: 1.6rem; font: 300 clamp(1.6rem, 2.6vw, 2.2rem)/1.2 var(--letra-titular); }
+.contacto__lineas { margin-top: 1.2rem; }
+.contacto__tel { display: inline-flex; align-items: center; gap: .6rem; font-size: 1.3rem; color: var(--laton); text-decoration: none; min-height: 44px; }
+.contacto__ruta { margin-top: 1.4rem; color: var(--texto-suave); max-width: 32rem; }
+.contacto__in > * { min-width: 0; }
+.contacto__mapa { display: grid; grid-template-columns: minmax(0, 1fr); gap: 14px; }
+.mapa { position: relative; min-height: 340px; background: var(--superficie); }
+.mapa iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+.map-consent { position: absolute; inset: 0; width: 100%; display: grid; place-content: center; justify-items: center; gap: .5rem; padding: 24px; text-align: center; border: 1px dashed var(--linea-fuerte); background: transparent; cursor: pointer; color: var(--arenisca); }
+.map-consent .ico { width: 34px; height: 34px; color: var(--laton); }
+.map-consent b { font: 400 1.5rem/1.1 var(--letra-titular); }
+.map-consent span { font-size: .88rem; color: var(--texto-suave); max-width: 22rem; }
+.map-consent:hover { border-color: var(--laton); }
+.contacto__f .foto-btn { aspect-ratio: 959 / 553; }
+.contacto__f figcaption { margin-top: .6rem; font-size: .88rem; color: var(--texto-suave); }
+@media (max-width: 899px) { .contacto__in { grid-template-columns: minmax(0, 1fr); } }
+
+/* ============ pie: el rótulo vuelve a escribirse entero ============ */
+.pie { background: var(--castano-noche); border-top: 1px solid var(--linea); padding: clamp(64px, 9vw, 120px) 0 28px; }
+.pie__rotulo { display: grid; justify-items: start; gap: .3rem; width: min(100%, 880px); text-decoration: none; color: var(--laton); }
+.pie__letras { width: 100%; height: auto; overflow: visible; }
+.pie__letras .pl { fill: url(#g-laton-pie); stroke: var(--laton); stroke-width: 4; stroke-linejoin: round; }
+.con-movimiento .pie__letras:not(.es-escrita) .pl { fill-opacity: 0; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.pie__letras .pl { transition: stroke-dashoffset 1.5s cubic-bezier(.45, 0, .2, 1) calc(var(--i) * .2s), fill-opacity .9s var(--ease) calc(1.2s + var(--i) * .2s); }
+.pie__de { font: 400 clamp(.95rem, 1.6vw, 1.25rem)/1 var(--letra-titular); letter-spacing: .3em; text-transform: uppercase; color: var(--arenisca-media); padding-left: 6%; }
+.pie__cols { margin-top: clamp(40px, 6vw, 72px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; padding-top: 28px; border-top: 1px solid var(--linea); }
+.pie__h { font: 400 1.25rem/1 var(--letra-titular); color: var(--laton); margin-bottom: .8rem; }
+.pie__cols p { color: var(--texto-suave); }
+.pie__cols p + p { margin-top: .6rem; }
+.pie__cols a { color: var(--arenisca); }
+.pie__legal { margin-top: 48px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1rem; font-size: .86rem; color: var(--texto-suave); }
+.pie__legal nav { display: flex; flex-wrap: wrap; gap: .4rem 1.2rem; }
+.pie__legal a, .pie__legal button { color: var(--arenisca-media); background: none; border: 0; padding: .35rem 0; font: inherit; cursor: pointer; text-decoration: underline; text-underline-offset: .2em; }
+@media (max-width: 699px) { .pie__cols { grid-template-columns: minmax(0, 1fr); } }
+
+/* ============ visor ============ */
+.visor { width: 100vw; height: 100dvh; max-width: none; max-height: none; margin: 0; padding: 0; border: 0; background: rgb(18 9 6 / .97); color: var(--arenisca); }
+.visor::backdrop { background: rgb(18 9 6 / .9); }
+.visor[open] { display: grid; place-items: center; }
+.visor__fig { width: 100%; height: 100%; display: grid; grid-template-rows: minmax(0, 1fr) auto; place-items: center; padding: 64px clamp(56px, 7vw, 110px) 18px; }
+.visor__fig img { max-width: 100%; max-height: 100%; width: auto; height: auto; object-fit: contain; }
+.visor__fig figcaption { padding-top: .8rem; font-size: .92rem; color: var(--arenisca-media); text-align: center; pointer-events: none; }
+.visor__n { margin-left: .6rem; color: var(--laton); }
+.visor__btn, .visor__cerrar { position: absolute; width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--linea-fuerte); background: rgb(31 15 10 / .7); color: var(--arenisca); display: grid; place-items: center; cursor: pointer; }
+.visor__btn { top: 50%; margin-top: -26px; }
+.visor__btn--ant { left: clamp(8px, 2vw, 28px); }
+.visor__btn--sig { right: clamp(8px, 2vw, 28px); }
+.visor__cerrar { top: 12px; right: 12px; }
+
+/* ============ cookies (display solo con :not([hidden])) ============ */
+.cookies { position: fixed; z-index: 90; left: 16px; right: 16px; bottom: 16px; max-width: 760px; margin-inline: auto; padding: 18px 20px; background: var(--castano-tarde); border: 1px solid var(--linea-fuerte); box-shadow: 0 18px 50px rgb(10 5 3 / .55); font-size: .93rem; }
+.cookies:not([hidden]) { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
+.cookies p { flex: 1 1 320px; }
+.cookies__acc { display: flex; flex-wrap: wrap; gap: .6rem; }
+
+/* ============ MANDO DE MAQUETA (no viaja al cliente): solo con ?revision ============ */
+.mando { position: fixed; z-index: 95; left: 14px; bottom: 14px; padding: 6px; background: var(--castano-tarde); border: 1px solid var(--linea-fuerte); border-radius: var(--pildora); font-size: .85rem; }
+.mando:not([hidden]) { display: flex; align-items: center; gap: 4px; }
+.mando__eti { padding: 0 .6rem; color: var(--arenisca-media); }
+.mando button { min-height: 36px; padding: 0 .9rem; border-radius: var(--pildora); border: 0; background: transparent; color: var(--arenisca); cursor: pointer; }
+.mando button[aria-pressed="true"] { background: var(--laton); color: var(--castano-noche); }
+
+/* versión sobria: la portada quieta, la carta sin acordeón, el pie ya escrito y la tabla «de un vistazo» */
+.densidad-sobria .vistazo { display: block; }
+.densidad-sobria .chip, .densidad-sobria .chip.es-abierta { flex-grow: 1; }
+.densidad-sobria .js .chip:not(.es-abierta) .chip__hex, .densidad-sobria .chip .chip__hex, .densidad-sobria .chip .chip__txt { visibility: visible; }
+.densidad-sobria .chip__boton { cursor: default; }
+.densidad-sobria .pie__letras .pl { fill-opacity: 1 !important; stroke-dashoffset: 0 !important; }
+/* fin del MANDO DE MAQUETA */

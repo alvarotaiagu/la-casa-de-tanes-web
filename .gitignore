@@ -1,0 +1,9 @@
+node_modules/
+*.tmp
+# Caché de descargas del IGN/Catastro: se regenera con scripts/lugar-datos.py
+ref/raw/lugar-cache/
+# Privado: no va al repo público
+ref/
+pruebas/
+ENCARGO.md
+PENDIENTES.md

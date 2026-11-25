@@ -1,0 +1,44 @@
+<!-- script bloqueante: clase «js», entrar siempre arriba (checklist 12), ?sin-webgl y el mando de maqueta. -->
+<script>
+(function (d) {
+  var h = d.documentElement;
+  h.classList.add('js');
+  window.Tanes = window.Tanes || {};
+  // al recargar, Chrome devuelve la página a media portada (fijada un tramo): se entra siempre arriba, salvo con #ancla
+  try { if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; } catch (e) {}
+  if (!location.hash) window.scrollTo(0, 0);
+  try {
+    var q = new URLSearchParams(location.search);
+    if (q.has('sin-webgl')) h.classList.add('sin-webgl');
+    // MANDO DE MAQUETA (no viaja al cliente): solo con ?revision
+    if (q.has('revision')) {
+      h.classList.add('revision');
+      if (q.get('densidad') === 'sobria') h.classList.add('densidad-sobria');
+    }
+  } catch (e) {}
+  // con movimiento, el logo de la cabecera espera a que lleguen las letras de la portada (js/portada.js lo quita si no)
+  try {
+    var alto = (innerWidth >= 700 && innerHeight >= 560) || innerHeight >= 700;
+    if (alto && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      h.classList.add('rotulo-en-vuelo');
+      // red de seguridad: si la portada no llega a montarse, el logo vuelve a verse
+      setTimeout(function () { if (!d.querySelector('.portada.es-viva')) h.classList.remove('rotulo-en-vuelo'); }, 4000);
+    }
+  } catch (e) {}
+})(document);
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Imperial+Script&family=Sofia+Sans+Condensed:ital,wght@0,300..700;1,300..500&family=Ubuntu+Sans:wdth,wght@75..100,300..700&family=Google+Sans+Code:wght@400..600&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/estilos.css">
+<link rel="stylesheet" href="css/lugar.css">
+<link rel="icon" href="marca/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="marca/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="marca/apple-touch-icon.png">
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#1F0F0A">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_ES">
+<meta property="og:image" content="img/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
